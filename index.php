@@ -84,7 +84,7 @@ switch (ENVIRONMENT)
 
 
 	case 'testing':
-	case 'produccion':
+	case 'pilot':
 		ini_set('display_errors', 0);
 		if (version_compare(PHP_VERSION, '5.3', '>='))
 		{
