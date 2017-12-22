@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Suscripcion Altas Online | Allaria Ledesma & Cia</title>
+<title>Calculadora de Bonos | Allaria Ledesma & Cia</title>
 <link href="/css/bootstrap/bootstrap.css" type="text/css" rel="stylesheet" media="all">
 <link href="/css/style.css" type="text/css" rel="stylesheet" media="all">
 <link href="/css/messi/messi.min.css" rel='stylesheet' type='text/css' />
