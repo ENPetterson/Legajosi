@@ -11,8 +11,6 @@
 				<div class="clearfix"> </div>			
 		</div>	
 		<!--//header-->
-
-
 	<html>
 		<head>
 			<!--<title>Sistema de Órdenes | Allaria Ledesma & Cia</title>-->
@@ -26,7 +24,17 @@
 				<form id="form">
                                     <input type="text" id="nombreUsuario" placeholder="usuario">
                                     <input type="password" id="clave" placeholder="clave">
-                                    <label for="dominio">Dominio:</label><div id="dominio" ></div>
+                                    
+                                    
+                                    <select id="dominio">
+                                        <?php    
+                                        $dominios = DOMINIOS; 
+                                        $dominios = str_replace('"', "", $dominios);
+                                        $arrayDominios = explode(",", $dominios);
+                                        foreach($arrayDominios as $dominio){ ?>
+                                            <option value="<?= $dominio; ?>"><?php echo $dominio; ?></option>
+                                        <?php } ?>
+                                    </select>
                                     
                                     <button id="aceptar">Ingresar</button>
                                     
@@ -34,15 +42,6 @@
 			</div>
 		</body>
 	</html>
-
-
-
-
-
-
-
-
-
 
 <script>
     
@@ -91,16 +90,16 @@
 //        $("#clave").jqxPasswordInput({  width: '170px', height: '20px', theme: theme});
 
 
-        var sourceDominios = [<?php echo DOMINIOS;?>];
-        $("#dominio").jqxDropDownList({ 
-            source: sourceDominios, 
-            selectedIndex: 0, 
-            width: '170', 
-            height: '20px', 
-            theme: theme});
-        if ($("#dominioPrevio").val()){
-            $("#dominio").jqxDropDownList('selectItem', $("#dominioPrevio").val());
-        }
+//        var sourceDominios = [<?php echo DOMINIOS;?>];
+//        $("#dominio").jqxDropDownList({ 
+//            source: sourceDominios, 
+//            selectedIndex: 0, 
+//            width: '170', 
+//            height: '30px', 
+//            theme: theme});
+//        if ($("#dominioPrevio").val()){
+//            $("#dominio").jqxDropDownList('selectItem', $("#dominioPrevio").val());
+//        }
         
 //        $('#form').bind('validationSuccess', function (event) { formOK = true; });
 //        $('#form').bind('validationError', function (event) { formOK = false; }); 
@@ -120,8 +119,8 @@
                 $.post('usuario/validarUsuario', datos, function(data){
                     if (data.resultado == 'OK'){
                         console.log('OK');
-//                        $(location).attr('href','/calculadora');
-                        $.redirect('/calculadora/resultado');
+                        $(location).attr('href','/calculadora');
+//                        $.redirect('/calculadora/resultado');
                     } else {
                         new Messi(data.resultado, {title: 'Error', 
                             buttons: [{id: 0, label: 'Cerrar', val: 'X'}], modal:true});

@@ -95,6 +95,57 @@ input {
     border-bottom: 2px solid darkgrey;
 }
 
+/*#dominio {
+	height: 30px;
+	width: 93%;
+	border: none;                           
+	background-color: #004A73;            
+	background-color: rgba(255,255,255,1);
+	margin: 2% 3%;
+	font-size: 1em;
+	text-align: center;
+    border-bottom: 2px solid darkgrey;           
+}*/
+
+
+
+
+select#dominio {
+    height: 45px;
+        width: 94%;
+	border-radius: 5px;
+	background-color: rgba(11,111,167,1);
+	margin: 3%;
+	color: rgba(255,255,255,1);
+        text-align: center;
+	font-size: 1em;
+	font-family: 'Quicksand', sans-serif;
+	border-style: none;*/
+        
+   
+}
+
+/*height: 45px;
+	width: 94%;
+	border-radius: 5px;
+	background-color: rgba(11,111,167,1);
+	margin: 3%;
+	color: rgba(255,255,255,1);
+	font-size: 1em;
+	font-family: 'Quicksand', sans-serif;
+	border-style: none;*/
+
+select#dominio:hover {
+	background-color: rgba(10,63,93,1);
+	-webkit-transition: background-color 1s ease-out;
+ 	-moz-transition: background-color 1s ease-out;
+	-o-transition: background-color 1s ease-out;
+	transition: background-color 1s ease-out;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+
 ::-webkit-input-placeholder {
   color: darkgrey;
 }

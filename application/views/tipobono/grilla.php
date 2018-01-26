@@ -49,11 +49,11 @@
         $("#borrarButton").jqxButton({ width: '80', theme: theme, disabled: true });
         
         $("#nuevoButton").click(function(){
-            $.redirect('/tipobono/editar', {'id': 0});
+            $.redirect('/tipoBono/editar', {'id': 0});
         });
         
         $("#editarButton").click(function(){
-            $.redirect('/tipobono/editar', {'id': id});
+            $.redirect('/tipoBono/editar', {'id': id});
         });
         
         $("#borrarButton").click(function(){
@@ -63,7 +63,7 @@
                         datos = {
                             id: id
                         };
-                        $.post('/tipobono/delTipoBono', datos, function(data){
+                        $.post('/tipoBono/delTipoBono', datos, function(data){
                             new Messi(data.resultado, {title: 'Mensaje', modal: true,
                                 buttons: [{id: 0, label: 'Cerrar', val: 'X'}]});
                             $('#grilla').jqxGrid('updatebounddata');

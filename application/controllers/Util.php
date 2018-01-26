@@ -46,7 +46,7 @@ class Util extends MY_AuthController{
         
 //        $inputFileName = 'c:/' . $inputFileName;        
 //        $inputFileName = '/var/www/calculadora/' . $inputFileName;
-//          $inputFileName = '/var/research/' . $inputFileName;
+          $inputFileName = '/var/research/' . $inputFileName;
 //        print_r($inputFileName); die;
         
         $inputFileType = PHPExcel_IOFactory::identify($inputFileName);

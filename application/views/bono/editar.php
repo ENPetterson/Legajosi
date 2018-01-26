@@ -133,6 +133,28 @@
             };
             $.post('/bono/getBono', datos, function(data){
                 $("#nombre").val(data.nombre);
+                
+                $("#cmbTipoBono").val(data.tipobono_id);
+                $("#cmbEmisor").val(data.emisor_id);
+                $("#codigoCaja").val(data.codigocaja);
+                $("#codigoIsin").val(data.codigoisin);
+                $("#cmbMonedaCobro").val(data.monedacobro);
+                $("#cmbMonedaBono").val(data.monedabono);
+                $("#cmbTipoTasa").val(data.tipotasa);
+                $("#tipoTasaVariable").val(data.tipotasavariable);
+                $("#cer").val(data.cer);
+                $("#cupon").val(data.cupon);
+                $("#cantidadCuponAnual").val(data.cantidadcuponanual);
+                $("#vencimiento").val(data.vencimiento);
+                $("#capitalResidual").val(data.capitalresidual);
+                $("#ultimoPrecio").val(data.ultimoprecio);
+                $("#oustanding").val(data.oustanding);
+                $("#proximoInteres").val(data.proximointeres);
+                $("#proximoAmortizacion").val(data.proximoamortizacion);
+                $("#legislacion").val(data.legislacion);
+                $("#denominacionMinima").val(data.denominacionminima);
+                $("#cmbHoja").val(data.hoja);
+    
             }
             , 'json');
         };
@@ -147,7 +169,7 @@
                     { name: 'nombre' }
                 ],
                 id: 'id',
-                url: '/tipobono/getTiposBono',
+                url: '/tipoBono/getTiposBono',
                 async: false
             };
         var DATipoBono = new $.jqx.dataAdapter(srcTipoBono);

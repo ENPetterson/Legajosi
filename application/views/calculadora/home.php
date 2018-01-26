@@ -68,7 +68,7 @@
                         { name: 'nombre' }
                     ],
                     id: 'id',
-                    url: '/tipobono/getTiposBono',
+                    url: '/tipoBono/getTiposBono',
                     async: false
                 };
         var DATipoBono = new $.jqx.dataAdapter(srcTipoBono);

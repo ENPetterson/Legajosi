@@ -33,7 +33,7 @@
             datos = {
                 id: $("#id").val()
             };
-            $.post('/tipobono/getTipoBono', datos, function(data){
+            $.post('/tipoBono/getTipoBono', datos, function(data){
                 $("#nombre").val(data.nombre);
             }
             , 'json');
@@ -73,9 +73,9 @@
                     id: $("#id").val(),
                     nombre: $('#nombre').val()
                 }
-                $.post('/tipobono/saveTipoBono', datos, function(data){
+                $.post('/tipoBono/saveTipoBono', datos, function(data){
                     if (data.id > 0){
-                        $.redirect('/tipobono');
+                        $.redirect('/tipoBono');
                     } else {
                         new Messi('Hubo un error guardando el tipo de bono', {title: 'Error', 
                             buttons: [{id: 0, label: 'Cerrar', val: 'X'}], modal:true});
