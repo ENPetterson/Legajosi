@@ -9,9 +9,12 @@ class Login extends CI_Controller{
     public function index(){
         $this->load->helper('cookie');
         $datos['dominio'] = get_cookie('dominio');
-        $this->load->view('template/encabezado');
+        $this->load->view('template/encabezadoLogin');
         $this->load->view('login/login', $datos);
+//        $this->load->view('template/menu');
         $this->load->view('template/pie');
     }
+
+    
     
 }

@@ -12,7 +12,7 @@ class Flujo extends CI_Controller{
     
     public function importarSeries(){
 
-        $inputFileName = 'C:\Users\mpetterson\Desktop\TAREAS\171024 - Calculadora\BONOS.xlsm';
+        $inputFileName = 'C:\BONOS.xlsm';
         $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
         //$sheetname = 'NF18';
         //$sheetname = 'AE22';
@@ -73,7 +73,7 @@ class Flujo extends CI_Controller{
         $this->load->model('Bono_model');
         $bonos = $this->Bono_model->getBonos();
         
-        $inputFileName = 'C:\Users\mpetterson\Desktop\TAREAS\171024 - Calculadora\BONOS.xlsm';
+        $inputFileName = 'C:\BONOS.xlsm';
         $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
         
         function validarfechas($fecha){
@@ -256,9 +256,9 @@ class Flujo extends CI_Controller{
     
     public function TraerInfo(){  
         try {
-            $inputFileName = 'C:\Users\mpetterson\Desktop\Mica.xlsx';
+//            $inputFileName = 'C:\Users\mpetterson\Desktop\Mica.xlsx';
             //$inputFileName = 'C:\Users\mpetterson\Desktop\TAREAS\171024 - Calculadora\calculadora cp.xls';
-            //$inputFileName = 'C:\Users\mpetterson\Desktop\TAREAS\171024 - Calculadora\BONOS.xlsm';
+            $inputFileName = 'C:\BONOS.xlsm';
             $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
             $objReader = PHPExcel_IOFactory::createReader($inputFileType);
             $objPHPExcel = $objReader->load($inputFileName);

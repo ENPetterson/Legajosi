@@ -15,7 +15,8 @@
                                     </div>
                                     <div id="menu" style="margin-bottom: 15px; display: inline-block"></div>
 				</nav>	
-					<div class="logo">
+				
+                                <div class="logo">
 						<a class="navbar-brand" href="index.html"><img src="/images/logo.png" /></a>
 				</div>
 				<div class="clearfix"> </div>			
@@ -24,6 +25,7 @@
 <script>
     $("body").data('theme', 'darkblue');
 </script>
+
 <script>
     $(function(){
         var theme = getTheme();

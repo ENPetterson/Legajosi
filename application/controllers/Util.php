@@ -41,17 +41,15 @@ class Util extends MY_AuthController{
     
 
     public function adjuntarExcel(){
-            
-        //try {
-        //    $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
-        //    $objReader = PHPExcel_IOFactory::createReader($inputFileType);
-        //    $objPHPExcel = $objReader->load($inputFileName);
-        //} catch(Exception $e) {
-        //    die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
-        //}
         
-        $inputFileType = 'Excel2007'; 
         $inputFileName = $this->input->post('archivo');
+        
+//        $inputFileName = 'c:/' . $inputFileName;        
+//        $inputFileName = '/var/www/calculadora/' . $inputFileName;
+//          $inputFileName = '/var/research/' . $inputFileName;
+//        print_r($inputFileName); die;
+        
+        $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
         $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
         $worksheetList = $objReader->listWorksheetNames($inputFileName);
         
