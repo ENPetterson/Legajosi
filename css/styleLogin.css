@@ -53,14 +53,17 @@ body a:hover{
 	position: relative;
 }
 .headder {
-    background: rgba(78, 197, 241, 0.81);
+    background-color: rgb(77, 115, 151);
+    /*background: rgba(78, 197, 241, 0.81);*/
     padding: .5em 0;
     margin-bottom: 3em;
 }
 
 /*MMMollin*/
 #login {
-	height: 35vh;
+        height: 37vh;
+        border-radius: 5px;
+	/*height: 35vh;*/
 	margin: 15% 35%;
 	background-color: #FFFFFF;
 	opacity: 0.9;
@@ -111,12 +114,16 @@ input {
 
 
 select#dominio {
-    height: 45px;
+    
+    height: 35px;
+background-color: rgba(255, 255, 255, 0.8);
+color: #9FA3A6;
+    /*height: 45px;*/
         width: 94%;
 	border-radius: 5px;
-	background-color: rgba(11,111,167,1);
+	/*background-color: rgba(11,111,167,1);*/
 	margin: 3%;
-	color: rgba(255,255,255,1);
+	/*color: rgba(255,255,255,1);*/
         text-align: center;
 	font-size: 1em;
 	font-family: 'Quicksand', sans-serif;
@@ -135,13 +142,13 @@ select#dominio {
 	font-family: 'Quicksand', sans-serif;
 	border-style: none;*/
 
-select#dominio:hover {
+/*select#dominio:hover {
 	background-color: rgba(10,63,93,1);
 	-webkit-transition: background-color 1s ease-out;
  	-moz-transition: background-color 1s ease-out;
 	-o-transition: background-color 1s ease-out;
 	transition: background-color 1s ease-out;
-}
+}*/
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -162,24 +169,26 @@ select#dominio:hover {
 }
 
 button {
+    margin: 1% 3%;
+
 	height: 45px;
 	width: 94%;
 	border-radius: 5px;
 	background-color: rgba(11,111,167,1);
-	margin: 3%;
+	/*margin: 3%;*/
 	color: rgba(255,255,255,1);
 	font-size: 1em;
 	font-family: 'Quicksand', sans-serif;
 	border-style: none;
 }
 
-button:hover {
+/*button:hover {
 	background-color: rgba(10,63,93,1);
 	-webkit-transition: background-color 1s ease-out;
  	-moz-transition: background-color 1s ease-out;
 	-o-transition: background-color 1s ease-out;
 	transition: background-color 1s ease-out;
-}
+}*/
 
     
     
