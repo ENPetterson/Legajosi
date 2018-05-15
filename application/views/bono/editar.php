@@ -9,109 +9,109 @@
         <form id="form" style="margin-left: 10px; margin-top: 10px">
             <table>
                 
-                <tr>
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle">Bono: </td>
-                    <td><input type="text" id="nombre" style="width: 250px"></td>
+                <tr >
+                    <td style="padding-right:10px; padding-right:20px">Bono: </td>
+                    <td style="padding-top: 10px"><input type="text" id="nombre" style="width: 250px"></td>
                     
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle; padding-left:20px">Tipo de Bono: </td>
-                    <td><div id="cmbTipoBono" ></div></td>
+                    <td style="padding-right:10px; padding-left:20px">Tipo de Bono: </td>
+                    <td style="padding-top: 10px"><div id="cmbTipoBono" ></div></td>
 
                 </tr>
                 
                 <tr>
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle">Emisor: </td>
-                    <td><div id="cmbEmisor"></div></td>
+                    <td style="padding-right:10px; padding-right:20px">Emisor: </td>
+                    <td style="padding-top: 10px"><div id="cmbEmisor"></div></td>
 
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle; padding-left:20px">Código Caja: </td>
-                    <td><input type="text" id="codigoCaja" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-left:20px">Código Caja: </td>
+                    <td style="padding-top: 10px"><input type="text" id="codigoCaja" style="width: 250px" class="text-input"></td>
                 </tr>
                 
                 <tr>
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle">Código Isin: </td>
-                    <td><input type="text" id="codigoIsin" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-right:20px">Código Isin: </td>
+                    <td style="padding-top: 10px"><div id="cmbEmisor"><input type="text" id="codigoIsin" style="width: 250px" class="text-input"></td>
           
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle; padding-left:20px">Moneda de Cobro: </td>
-                    <td><div id="cmbMonedaCobro"></div></td>
+                    <td style="padding-right:10px; padding-left:20px">Moneda de Cobro: </td>
+                    <td style="padding-top: 10px"><div id="cmbMonedaCobro"></div></td>
                 </tr>
                 
                 <tr>
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle">Moneda de Bono: </td>
-                    <td><div id="cmbMonedaBono"></div></td>
+                    <td style="padding-right:10px; padding-right:20px">Moneda de Bono: </td>
+                    <td style="padding-top: 10px"><div id="cmbMonedaBono"></div></td>
                 
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle; padding-left:20px">Tipo de Tasa: </td>
-                    <td><div id="cmbTipoTasa"></div></td>
+                    <td style="padding-right:10px; padding-left:20px">Tipo de Tasa: </td>
+                    <td style="padding-top: 10px"><div id="cmbTipoTasa"></div></td>
                 </tr>        
                 
                 <tr>
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle">Tipo de tasa variable: </td>
-                    <td><input type="text" id="tipoTasaVariable" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-right:20px">Tipo de tasa variable: </td>
+                    <td style="padding-top: 10px"><input type="text" id="tipoTasaVariable" style="width: 250px" class="text-input"></td>
                 
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle; padding-left:20px">CER aplicable: </td>
-                    <td><input type="text" id="cer" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-left:20px">CER aplicable: </td>
+                    <td style="padding-top: 10px"><input type="text" id="cer" style="width: 250px" class="text-input"></td>
                 </tr>                
                 
                 <tr>
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle">Cupón: </td>
-                    <td><input type="text" id="cupon" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-right:20px">Cupón: </td>
+                    <td style="padding-top: 10px"><input type="text" id="cupon" style="width: 250px" class="text-input"></td>
                 
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle; padding-left:20px">Cantidad de cupones al año: </td>
-                    <td><input type="text" id="cantidadCuponAnual" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-left:20px">Cantidad de cupones al año: </td>
+                    <td style="padding-top: 10px"><input type="text" id="cantidadCuponAnual" style="width: 250px" class="text-input"></td>
                 </tr>
                  
                 <tr>
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle">Vencimiento: </td>
-                    <td><input type="text" id="vencimiento" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-right:20px">Vencimiento: </td>
+                    <td style="padding-top: 10px"><input type="text" id="vencimiento" style="width: 250px" class="text-input"></td>
                 
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle; padding-left:20px">Capital Residual: </td>
-                    <td><input type="text" id="capitalResidual" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-left:20px">Capital Residual: </td>
+                    <td style="padding-top: 10px"><input type="text" id="capitalResidual" style="width: 250px" class="text-input"></td>
                 </tr>                
                 
                 <tr>
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle">Último Precio en Moneda de Origen: </td>
-                    <td><input type="text" id="ultimoPrecio" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-right:20px">Último Precio en Moneda de Origen: </td>
+                    <td style="padding-top: 10px"><input type="text" id="ultimoPrecio" style="width: 250px" class="text-input"></td>
                 
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle; padding-left:20px">Oustanding (mln): </td>
-                    <td><input type="text" id="oustanding" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-left:20px">Oustanding (mln): </td>
+                    <td style="padding-top: 10px"><input type="text" id="oustanding" style="width: 250px" class="text-input"></td>
                 </tr>   
                 
                 <tr>
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle">Próximo Pago de Intereses: </td>
-                    <td><input type="text" id="proximoInteres" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-right:20px">Próximo Pago de Intereses: </td>
+                    <td style="padding-top: 10px"><input type="text" id="proximoInteres" style="width: 250px" class="text-input"></td>
                 
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle; padding-left:20px">Próximo Pago de amortizaciones: </td>
-                    <td><input type="text" id="proximoAmortizacion" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-left:20px">Próximo Pago de amortizaciones: </td>
+                    <td style="padding-top: 10px"><input type="text" id="proximoAmortizacion" style="width: 250px" class="text-input"></td>
                 </tr> 
                 
                 <tr>
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle">Legislación: </td>
-                    <td><input type="text" id="legislacion" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-right:20px">Legislación: </td>
+                    <td style="padding-top: 10px"><input type="text" id="legislacion" style="width: 250px" class="text-input"></td>
                 
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle; padding-left:20px">Denominación Mïnima: </td>
-                    <td><input type="text" id="denominacionMinima" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-left:20px">Denominación Mïnima: </td>
+                    <td style="padding-top: 10px"><input type="text" id="denominacionMinima" style="width: 250px" class="text-input"></td>
                 </tr> 
+
+                <tr>
+                    <td style="padding-right:10px; padding-right:20px">Archivo: </td>
+                    <td style="padding-top: 10px"><input type="text" id="libro"></td>
                 
+                    <td style="padding-right:10px; padding-left:20px">Hoja: </td>
+                    <td style="padding-top: 10px"><div id="cmbHoja" ></td>
+                </tr> 
                 
 
-                
                 <tr>
-                    <td colspan="4" style="text-align: right; padding-top: 20px">
-                        <input type="text" id="libro">
-                    </td>
-                </tr>
+                    <td style="padding-right:10px; padding-right:20px">Actualización Automatica: </td>
+                    <td style="padding-top: 10px"><input type="text" id="actualizacionAutomatica" style="width: 250px" class="text-input"></td>
                 
-                <tr>
-                    <td style="padding-right:10px; padding-bottom: 20px; vertical-align: middle; padding-left:20px">Hoja: </td>
-                    <td><div id="cmbHoja" ></div></td>
-                </tr>
-                
-               
+                    <td style="padding-right:10px; padding-left:20px"></td>
+                    <td style="padding-top: 10px"></td>
+                </tr> 
+
                 <tr>
                     <td colspan="4" style="text-align: right; padding-top: 20px">
                         <input type="button" id="aceptarButton" value="Aceptar">
                     </td>
                 </tr>
-                
-                
                 
             </table>
         </form>
@@ -122,7 +122,7 @@
         var theme = getTheme();
         var formOK = false;
         
-        $("#ventanaBono").jqxWindow({showCollapseButton: false, height: 520, width: 950, maxWidth: 1200, theme: theme,
+        $("#ventanaBono").jqxWindow({showCollapseButton: false, height: 550, width: 1100, maxWidth: 1200, theme: theme,
         resizable: false, keyboardCloseKey: -1});
         if ($("#id").val() == 0){
             $("#titulo").text('Nuevo Bono');
@@ -133,7 +133,6 @@
             };
             $.post('/bono/getBono', datos, function(data){
                 $("#nombre").val(data.nombre);
-                
                 $("#cmbTipoBono").val(data.tipobono_id);
                 $("#cmbEmisor").val(data.emisor_id);
                 $("#codigoCaja").val(data.codigocaja);
@@ -154,7 +153,8 @@
                 $("#legislacion").val(data.legislacion);
                 $("#denominacionMinima").val(data.denominacionminima);
                 $("#cmbHoja").val(data.hoja);
-    
+                $("#libro").val(data.libro);
+                $("#actualizacionAutomatica").val(data.actualizacionAutomatica);
             }
             , 'json');
         };
@@ -264,97 +264,27 @@
 
         $('#denominacionMinima').jqxNumberInput({width: 200, height: 25, theme: theme, disabled: false});
 
-        $('#form').jqxValidator({ rules: [
-                    { input: '#nombre', message: 'Debe ingresar el nombre del bono!',  rule: 'required' },
-                    { input: '#nombre', message: 'Ya existe un bono con ese nombre!',  rule: function(){
-                            datos = {
-                                tabla: 'bono',
-                                campo: 'nombre',
-                                valor: $('#nombre').val(),
-                                id: $('#id').val()
-                            };
-                            var resultado;
-                            jQuery.ajaxSetup({async:false});
-                            $.post('/util/buscarDuplicado', datos, function(data){
-                                if (data.resultado){
-                                    resultado = false;
-                                } else {
-                                    resultado = true;
-                                }
-                            }
-                            , 'json');
-                            jQuery.ajaxSetup({async:true});
-                            return resultado;
-                    }},
-                
-                    { input: '#codigoCaja', message: 'Ya existe un bono con ese código CAJA!',  rule: function(){
-                            datos = {
-                                tabla: 'bono',
-                                campo: 'codigocaja',
-                                valor: $('#codigoCaja').val(),
-                                id: $('#id').val()
-                            };
-                            var resultado;
-                            jQuery.ajaxSetup({async:false});
-                            $.post('/util/buscarDuplicado', datos, function(data){
-                                if (data.resultado){
-                                    resultado = false;
-                                } else {
-                                    resultado = true;
-                                }
-                            }
-                            , 'json');
-                            jQuery.ajaxSetup({async:true});
-                            return resultado;
-                    }},
-                
-                    { input: '#codigoIsin', message: 'Ya existe un bono con ese código ISIN!',  rule: function(){
-                            datos = {
-                                tabla: 'bono',
-                                campo: 'codigoisin',
-                                valor: $('#codigoIsin').val(),
-                                id: $('#id').val()
-                            };
-                            var resultado;
-                            jQuery.ajaxSetup({async:false});
-                            $.post('/util/buscarDuplicado', datos, function(data){
-                                if (data.resultado){
-                                    resultado = false;
-                                } else {
-                                    resultado = true;
-                                }
-                            }
-                            , 'json');
-                            jQuery.ajaxSetup({async:true});
-                            return resultado;
-                    }}
-                    ], 
-                    theme: theme
-        });
-        
-        $('#form').bind('validationSuccess', function (event) { formOK = true; });
-        $('#form').bind('validationError', function (event) { formOK = false; }); 
 
 
         $('#libro').jqxButton({ theme: theme, width: '300px' });
         
         $("#cmbHoja").jqxComboBox({width: 200, height: 25, theme: theme, placeHolder: "Elija Hoja:"});
 
+        $("#actualizacionAutomatica").jqxCheckBox({ width: 200, height: 20, theme: theme });
+
         $('#aceptarButton').jqxButton({ theme: theme, width: '75px' });
 
         $('#libro').on('change', function () {
                 datos = {
                     archivo: $("#libro").val()
-                }
+                };
                 $.post('/util/adjuntarExcel', datos, function(data){
                     $.each(data.resultado, function (index, value) {
                         $("#cmbHoja").jqxComboBox('addItem', value);
                     });
 
                 }, 'json');
-
-                
-        });  
+        });
         
         
         /*        
@@ -386,7 +316,89 @@
             console.log(srcTest.data);
         });
 */      
+        $('#form').jqxValidator({ rules: [
+            { input: '#nombre', message: 'Debe ingresar el nombre del bono!',  rule: 'required' },
+            { input: '#nombre', message: 'Ya existe un bono con ese nombre!',  rule: function(){
+                    datos = {
+                        tabla: 'bono',
+                        campo: 'nombre',
+                        valor: $('#nombre').val(),
+                        id: $('#id').val()
+                    };
+                    var resultado;
+                    jQuery.ajaxSetup({async:false});
+                    $.post('/util/buscarDuplicado', datos, function(data){
+                        if (data.resultado){
+                            resultado = false;
+                        } else {
+                            resultado = true;
+                        }
+                    }
+                    , 'json');
+                    jQuery.ajaxSetup({async:true});
+                    return resultado;
+            }},
+
+            { input: '#cmbEmisor', message: 'Debe Seleccionar el plazo!', action: 'keyup, blur',  rule: function(){
+                            return ($("#cmbPlazo").jqxDropDownList('getSelectedIndex') != -1);
+                    }},
+            
+            { input: '#cmbTipoBono', message: 'Debe Seleccionar el plazo!', action: 'keyup, blur',  rule: function(){
+                            return ($("#cmbPlazo").jqxDropDownList('getSelectedIndex') != -1);
+                    }},
+                
+            { input: '#cmbHoja', message: 'Debe Seleccionar el plazo!', action: 'keyup, blur',  rule: function(){
+                            return ($("#cmbPlazo").jqxDropDownList('getSelectedIndex') != -1);
+                    }},    
+
+            { input: '#codigoCaja', message: 'Ya existe un bono con ese código CAJA!',  rule: function(){
+                    datos = {
+                        tabla: 'bono',
+                        campo: 'codigocaja',
+                        valor: $('#codigoCaja').val(),
+                        id: $('#id').val()
+                    };
+                    var resultado;
+                    jQuery.ajaxSetup({async:false});
+                    $.post('/util/buscarDuplicado', datos, function(data){
+                        if (data.resultado){
+                            resultado = false;
+                        } else {
+                            resultado = true;
+                        }
+                    }
+                    , 'json');
+                    jQuery.ajaxSetup({async:true});
+                    return resultado;
+            }},
+
+            { input: '#codigoIsin', message: 'Ya existe un bono con ese código ISIN!',  rule: function(){
+                    datos = {
+                        tabla: 'bono',
+                        campo: 'codigoisin',
+                        valor: $('#codigoIsin').val(),
+                        id: $('#id').val()
+                    };
+                    var resultado;
+                    jQuery.ajaxSetup({async:false});
+                    $.post('/util/buscarDuplicado', datos, function(data){
+                        if (data.resultado){
+                            resultado = false;
+                        } else {
+                            resultado = true;
+                        }
+                    }
+                    , 'json');
+                    jQuery.ajaxSetup({async:true});
+                    return resultado;
+            }}
+            ], 
+            theme: theme
+        });
         
+        $('#form').bind('validationSuccess', function (event) { formOK = true; });
+        $('#form').bind('validationError', function (event) { formOK = false; }); 
+
         
         $('#aceptarButton').bind('click', function () {
             $('#form').jqxValidator('validate');
@@ -399,7 +411,6 @@
                     tipobono_id: $("#cmbTipoBono").jqxDropDownList('getSelectedItem').value,
                     codigocaja: $("#codigoCaja").val(),
                     codigoisin: $("#codigoIsin").val(),
-                    
                     monedacobro: $("#cmbMonedaCobro").val(),                 
                     monedabono: $("#cmbMonedaBono").val(),
                     tipotasa: $("#cmbTipoTasa").val(),
@@ -415,10 +426,10 @@
                     proximoamortizacion: $("#proximoAmortizacion").val(),
                     legislacion: $("#legislacion").val(),
                     denominacionminima: $("#denominacionMinima").val(),
-                    
                     libro: $("#libro").val(),
-                    hoja: $("#cmbHoja").val()
-                }
+                    hoja: $("#cmbHoja").val(),
+                    actualizacionAutomatica: $("#actualizacionAutomatica").val()
+                };
 
                 $.post('/bono/saveBono', datos, function(data){
                     if (data.id > 0){

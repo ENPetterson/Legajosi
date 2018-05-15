@@ -63,8 +63,12 @@ class Bono_model extends CI_Model{
         $bono->legislacion = $this->legislacion;     
         $bono->denominacionminima = $this->denominacionminima;
         
+        
+        
         $bono->libro = $this->libro;
         $bono->hoja = $this->hoja;
+        
+        $bono->actualizacionAutomatica = $this->actualizacionAutomatica;
         
         $this->id = R::store($bono);
         return $this->id;
