@@ -1,0 +1,18 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+<soap12:Body>
+<Validacion xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.nosis.com/sac/ws02/types">
+<Usuario>474631</Usuario>
+<Token>233342</Token>
+<Documento>String</Documento>
+<RazonSocial>String</RazonSocial>
+<Sexo>String</Sexo>
+<FechaNacimiento>String</FechaNacimiento>
+<Email>String</Email>
+<Celular>String</Celular>
+<NroGrupoVID>String</NroGrupoVID>
+<Cbu>String</Cbu>
+</Validacion>
+</soap12:Body>
+</soap12:Envelope>

@@ -32,6 +32,23 @@ class Flujo extends CI_Controller{
         echo json_encode($flujos);
     }
     
+    public function getImportarFlujoss(){
+        
+        $this->load->model('Flujo_model');
+        $flujos = $this->Flujo_model->getImportarFlujos();
+        
+        echo json_encode($flujos);
+    }
+    
+    public function getImportarFlujosss(){
+        
+        $this->load->model('Flujo_model');
+        $flujos = $this->Flujo_model->getImportarFlujos();
+        
+        echo json_encode($flujos);
+    }
+    
+    
     public function getImportarDatos(){
         
         $this->load->model('Flujo_model');

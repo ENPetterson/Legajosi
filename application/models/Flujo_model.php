@@ -110,8 +110,248 @@ class Flujo_model extends CI_Model{
         }
     }
     
-
+    
     public function getImportarFlujos(){
+
+        //Taer los nombres de los bonos, 
+        $this->load->model('Bono_model');
+        $bonos = $this->Bono_model->getBonos();
+        
+        try {
+//        Cambiar esto en test
+        $file = 'BONOS.xlsm';
+        $inputFileName = '/var/research/' . $file;
+
+//        Cambiar esto en local        
+//        $inputFileName = 'C:\BONOS.xlsm';
+        $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+
+        $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
+        $worksheetList = $objReader->listWorksheetNames($inputFileName);
+        
+        } catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
+        
+
+        foreach ($bonos as $bono){
+
+            $sheetname = $bono['hoja'];
+
+            $this->bono = $sheetname;
+            $bonoValido = $this->Flujo_model->validarBonos();
+                        
+            if ($bonoValido == 1){ // Si el bono tiene tildada la opción de actualizar automáticamente.
+                
+                if(in_array($sheetname, $worksheetList)){
+                    
+                    print_r("Hoja existe: " . $sheetname);
+
+                    $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
+                    $objReader->setReadDataOnly(true);
+                    $objReader->setLoadSheetsOnly($sheetname);
+                    $objPHPExcel = $objReader->load($inputFileName);
+                    $sheet = $objPHPExcel->getSheetByName($sheetname);
+                    
+                    $highestRow = $sheet->getHighestRow();
+                    
+                    for ($row = 19; $row <= $highestRow; $row++){
+                        $fechapagos = $sheet->getCellByColumnAndRow(0,$row)->getFormattedValue();
+                        if($fechapagos == null){
+                            $newHighestRow = $row - 1;
+                            break;
+                        } 
+                    }
+                                        
+                    echo "<pre>";
+                    print_r($highestRow);
+                    echo "</pre>";
+                    
+                    echo "<pre>";
+                    print_r($newHighestRow);
+                    echo "<pre>";
+                    
+                    for ($row = 19; $row <= $newHighestRow; $row++){                        
+                            $fechapagos = $sheet->getCellByColumnAndRow(0,$row)->getFormattedValue();
+                            $fechapagos = date('Y-m-d',PHPExcel_Shared_Date::ExcelToPHP($fechapagos));
+                        
+                            $amortizacion = $sheet->getCellByColumnAndRow(5,$row)->getFormattedValue();
+                            $vr = $sheet->getCellByColumnAndRow(6,$row)->getFormattedValue();
+                            $interes = $sheet->getCellByColumnAndRow(7,$row)->getOldCalculatedValue();
+
+                            $amortizacion = str_replace('%', '', $amortizacion);
+                            $vr = str_replace('%', '', $vr);
+                            $interes = str_replace('%', '', $interes);          
+
+                            $flujo = R::dispense('flujo');
+
+                            $flujo->bono = $sheetname;
+                            $flujo->fechapagos = $fechapagos;
+                            $flujo->amortizacion = (double)$amortizacion;
+                            $flujo->vr = (double)$vr;
+                            $flujo->interes = (double)$interes;
+                            R::store($flujo);
+
+                            echo"<pre>";
+                            print_r($sheetname . ' ' . $fechapagos . ' ' . $amortizacion. ' ' . $vr . ' '. $interes);
+                            echo"</pre>";                            
+                    }
+                }else{
+                    echo "<pre>";
+                    print_r("NO existe" . $sheetname);
+                    echo "<pre>";
+                }
+            }            
+        }
+    }
+    
+    
+
+    public function getImportarFlujosss(){
+
+        //Taer los nombres de los bonos, 
+        $this->load->model('Bono_model');
+        $bonos = $this->Bono_model->getBonos();
+        
+        try {
+//        Cambiar esto en test
+        $file = 'BONOS.xlsm';
+        $inputFileName = '/var/research/' . $file;
+
+//        Cambiar esto en local        
+//        $inputFileName = 'C:\BONOS.xlsm';
+        $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+
+        $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
+        $worksheetList = $objReader->listWorksheetNames($inputFileName);
+        
+//        echo "<pre>";
+//        print_r($worksheetList);
+//        echo "</pre>";
+        } catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
+        
+
+        foreach ($bonos as $bono){
+
+            $sheetname = $bono['hoja'];
+
+            $this->bono = $sheetname;
+            $bonoValido = $this->Flujo_model->validarBonos();
+                        
+            if ($bonoValido == 1){ // Si el bono tiene tildada la opción de actualizar automáticamente.
+                
+                if(in_array($sheetname, $worksheetList)){
+                    
+                    print_r("Hoja existe: " . $sheetname);
+
+                    $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
+                    $objReader->setReadDataOnly(true);
+                    $objReader->setLoadSheetsOnly($sheetname);
+                    $objPHPExcel = $objReader->load($inputFileName);
+//                    $sheet = $objPHPExcel->getActiveSheet();
+                    $sheet = $objPHPExcel->getSheetByName($sheetname);
+                    
+                    
+//                $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
+//                $objReader->setLoadSheetsOnly($sheetname); 
+//                $objPHPExcel = $objReader->load($inputFileName); 
+//                $sheet = $objPHPExcel->getSheetByName($sheetname);
+                    
+                    
+                    $highestRow = $sheet->getHighestRow();
+                    
+                    for ($row = 19; $row <= $highestRow; $row++){
+                        $fechapagos = $sheet->getCellByColumnAndRow(0,$row)->getFormattedValue();
+
+//                        print_r($fechapagos);
+//                        $lala = date('Y-m-d',PHPExcel_Shared_Date::ExcelToPHP($fechapagos));
+//                        $fechapagos = date('Y-m-d',PHPExcel_Shared_Date::ExcelToPHP($fechapagos));
+                        
+//                        print_r($fechapagos);
+//                                               
+//                        print_r($lala);
+//
+//                        die;
+                        
+
+                        if($fechapagos == null){
+                            $newHighestRow = $row - 1;
+                            break;
+                        } 
+//                        if($fechapagos != null) {
+//                            $newHighestRow = $row;
+//                        }
+                    }
+                    
+                    
+                    echo "<pre>";
+                    print_r($highestRow);
+                    echo "</pre>";
+                    
+                    echo "<pre>";
+                    print_r($newHighestRow);
+                    echo "<pre>";
+                    
+                    for ($row = 19; $row <= $newHighestRow; $row++){
+//                        $fechapagos = $sheet->getCellByColumnAndRow(0,$row)->getFormattedValue();
+//                        //Si la fecha viene en formato 01-01-10 la convierte.
+//                        $patrón = '/[0-9]{2}-[0-9]{2}-[0-9]{2}/';         
+//                        if(preg_match($patrón, $fechapagos, $coincidencias)){
+//                            $valores = explode('-', $fechapagos);
+//                            $newfechapagos = ($valores[2].'-'.$valores[0].'-'.$valores[1]);
+//                            $fechapagos = date('d-M-y', strtotime($newfechapagos));
+//                        }
+//
+//                        if($this->Flujo_model->validarfechas($fechapagos)){
+                        
+                            $fechapagos = $sheet->getCellByColumnAndRow(0,$row)->getFormattedValue();
+                            $fechapagos = date('Y-m-d',PHPExcel_Shared_Date::ExcelToPHP($fechapagos));
+                        
+                            $amortizacion = $sheet->getCellByColumnAndRow(5,$row)->getFormattedValue();
+                            $vr = $sheet->getCellByColumnAndRow(6,$row)->getFormattedValue();
+
+                            //$interes = $sheet->getCellByColumnAndRow(7,$row)->getCalculatedValue();
+                            //$interes = $sheet->getCellByColumnAndRow(7,$row)->getValue();                    
+                            //$interes = $sheet->getCellByColumnAndRow(7,$row)->getFormattedValue();
+                            $interes = $sheet->getCellByColumnAndRow(7,$row)->getOldCalculatedValue();
+
+                            $amortizacion = str_replace('%', '', $amortizacion);
+                            $vr = str_replace('%', '', $vr);
+                            $interes = str_replace('%', '', $interes);          
+
+                            $flujo = R::dispense('flujo');
+
+                            $flujo->bono = $sheetname;
+                            $flujo->fechapagos = $fechapagos;
+                            $flujo->amortizacion = (double)$amortizacion;
+                            $flujo->vr = (double)$vr;
+                            $flujo->interes = (double)$interes;
+                            R::store($flujo);
+
+                            echo"<pre>";
+                            print_r($sheetname . ' ' . $fechapagos . ' ' . $amortizacion. ' ' . $vr . ' '. $interes);
+                            echo"</pre>";
+//                        }else{
+//                            break;
+//                        }
+                            
+                    }
+
+                    
+                }else{
+                    echo "<pre>";
+                    print_r("NO existe" . $sheetname);
+                    echo "<pre>";
+                }
+            }            
+        }
+    }
+    
+   
+    
+        public function getImportarFlujoss(){
 
         //Taer los nombres de los bonos, 
         $this->load->model('Bono_model');
@@ -119,10 +359,10 @@ class Flujo_model extends CI_Model{
         
         
 //        Cambiar esto en test
-//        $file = 'BONOS.xlsm';
-//        $inputFileName = '/var/research/' . $file;
+        $file = 'BONOS.xlsm';
+        $inputFileName = '/var/research/' . $file;
         
-        $inputFileName = 'C:\BONOS.xlsm';
+//        $inputFileName = 'C:\BONOS.xlsm';
         $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
 
         foreach ($bonos as $bono){
@@ -142,6 +382,10 @@ class Flujo_model extends CI_Model{
                     $highestRow = $sheet->getHighestRow();
                     for ($row = 19; $row <= $highestRow; $row++){
                         $fechapagos = $sheet->getCellByColumnAndRow(0,$row)->getFormattedValue();
+                        
+                        print_r($fechapagos);
+                        die;
+                        
                         //Si la fecha viene en formato 01-01-10 la convierte.
                         $patrón = '/[0-9]{2}-[0-9]{2}-[0-9]{2}/';         
                         if(preg_match($patrón, $fechapagos, $coincidencias)){
@@ -184,8 +428,30 @@ class Flujo_model extends CI_Model{
                 }
                                    
             }
+            
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     public function getImportarDatos(){

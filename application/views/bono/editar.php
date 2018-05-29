@@ -340,15 +340,15 @@
             }},
 
             { input: '#cmbEmisor', message: 'Debe Seleccionar el plazo!', action: 'keyup, blur',  rule: function(){
-                            return ($("#cmbPlazo").jqxDropDownList('getSelectedIndex') != -1);
+                            return ($("#cmbEmisor").jqxDropDownList('getSelectedIndex') != -1);
                     }},
             
             { input: '#cmbTipoBono', message: 'Debe Seleccionar el plazo!', action: 'keyup, blur',  rule: function(){
-                            return ($("#cmbPlazo").jqxDropDownList('getSelectedIndex') != -1);
+                            return ($("#cmbTipoBono").jqxDropDownList('getSelectedIndex') != -1);
                     }},
                 
             { input: '#cmbHoja', message: 'Debe Seleccionar el plazo!', action: 'keyup, blur',  rule: function(){
-                            return ($("#cmbPlazo").jqxDropDownList('getSelectedIndex') != -1);
+                            return ($("#cmbHoja").jqxDropDownList('getSelectedIndex') != -1);
                     }},    
 
             { input: '#codigoCaja', message: 'Ya existe un bono con ese código CAJA!',  rule: function(){
