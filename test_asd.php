@@ -1,5 +1,6 @@
 <?php
 
+die;
 
 require_once APPPATH."/third_party/nusoap/lib/nusoap.php";
 

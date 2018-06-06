@@ -2565,7 +2565,7 @@ class soap_transport_http extends nusoap_base {
 	* @access   public
 	*/
 	function send($data, $timeout=0, $response_timeout=30, $cookies=NULL) {
-		
+		      
 		$this->debug('entered send() with data of length: '.strlen($data));
 
 		$this->tryagain = true;
@@ -3113,10 +3113,34 @@ class soap_transport_http extends nusoap_base {
 	
 	  } else if ($this->io_method() == 'curl') {
 		// send and receive
+              
+              
+              
+              
 		$this->debug('send and receive with cURL');
+                
+                
+                echo "Acá entra en Curl" . "<br>";
+                echo "<pre>";
+                var_dump($this->outgoing_payload);
+                echo "<pre>";
+                
+                echo "Acá imprime Ch" . "<br>";
+                echo "<pre>";
+                var_dump($this->ch);
+                echo "<pre>";
+                
+                
 		$this->incoming_payload = curl_exec($this->ch);
+                
 		$data = $this->incoming_payload;
 
+                echo "Acá imprime incoming_payload" . "<br>";
+                echo "<pre>";
+                var_dump($this->incoming_payload);
+                echo "<pre>";
+                
+                
         $cErr = curl_error($this->ch);
 		if ($cErr != '') {
         	$err = 'cURL ERROR: '.curl_errno($this->ch).': '.$cErr.'<br>';
@@ -3139,6 +3163,11 @@ class soap_transport_http extends nusoap_base {
 		
 		// try removing skippable headers
 		$savedata = $data;
+                
+                echo "Acá uno tiene bien el header y el otro no" . "<br>";
+                var_dump($savedata);
+                
+                
 		while ($this->isSkippableCurlHeader($data)) {
 			$this->debug("Found HTTP header to skip");
 			if ($pos = strpos($data,"\r\n\r\n")) {
