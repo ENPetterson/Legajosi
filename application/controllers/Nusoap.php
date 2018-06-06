@@ -24,6 +24,8 @@ class Nusoap extends MY_AuthController{
     public function testNosis7(){
         
         
+        //Comentario
+        
         require_once APPPATH."/third_party/nusoap/lib/nusoap.php";
         $client = new nusoap_client('https://ws02.nosis.com/soap12');
 
