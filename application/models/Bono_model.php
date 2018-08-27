@@ -11,6 +11,7 @@ class Bono_model extends CI_Model{
     public $tipobono_id;
     public $codigocaja;
     public $codigoisin;
+    
     public $usuario_id;
     public $menu_id;
     public $controlador_id;
@@ -69,6 +70,8 @@ class Bono_model extends CI_Model{
         $bono->hoja = $this->hoja;
         
         $bono->actualizacionAutomatica = $this->actualizacionAutomatica;
+        $bono->fechaActualizacion = $this->fechaActualizacion;
+        
         
         $this->id = R::store($bono);
         return $this->id;
@@ -88,6 +91,27 @@ class Bono_model extends CI_Model{
         $bonos = R::getAll('select * from bono order by nombre');
         return $bonos;
     }
+    
+    
+    public function getBonosBonos(){
+//        $bonos = R::getAll('SELECT * FROM bono WHERE libro = {$this->bono}');
+        
+        $this->bono = 'BONOS.xlsm';           
+        $sql = "select * from bono WHERE libro = '{$this->bono}' order by nombre";
+        $bonos = R::getAll($sql); 
+        return $bonos;
+    }
+    
+    public function getBonosProvinciales(){
+//        $bonos = R::getAll('SELECT * FROM bono WHERE libro = {$this->bono}');
+        
+        $this->bono = 'provinciales.xlsm';           
+        $sql = "select * from bono WHERE libro = '{$this->bono}' order by nombre";
+        $bonos = R::getAll($sql); 
+        return $bonos;
+    }
+    
+    
 
     public function getCodigoCaja(){
         $bono = $this->bono;    

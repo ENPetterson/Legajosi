@@ -6,10 +6,10 @@ class Setup extends CI_Controller {
     function index() {
 
         //Eliminando las tablas
-
+   
         $tables = array('usuario', 'grupo', 'menu', 'grupo_usuario', 'grupo_menu','controlador', 
             'controlador_grupo');
-
+        
         R::exec('SET FOREIGN_KEY_CHECKS = 0;');
         foreach ($tables as $value) {
             R::exec("drop table if exists {$value}");
@@ -30,6 +30,7 @@ class Setup extends CI_Controller {
         
         //Creando los objetos
         $this->load->model('Usuario_model');
+        $this->Usuario_model->id = 1;
         $this->Usuario_model->nombreUsuario = "mpetterson";
         $this->Usuario_model->nombre = "Micaela";
         $this->Usuario_model->apellido = "Petterson";
@@ -38,6 +39,29 @@ class Setup extends CI_Controller {
         $usuario_id = $this->Usuario_model->saveUsuario();
 
         echo "Dado de alta el usuario con id {$usuario_id} <br />";
+        
+        $this->load->model('Usuario_model');
+        $this->Usuario_model->id = 2;
+        $this->Usuario_model->nombreUsuario = "jleis";
+        $this->Usuario_model->nombre = "Javier";
+        $this->Usuario_model->apellido = "Leis";
+        $this->Usuario_model->email = "jleis@allaria.com.ar";
+        $this->Usuario_model->dominio = "allaria";
+        $usuario_id = $this->Usuario_model->saveUsuario();
+
+        echo "Dado de alta el usuario con id {$usuario_id} <br />";
+        
+        $this->load->model('Usuario_model');
+        $this->Usuario_model->id = 3;
+        $this->Usuario_model->nombreUsuario = "acoppari";
+        $this->Usuario_model->nombre = "Azul";
+        $this->Usuario_model->apellido = "Coppari";
+        $this->Usuario_model->email = "acoppari@allaria.com.ar";
+        $this->Usuario_model->dominio = "allaria";
+        $usuario_id = $this->Usuario_model->saveUsuario();
+
+        echo "Dado de alta el usuario con id {$usuario_id} <br />";        
+     
 
         $this->load->model('grupo_model');
         $this->grupo_model->nombre = 'Administradores';
@@ -66,6 +90,62 @@ class Setup extends CI_Controller {
         $this->grupo_model->assocMenu();
 
         echo "Dado de alta el menu con el id {$menu_id} <br />";
+        
+        $this->load->model('menu_model');
+        $this->menu_model->id = 0;
+        $this->menu_model->padre_id = $padre_id;
+        $this->menu_model->nombre = 'Importar';
+        $this->menu_model->accion = 'importar';
+        $menu_id = $this->menu_model->saveMenu();
+
+        $this->grupo_model->id = $grupo_id;
+        $this->grupo_model->menu_id = $menu_id;
+        $this->grupo_model->assocMenu();
+
+        echo "Dado de alta el menu con el id {$menu_id} <br />";
+        
+        $this->load->model('menu_model');
+        $this->menu_model->id = 0;
+        $this->menu_model->padre_id = $padre_id;
+        $this->menu_model->nombre = 'Flujos';
+        $this->menu_model->accion = 'flujo';
+        $menu_id = $this->menu_model->saveMenu();
+
+        $this->grupo_model->id = $grupo_id;
+        $this->grupo_model->menu_id = $menu_id;
+        $this->grupo_model->assocMenu();
+
+        echo "Dado de alta el menu con el id {$menu_id} <br />";
+        
+        $this->load->model('menu_model');
+        $this->menu_model->id = 0;
+        $this->menu_model->padre_id = $padre_id;
+        $this->menu_model->nombre = 'Datos';
+        $this->menu_model->accion = 'dato';
+        $menu_id = $this->menu_model->saveMenu();
+
+        $this->grupo_model->id = $grupo_id;
+        $this->grupo_model->menu_id = $menu_id;
+        $this->grupo_model->assocMenu();
+
+        echo "Dado de alta el menu con el id {$menu_id} <br />";
+        
+        
+        $this->load->model('menu_model');
+        $this->menu_model->id = 0;
+        $this->menu_model->padre_id = $padre_id;
+        $this->menu_model->nombre = 'Estructuras de Bonos';
+        $this->menu_model->accion = 'estructuraBono';
+        $menu_id = $this->menu_model->saveMenu();
+
+        $this->grupo_model->id = $grupo_id;
+        $this->grupo_model->menu_id = $menu_id;
+        $this->grupo_model->assocMenu();
+
+        echo "Dado de alta el menu con el id {$menu_id} <br />";
+        
+        
+        
 ////////////////////////////////////////////////////////////////////////////////
         $padre_id = -1;
 
@@ -381,6 +461,98 @@ class Setup extends CI_Controller {
  
 ////////////////////////////////////////////////////////////////////////////////
         
+
+        
+        
+        
+        $this->load->model('Dato_model');
+                
+        $this->Dato_model->id = 1;
+        $this->Dato_model->bono = 'AA19';
+        $this->Dato_model->fecha = '2018-06-19';
+        
+        $this->Dato_model->vr = '2';
+        $this->Dato_model->amortizacion = '2';
+
+        $this->Dato_model->VNActualizado = '2';
+        $this->Dato_model->VRActualizado = '2';
+        $this->Dato_model->cuponAmortizacion = '2';
+        $this->Dato_model->cuponInteres = '2';
+        $this->Dato_model->totalFlujo = '2';
+        $this->Dato_model->fechaActualizacion = '2018-05-02';
+        
+        $dato = $this->Dato_model->saveDato();
+        
+        echo "Dado de alta el Dato con el id {$dato['id']} <br>";
+
+        
+////////////////////////////////////////////////////////////////////////////////
+        
+        
+        $this->load->model('EstructuraBono_model');
+        
+        $this->EstructuraBono_model->id = 1;
+        
+        $this->EstructuraBono_model->especieByma = 'Lala';
+        $this->EstructuraBono_model->tipoInstrumentoImpuesto = 'Lala';
+        $this->EstructuraBono_model->tipoAjuste = 'Lala';
+        $this->EstructuraBono_model->tipoInstrumento = 'Lala';
+        $this->EstructuraBono_model->nombreConocido = 'Lala';
+        $this->EstructuraBono_model->tipoEmisor = 'Lala';
+        $this->EstructuraBono_model->emisor = 'Lala';
+        $this->EstructuraBono_model->monedacobro = 'Lala';
+        $this->EstructuraBono_model->monedaEmision = 'Lala';
+        $this->EstructuraBono_model->cerInicial = 6.1534;
+        $this->EstructuraBono_model->diasPreviosCer = 100000;
+        $this->EstructuraBono_model->especieCaja = 925800;
+        $this->EstructuraBono_model->isin = 'Lala';
+        $this->EstructuraBono_model->nombre = 'Lala';
+        $this->EstructuraBono_model->fechaEmision = '06/07/2016';
+        $this->EstructuraBono_model->fechaVencimiento = '06/07/2016';
+        $this->EstructuraBono_model->oustanding = 104.399;
+        $this->EstructuraBono_model->ley = 'Lala';
+        $this->EstructuraBono_model->amortizacion = '120 cuotas mensuales, iguales y sucesivas, equivalentes las 119 primeras al 0,83% y una última equivalente al 1,23% del monto emitido y ajustado por aplicación del CER, más los intereses capitalizados hasta el 15/03/2014. La primera cuota vencerá el 15/04/2014.';
+        $this->EstructuraBono_model->tipoTasa = 'Lala';
+        $this->EstructuraBono_model->tipoTasaVariable = 'Lala';
+        $this->EstructuraBono_model->spread = 2.50;
+        $this->EstructuraBono_model->tasaMinima = 17;
+        $this->EstructuraBono_model->tasaMaxima = 10;
+        $this->EstructuraBono_model->cuponAnual = 18.200;
+        $this->EstructuraBono_model->cantidadCuponesAnio = 0.5;
+        $this->EstructuraBono_model->frecuenciaCobro = 'Lala';
+        $this->EstructuraBono_model->fechasCobroCupon = 'Período Tasa Anual 01.12.2005 hasta el 01.11.2009 1% 02.11.2009 hasta el 01.11.2013 2% 02.11.2013 hasta el 01.11.2017 3% 02.11.2017 hasta el 01.05.2020 4% Las fechas de pago de intereses serán el 1° de mayo y el 1° de noviembre de cada año, comenzando a partir del 01.05.06. ';
+        $this->EstructuraBono_model->formulaCalculoInteres = 'Lala';
+        $this->EstructuraBono_model->diasPreviosRecord = 'Lala';
+        $this->EstructuraBono_model->proximoCobroInteres = '29-11-18';
+        $this->EstructuraBono_model->proximoCobroCapital = '29-11-18';
+        $this->EstructuraBono_model->duration = 12.570007278459402;
+        $this->EstructuraBono_model->precioMonedaOrigen = 0.0342;
+        $this->EstructuraBono_model->lastYtm = 52.708;
+        $this->EstructuraBono_model->paridad = 196.885;
+        $this->EstructuraBono_model->currentYield = 10.063;
+        $this->EstructuraBono_model->interesesCorridos = 5.16;
+        $this->EstructuraBono_model->valorResidual = 100.000;
+        $this->EstructuraBono_model->valorTecnico = 101.89;
+        $this->EstructuraBono_model->mDuration = 10.11;
+        $this->EstructuraBono_model->convexity = 111.87;
+        $this->EstructuraBono_model->denominacionMinima = 150000;
+        $this->EstructuraBono_model->spreadSinTasa = 1.083;
+        $this->EstructuraBono_model->ultimaTna = 43.7;
+        $this->EstructuraBono_model->diasInicioCupon = 'Lala';
+        $this->EstructuraBono_model->diasFinalCupon = 'Lala';
+        $this->EstructuraBono_model->capitalizacionInteres = 'Lala';
+        $this->EstructuraBono_model->precioPesos = 2725.91;    
+        $this->EstructuraBono_model->fechaActualizacion = '30-10-2017';
+        
+        $estructura = $this->EstructuraBono_model->saveEstructuraBono();
+        
+        echo "Dado de alta la estructura bono con el id {$estructura['id']} <br>";
+        
+        
+        
+////////////////////////////////////////////////////////////////////////////////
+        
+        
         $this->load->model('Bono_model');
         
         $this->Bono_model->id = 1;
@@ -406,8 +578,12 @@ class Setup extends CI_Controller {
         $this->Bono_model->denominacionminima = 100000;        
         $this->Bono_model->libro = 'C:\BONOS.xlsx'; 
         $this->Bono_model->hoja = 'Hoja1'; 
-        $this->Bono_model->actualizacionAutomatica = 0;
+        $this->Bono_model->actualizacionAutomatica = 'true';
         $this->Bono_model->fechaActualizacion = '30-10-2017';
+        
+        
+        
+        
         
         $bono = $this->Bono_model->saveBono();
         
@@ -415,70 +591,7 @@ class Setup extends CI_Controller {
 
 ////////////////////////////////////////////////////////////////////////////////
     
-//        $this->load->model('Dato_model');
-//        
-//        
-//        echo "Lo carga";
-//        
-//        
-//        $this->Dato_model->id = 1;
-//        $this->Dato_model->bono = 'AA19';
-//        $this->Dato_model->fecha = '2';
-//        $this->Dato_model->VNActualizado = '2';
-//        $this->Dato_model->VRActualizado = '2';
-//        $this->Dato_model->cuponAmortizacion = '2';
-//        $this->Dato_model->cuponInteres = '2';
-//        $this->Dato_model->totalFlujo = '2';
-//        $this->Dato_model->fechaActualizacion = '2';
-//        
-//        $dato = $this->Dato_model->saveDato();
-//        
-//        echo "Dado de alta el Dato con el id {$dato['id']} <br>";
-////////////////////////////////////////////////////////////////////////////////
 
-        $this->load->model('Dato_model');
-                
-        $this->Dato_model->id = 1;
-        $this->Dato_model->bono = 'AA19';
-        $this->Dato_model->fecha = '22-Apr-16';
-        $this->Dato_model->VNActualizado = '2';
-        $this->Dato_model->VRActualizado = '2';
-        $this->Dato_model->cuponAmortizacion = '2';
-        $this->Dato_model->cuponInteres = '2';
-        $this->Dato_model->totalFlujo = '2';
-        $this->Dato_model->fechaActualizacion = '2018-05-02';
-        
-        $dato = $this->Dato_model->saveDato();
-        
-        echo "Dado de alta el Dato con el id {$dato['id']} <br>";
-
-        
-////////////////////////////////////////////////////////////////////////////////
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-         
-//        $dato = R::dispense('dato');
-//        $dato->id = 1;
-//        $dato->bono = 'AA19';
-//        $dato->fecha = '22-Apr-16';
-//        $dato->VNActualizado = '2';
-//        $dato->VRActualizado = '2';
-//        $dato->cuponAmortizacion = '2';
-//        $dato->cuponInteres = '2';
-//        $dato->totalFlujo = '2';
-//        $dato->fechaActualizacion = '2';
-//        R::store($dato);
-         
         //agregado
         
         $sql = "create or replace view v_bono as 

@@ -18,17 +18,17 @@ class Calculadora extends MY_AuthController{
         }
     }
     
-    public function calculadora(){
-        $views = array(
-            'template/encabezado', 
-            'template/menu',
-            'calculadora/calculadora', 
-            'template/pie'
-            );
-        foreach ($views as $value) {
-            $this->load->view($value);
-        }
-    }
+//    public function calculadora(){
+//        $views = array(
+//            'template/encabezado', 
+//            'template/menu',
+//            'calculadora/calculadora', 
+//            'template/pie'
+//            );
+//        foreach ($views as $value) {
+//            $this->load->view($value);
+//        }
+//    }
     
     
     public function resultado(){

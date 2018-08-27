@@ -59,6 +59,7 @@ class Bono extends MY_AuthController{
         $this->Bono_model->hoja = $this->input->post('hoja');
         
         $this->Bono_model->actualizacionAutomatica = $this->input->post('actualizacionAutomatica');
+        $this->Bono_model->fechaActualizacion = $this->input->post('fechaActualizacion');
         
         $id = $this->Bono_model->saveBono();
         $resultado = array('id'=>$id);

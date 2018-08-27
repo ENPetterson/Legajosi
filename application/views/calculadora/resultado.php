@@ -32,7 +32,7 @@
         var theme = getTheme();
         var formOK = false;
         
-        $("#ventanaResultado").jqxWindow({showCollapseButton: false, height: 400, width: 500, maxWidth: 1200, theme: theme,
+        $("#ventanaResultado").jqxWindow({showCollapseButton: false, height: 500, width: 500, maxWidth: 1200, theme: theme,
         resizable: false, keyboardCloseKey: -1});
 
         //$('#nombre').jqxInput({width: 200, height: 25, theme: theme, disabled: false});

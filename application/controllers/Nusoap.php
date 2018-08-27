@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once APPPATH."/third_party/PHPExcel.php";
-require_once APPPATH."/third_party/nusoap/lib/nusoap.php";
+//require_once APPPATH."/third_party/nusoap/lib/nusoap.php";
 
 class Nusoap extends MY_AuthController{
     public function __construct() {
@@ -21,13 +21,98 @@ class Nusoap extends MY_AuthController{
     }
     
     
+    function testNosis10(){
+        $servicio = 'https://ws02.nosis.com/soap12';
+        
+        $cliente = new SoapClient($servicio, array("trace"=>1,"exceptions"=>1,'soap_version' => SOAP_1_2));
+        $params = array(
+            'Usuario'         => '62112',
+            'Token'           => '394233',
+            'Documento'       => '34536629',
+            'RazonSocial'     => 'Micaela Petterson',
+            'Sexo'            => 'F',
+            'FechaNacimiento' => '18/11/1988',
+            'NroGrupoVID'     => 1
+        ); 
+        
+//        var_dump($cliente->__getFunctions());
+        
+        try {
+            $result = $cliente->Validacion($params);
+        } catch (SoapFault $fault) {
+            echo 'Request : <br/><xmp>', 
+            $cliente->__getLastRequest(), 
+            '</xmp><br/><br/> Error Message : <br/>', 
+            $fault->getMessage(); 
+        }
+        file_put_contents('/var/www/calculadora/request.xml',$cliente->__getLastRequest());
+        
+//        echo "<pre>";
+//        var_dump($cliente->__getLastResponse());
+//        echo "</pre>";
+        
+       
+        $lala = $result->Contenido->Datos->Cuestionario->Desafios->Desafio;
+        
+        foreach ($lala as $key => $la){
+//            echo "<pre>";
+//            print_r($la->Pregunta);
+//            echo "</pre>";
+//            
+//            echo "<pre>";
+//            print_r($la->Pregunta->IdPregunta);
+//            echo "</pre>";
+//            
+//            echo "<pre>";
+//            print_r($la->Pregunta->Opciones->Opcion[0]);
+//            echo "</pre>";
+           
+            $sarasa[] = $la->Pregunta->IdPregunta . "-" . 1;
+        }
+        
+        $comma_separated = implode(",", $sarasa);
+        
+//        print_r($comma_separated);
+
+        $resultadoCuestionario = '25-0,11-3,12-1,3-3,5-0,24-4,6-3,23-1,2-1,1-2,10-1,13-2';
+//        echo "<pre>";
+//        var_dump($result->Contenido);
+//        echo "</pre>";
+        
+        $paramsEvaluacion = array(
+            'Usuario'         => '62112',
+            'Token'           => '394233',
+//            'IdConsulta'      => $result->Contenido->Datos->IdConsulta,
+            'IdConsulta'      => '645419-27345366291',
+            'Cuestionario'    => $resultadoCuestionario
+        ); 
+
+        try {
+            $resultadosEvaluacion = $cliente->Evaluacion($paramsEvaluacion);
+        } catch (SoapFault $fault) {
+            echo 'Request : <br/><xmp>', 
+            $cliente->__getLastRequest(), 
+            '</xmp><br/><br/> Error Message : <br/>', 
+            $fault->getMessage(); 
+        }
+        file_put_contents('/var/www/calculadora/request.xml',$cliente->__getLastRequest());
+        
+        echo "<pre>";
+        print_r($resultadosEvaluacion);
+        echo "</pre>";
+        
+        
+    }
+    
+    
+    
     public function testNosis7(){
         
         
         //Comentario
         
         require_once APPPATH."/third_party/nusoap/lib/nusoap.php";
-        $client = new nusoap_client('https://ws02.nosis.com/soap12');
+        $client = new nusoap_client('https://ws02.nosis.com/soap12', array("trace"=>1,"exceptions"=>1,'soap_version' => SOAP_1_2));
 
 //        $client->setCredentials($exch_user, $exch_pass, 'ntlm');
 //        $client->setUseCURL(true);

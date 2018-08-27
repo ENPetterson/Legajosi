@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:ns1="http://schemas.nosis.com/sac/ws02/types"><env:Body><ns1:Evaluacion><ns1:Usuario>62112</ns1:Usuario><ns1:Token>394233</ns1:Token><ns1:IdConsulta>1019009-20233294579</ns1:IdConsulta><ns1:Cuestionario>10-3,1-2,23-0,12-0,25-2,3-0</ns1:Cuestionario></ns1:Evaluacion></env:Body></env:Envelope>

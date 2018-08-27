@@ -52,3 +52,42 @@ class Controlador_model extends CI_Model {
     }
 
 }
+
+
+
+
+class Model_Controlador extends RedBean_SimpleModel {
+    private $prev;
+    
+    function open(){
+        $this->prev = $this->bean->export();
+    }
+    
+    function after_update(){
+        if (json_encode($this->prev) != json_encode($this->bean->export())){
+            $CI =& get_instance();
+            $usuarioParam = $CI->session->userdata('usuario');
+            $usuario = R::load('usuario', $usuarioParam['id']);
+            $auditoria = R::dispense('auditoria');
+            $auditoria->usuario = $usuario;
+            $auditoria->table = 'controlador';
+            $auditoria->tableId = $this->bean->id;
+            $auditoria->anterior = json_encode($this->prev);
+            $auditoria->actual = json_encode($this->bean->export());
+            R::store($auditoria);
+        }
+    }
+
+    function after_delete(){
+        $CI =& get_instance();
+        $usuarioParam = $CI->session->userdata('usuario');
+        $usuario = R::load('usuario', $usuarioParam['id']);
+        $auditoria = R::dispense('auditoria');
+        $auditoria->usuario = $usuario;
+        $auditoria->table = 'controlador';
+        $auditoria->tableId = $this->prev['id'];
+        $auditoria->anterior = json_encode($this->prev);
+        $auditoria->actual = json_encode(array('operacion'=>'Registro Borrado'));
+        R::store($auditoria);        
+    }    
+}

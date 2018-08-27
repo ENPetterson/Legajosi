@@ -37,6 +37,10 @@ class Dato extends MY_AuthController{
         
         $this->Dato_model->id = $this->input->post('id');
         $this->Dato_model->bono = $this->input->post('bono');
+        
+        $this->Dato_model->vr = $this->input->post('vr');
+        $this->Dato_model->amortizacion = $this->input->post('amortizacion');
+        
         $this->Dato_model->fecha = $this->input->post('fecha');
         $this->Dato_model->VNActualizado = $this->input->post('VNActualizado');
         $this->Dato_model->VRActualizado = $this->input->post('VRActualizado');
@@ -45,13 +49,34 @@ class Dato extends MY_AuthController{
         $this->Dato_model->totalFlujo = $this->input->post('totalFlujo');
         $this->Dato_model->fechaActualizacion = $this->input->post('fechaActualizacion');
         
-        
+       
         
         $id = $this->Dato_model->saveDato();
         $resultado = array('id'=>$id);
         echo json_encode($resultado);
     }
+
+    public function grillaDato(){
+      
+        $bono = $this->input->post('bono');
+        $fecha = $this->input->post('fecha');
+        
+        $this->load->model('Dato_model');
+        $this->Dato_model->bono = $bono;
+        $this->Dato_model->fecha = $fecha;
+        $resultado = $this->Dato_model->grillaDato();
+        
+        echo json_encode($resultado);        
+    }
     
+    function getFechaActualizacion(){
+        $bono = $this->input->post('bono');
+        $this->load->model('Dato_model');
+        $this->Dato_model->bono = $bono;
+        $fechaActualizacion = $this->Dato_model->getFechaActualizacion();
+        echo json_encode($fechaActualizacion);
+    }
+
     
     function getDatosFecha(){
         $this->load->model('Dato_model');
@@ -76,5 +101,5 @@ class Dato extends MY_AuthController{
     }
     
     
-
+    
 }
