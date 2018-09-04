@@ -19,7 +19,9 @@ class EstructuraBono_model extends CI_Model{
         
         $estructuraBono = R::load('estructurabono', $this->id);
         
-        $estructuraBono->especieByma = $this->especieByma;
+        $especieByma = R::load('bono', $this->especieByma);
+        
+        $estructuraBono->especieByma = $especieByma;
         $estructuraBono->tipoInstrumentoImpuesto = $this->tipoInstrumentoImpuesto;
         $estructuraBono->tipoAjuste = $this->tipoAjuste;
         $estructuraBono->tipoInstrumento = $this->tipoInstrumento;
@@ -82,7 +84,7 @@ class EstructuraBono_model extends CI_Model{
     }
     
     public function getEstructuraBonos(){
-        $estructuraBonos = R::getAll('select * from estructurabono order by especieByma');
+        $estructuraBonos = R::getAll('select * from estructurabono order by especieByma_id');
         return $estructuraBonos;
     }
     
@@ -98,62 +100,61 @@ class EstructuraBono_model extends CI_Model{
         
         
         $sql = "SELECT 
-                id,
-                especieByma,
-                tipoInstrumentoImpuesto,
-                tipoAjuste,
-                tipoInstrumento,
-                nombreConocido,
-                tipoEmisor,
-                emisor,
-                monedacobro,
-                monedaEmision,
-                cerInicial,
-                diasPreviosCer,
-                especieCaja,
-                isin,
-                nombre,
-                fechaEmision,
-                fechaVencimiento,
-                oustanding,
-                ley,
-                amortizacion,
-                tipoTasa,
-                tipoTasaVariable,
-                spread,
-                tasaMinima,
-                tasaMaxima,
-                cuponAnual,
-                cantidadCuponesAnio,
-                frecuenciaCobro,
-                fechasCobroCupon,
-                formulaCalculoInteres,
-                diasPreviosRecord,
-                proximoCobroInteres,
-                proximoCobroCapital,
-                duration,
-                precioMonedaOrigen,
-                lastYtm,
-                paridad,
-                currentYield,
-                interesesCorridos,
-                valorResidual,
-                valorTecnico,
-                mDuration,
-                convexity,
-                denominacionMinima,
-                spreadSinTasa,
-                ultimaTna,
-                diasInicioCupon,
-                diasFinalCupon,
-                capitalizacionInteres,
-                precioPesos
+                e.id,
+                b.nombre as especieByma,
+                e.tipoInstrumentoImpuesto,
+                e.tipoAjuste,
+                e.tipoInstrumento,
+                e.nombreConocido,
+                e.tipoEmisor,
+                e.emisor,
+                e.monedacobro,
+                e.monedaEmision,
+                e.cerInicial,
+                e.diasPreviosCer,
+                e.especieCaja,
+                e.isin,
+                e.nombre,
+                e.fechaEmision,
+                e.fechaVencimiento,
+                e.oustanding,
+                e.ley,
+                e.amortizacion,
+                e.tipoTasa,
+                e.tipoTasaVariable,
+                e.spread,
+                e.tasaMinima,
+                e.tasaMaxima,
+                e.cuponAnual,
+                e.cantidadCuponesAnio,
+                e.frecuenciaCobro,
+                e.fechasCobroCupon,
+                e.formulaCalculoInteres,
+                e.diasPreviosRecord,
+                e.proximoCobroInteres,
+                e.proximoCobroCapital,
+                e.duration,
+                e.precioMonedaOrigen,
+                e.lastYtm,
+                e.paridad,
+                e.currentYield,
+                e.interesesCorridos,
+                e.valorResidual,
+                e.valorTecnico,
+                e.mDuration,
+                e.convexity,
+                e.denominacionMinima,
+                e.spreadSinTasa,
+                e.ultimaTna,
+                e.diasInicioCupon,
+                e.diasFinalCupon,
+                e.capitalizacionInteres,
+                e.precioPesos
 
-
-
-
-                FROM estructurabono
-                WHERE especieByma = ?
+                FROM estructurabono e
+                INNER JOIN bono b
+                ON e.especieByma_id = b.id 
+                WHERE b.nombre = ?
                 ORDER BY id"; 
         
         $resultado = R::getAll($sql, array($this->especieByma));
@@ -166,59 +167,61 @@ class EstructuraBono_model extends CI_Model{
         
         
         $sql = "SELECT 
-                id,
-                especieByma,
-                tipoInstrumentoImpuesto,
-                tipoAjuste,
-                tipoInstrumento,
-                nombreConocido,
-                tipoEmisor,
-                emisor,
-                monedacobro,
-                monedaEmision,
-                cerInicial,
-                diasPreviosCer,
-                especieCaja,
-                isin,
-                nombre,
-                fechaEmision,
-                fechaVencimiento,
-                oustanding,
-                ley,
-                amortizacion,
-                tipoTasa,
-                tipoTasaVariable,
-                spread,
-                tasaMinima,
-                tasaMaxima,
-                cuponAnual,
-                cantidadCuponesAnio,
-                frecuenciaCobro,
-                fechasCobroCupon,
-                formulaCalculoInteres,
-                diasPreviosRecord,
-                proximoCobroInteres,
-                proximoCobroCapital,
-                duration,
-                precioMonedaOrigen,
-                lastYtm,
-                paridad,
-                currentYield,
-                interesesCorridos,
-                valorResidual,
-                valorTecnico,
-                mDuration,
-                convexity,
-                denominacionMinima,
-                spreadSinTasa,
-                ultimaTna,
-                diasInicioCupon,
-                diasFinalCupon,
-                capitalizacionInteres,
-                precioPesos
+                e.id,
+                b.nombre as especieByma,
+                e.tipoInstrumentoImpuesto,
+                e.tipoAjuste,
+                e.tipoInstrumento,
+                e.nombreConocido,
+                e.tipoEmisor,
+                e.emisor,
+                e.monedacobro,
+                e.monedaEmision,
+                e.cerInicial,
+                e.diasPreviosCer,
+                e.especieCaja,
+                e.isin,
+                e.nombre,
+                e.fechaEmision,
+                e.fechaVencimiento,
+                e.oustanding,
+                e.ley,
+                e.amortizacion,
+                e.tipoTasa,
+                e.tipoTasaVariable,
+                e.spread,
+                e.tasaMinima,
+                e.tasaMaxima,
+                e.cuponAnual,
+                e.cantidadCuponesAnio,
+                e.frecuenciaCobro,
+                e.fechasCobroCupon,
+                e.formulaCalculoInteres,
+                e.diasPreviosRecord,
+                e.proximoCobroInteres,
+                e.proximoCobroCapital,
+                e.duration,
+                e.precioMonedaOrigen,
+                e.lastYtm,
+                e.paridad,
+                e.currentYield,
+                e.interesesCorridos,
+                e.valorResidual,
+                e.valorTecnico,
+                e.mDuration,
+                e.convexity,
+                e.denominacionMinima,
+                e.spreadSinTasa,
+                e.ultimaTna,
+                e.diasInicioCupon,
+                e.diasFinalCupon,
+                e.capitalizacionInteres,
+                e.precioPesos
 
-                FROM estructurabono
-                WHERE fechaActualizacion = ?
+                FROM estructurabono e
+                INNER JOIN bono b
+                ON e.especieByma_id = b.id 
+                WHERE e.fechaActualizacion = ?
                 ORDER BY id"; 
         
         $resultado = R::getAll($sql, array($this->fechaActualizacion));

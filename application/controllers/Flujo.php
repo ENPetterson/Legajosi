@@ -41,6 +41,36 @@ class Flujo extends CI_Controller{
         echo json_encode($resultado);        
     }
     
+    
+    function saveFlujo(){
+        
+        $this->load->model('Flujo_model');
+        
+        $this->Flujo_model->id = $this->input->post('id');
+        $this->Flujo_model->bono = $this->input->post('bono');
+        
+//        $this->Flujo_model->fecha = $this->input->post('fecha');
+        $this->Flujo_model->fechapagos = $this->input->post('fechapagos');
+        
+        $this->Flujo_model->vr = $this->input->post('vr');
+        $this->Flujo_model->amortizacion = $this->input->post('amortizacion');
+        $this->Flujo_model->interes = $this->input->post('interes');
+        
+        $this->Flujo_model->VNActualizado = $this->input->post('VNActualizado');
+        $this->Flujo_model->VRActualizado = $this->input->post('VRActualizado');
+        $this->Flujo_model->cuponAmortizacion = $this->input->post('cuponAmortizacion');
+        $this->Flujo_model->cuponInteres = $this->input->post('cuponInteres');
+        $this->Flujo_model->totalFlujo = $this->input->post('totalFlujo');
+        
+        $this->Flujo_model->fechaActualizacion = $this->input->post('fechaActualizacion');        
+        
+        $id = $this->Flujo_model->saveFlujo();
+        $resultado = array('id'=>$id);
+        echo json_encode($resultado);
+    }
+    
+    
+    
     function getFechaActualizacion(){
         $bono = $this->input->post('bono');
         $this->load->model('Flujo_model');
@@ -89,7 +119,10 @@ class Flujo extends CI_Controller{
     
     public function getImportarFlujosAllBonos(){
         
-        $this->load->model('Flujo_model');
+//        $planilla = $this->input->post('planilla');        
+
+        $this->load->model('Flujo_model');        
+        $this->Flujo_model->planilla = $this->input->post('planilla');
         $flujos = $this->Flujo_model->getImportarFlujosAllBonos();
         
         echo json_encode($flujos);

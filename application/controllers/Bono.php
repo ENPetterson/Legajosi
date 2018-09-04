@@ -35,15 +35,19 @@ class Bono extends MY_AuthController{
         $this->load->model('Bono_model');
         $this->Bono_model->id = $this->input->post('id');
         $this->Bono_model->nombre = $this->input->post('nombre');
+        
         $this->Bono_model->emisor_id = $this->input->post('emisor_id');
         $this->Bono_model->tipobono_id = $this->input->post('tipobono_id');
+        
         $this->Bono_model->codigocaja = $this->input->post('codigocaja');
         $this->Bono_model->codigoisin = $this->input->post('codigoisin');
         
-        $this->Bono_model->monedacobro = $this->input->post('monedacobro');
-        $this->Bono_model->monedabono = $this->input->post('monedabono');
-        $this->Bono_model->tipotasa = $this->input->post('tipotasa');
-        $this->Bono_model->tipotasavariable  = $this->input->post('tipotasavariable');
+        $this->Bono_model->monedacobro_id = $this->input->post('monedacobro_id');
+        $this->Bono_model->monedabono_id = $this->input->post('monedabono_id');
+        
+        $this->Bono_model->tipotasa_id = $this->input->post('tipotasa_id');
+        $this->Bono_model->tipotasavariable_id  = $this->input->post('tipotasavariable_id');
+        
         $this->Bono_model->cer = $this->input->post('cer');
         $this->Bono_model->cupon = $this->input->post('cupon');
         $this->Bono_model->cantidadcuponanual = $this->input->post('cantidadcuponanual');
@@ -53,7 +57,9 @@ class Bono extends MY_AuthController{
         $this->Bono_model->oustanding = $this->input->post('oustanding');
         $this->Bono_model->proximointeres = $this->input->post('proximointeres');
         $this->Bono_model->proximoamortizacion = $this->input->post('proximoamortizacion');   
-        $this->Bono_model->legislacion = $this->input->post('legislacion');     
+        
+        $this->Bono_model->legislacion_id = $this->input->post('legislacion_id');     
+        
         $this->Bono_model->denominacionminima = $this->input->post('denominacionminima');
         $this->Bono_model->libro = $this->input->post('libro');
         $this->Bono_model->hoja = $this->input->post('hoja');
@@ -72,6 +78,13 @@ class Bono extends MY_AuthController{
         $bono = $this->Bono_model->getBono();
         echo json_encode($bono);
     }
+    
+//    function getBonoId(){
+//        $this->load->model('Bono_model');
+//        $this->Bono_model->bono = $this->input->post('bono');
+//        $bono = $this->Bono_model->getBonoId();
+//        echo json_encode($bono);
+//    }
     
     function getBonos(){
         $this->load->model('Bono_model');

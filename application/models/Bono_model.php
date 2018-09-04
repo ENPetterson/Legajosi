@@ -41,17 +41,28 @@ class Bono_model extends CI_Model{
         $emisor = R::load('emisor', $this->emisor_id); 
         $tipobono = R::load('tipobono', $this->tipobono_id);
         
+        $monedacobro = R::load('moneda', $this->monedacobro_id); 
+        $monedabono = R::load('moneda', $this->monedabono_id);
+        
+        $tipotasa = R::load('tipotasa', $this->tipotasa_id); 
+        $tipotasavariable = R::load('tipotasavariable', $this->tipotasavariable_id);
+        
+        $legislacion = R::load('legislacion', $this->legislacion_id);
+        
+        
         $bono->nombre = $this->nombre;
+        
         $bono->emisor = $emisor;
         $bono->tipobono = $tipobono;
         
         $bono->codigocaja = $this->codigocaja;
         $bono->codigoisin = $this->codigoisin;
         
-        $bono->monedacobro = $this->monedacobro;
-        $bono->monedabono = $this->monedabono;
-        $bono->tipotasa = $this->tipotasa;
-        $bono->tipotasavariable  = $this->tipotasavariable;
+        $bono->monedacobro = $monedacobro;
+        $bono->monedabono = $monedabono;
+        
+        $bono->tipotasa = $tipotasa;
+        $bono->tipotasavariable  = $tipotasavariable;
         $bono->cer = $this->cer;
         $bono->cupon = $this->cupon;
         $bono->cantidadcuponanual = $this->cantidadcuponanual;
@@ -61,7 +72,9 @@ class Bono_model extends CI_Model{
         $bono->oustanding = $this->oustanding;
         $bono->proximointeres = $this->proximointeres;
         $bono->proximoamortizacion = $this->proximoamortizacion;   
-        $bono->legislacion = $this->legislacion;     
+        
+        $bono->legislacion = $legislacion;    
+        
         $bono->denominacionminima = $this->denominacionminima;
         
         
@@ -81,6 +94,15 @@ class Bono_model extends CI_Model{
         $bono = R::load('bono', $this->id);
         return $bono->export();
     }
+    
+    public function getBonoId(){
+        $bono = $this->bono;    
+        $sql = "select id from bono WHERE nombre = '{$bono}' "; 
+        $bono = R::getRow($sql);         
+        return $bono;
+        
+    }
+    
     
     public function getBonosUsuario(){
         $bonos = R::getCol('select bono_id from bono_usuario where usuario_id = ?', array($this->usuario_id));

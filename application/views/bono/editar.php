@@ -43,8 +43,8 @@
                 </tr>        
                 
                 <tr>
-                    <td style="padding-right:10px; padding-right:20px">Tipo de tasa variable: </td>
-                    <td style="padding-top: 10px"><input type="text" id="tipoTasaVariable" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-left:20px">Tipo de Tasa Variable: </td>
+                    <td style="padding-top: 10px"><div id="cmbTipoTasaVariable"></div></td>
                 
                     <td style="padding-right:10px; padding-left:20px">CER aplicable: </td>
                     <td style="padding-top: 10px"><input type="text" id="cer" style="width: 250px" class="text-input"></td>
@@ -83,8 +83,8 @@
                 </tr> 
                 
                 <tr>
-                    <td style="padding-right:10px; padding-right:20px">Legislación: </td>
-                    <td style="padding-top: 10px"><input type="text" id="legislacion" style="width: 250px" class="text-input"></td>
+                    <td style="padding-right:10px; padding-left:20px">Legislación: </td>
+                    <td style="padding-top: 10px"><div id="cmbLegislacion"></div></td>
                 
                     <td style="padding-right:10px; padding-left:20px">Denominación Mïnima: </td>
                     <td style="padding-top: 10px"><input type="text" id="denominacionMinima" style="width: 250px" class="text-input"></td>
@@ -137,10 +137,10 @@
                 $("#cmbEmisor").val(data.emisor_id);
                 $("#codigoCaja").val(data.codigocaja);
                 $("#codigoIsin").val(data.codigoisin);
-                $("#cmbMonedaCobro").val(data.monedacobro);
-                $("#cmbMonedaBono").val(data.monedabono);
-                $("#cmbTipoTasa").val(data.tipotasa);
-                $("#tipoTasaVariable").val(data.tipotasavariable);
+                $("#cmbMonedaCobro").val(data.monedacobro_id);
+                $("#cmbMonedaBono").val(data.monedabono_id);
+                $("#cmbTipoTasa").val(data.tipotasa_id);
+                $("#cmbTipoTasaVariable").val(data.tipotasavariable_id);
                 $("#cer").val(data.cer);
                 $("#cupon").val(data.cupon);
                 $("#cantidadCuponAnual").val(data.cantidadcuponanual);
@@ -150,7 +150,7 @@
                 $("#oustanding").val(data.oustanding);
                 $("#proximoInteres").val(data.proximointeres);
                 $("#proximoAmortizacion").val(data.proximoamortizacion);
-                $("#legislacion").val(data.legislacion);
+                $("#cmbLegislacion").val(data.legislacion_id);
                 $("#denominacionMinima").val(data.denominacionminima);
                 $("#cmbHoja").val(data.hoja);
                 $("#libro").val(data.libro);
@@ -223,24 +223,58 @@
         $("#cmbMonedaBono").jqxDropDownList({ selectedIndex: -1, source: DAMonedaBono, displayMember: "nombre", 
         valueMember: "id", width: 200, height: 25, theme: theme, placeHolder: "Elija Moneda de Bono:", disabled: false });  
 
-        var dataTipoTasa = [
-            { id: 'F', nombre: "Fija" },
-            { id: 'V', nombre: "Variable" }
-        ];
+//        var dataTipoTasa = [
+//            { id: 'F', nombre: "Fija" },
+//            { id: 'V', nombre: "Variable" }
+//        ];
 
-        var srcTipoTasa = {
-            localdata: dataTipoTasa,
-            datatype: "array",
-            datafields: [
-                { name: 'id' },
-                { name: 'nombre' }
-            ]
-        };
+//        var srcTipoTasa = {
+//            localdata: dataTipoTasa,
+//            datatype: "array",
+//            datafields: [
+//                { name: 'id' },
+//                { name: 'nombre' }
+//            ]
+//        };
+//        var DATipoTasa = new $.jqx.dataAdapter(srcTipoTasa);
+//        $("#cmbTipoTasa").jqxDropDownList({ selectedIndex: -1, source: DATipoTasa, displayMember: "nombre", 
+//        valueMember: "id", width: 200, height: 20, theme: theme, placeHolder: "Elija Tipo de Tasa:", disabled: false });
+
+        var srcTipoTasa =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'id'},
+                    { name: 'nombre' }
+                ],
+                id: 'id',
+                url: '/tipoTasa/getTiposTasa',
+                async: false
+            };
         var DATipoTasa = new $.jqx.dataAdapter(srcTipoTasa);
-        $("#cmbTipoTasa").jqxDropDownList({ selectedIndex: -1, source: DATipoTasa, displayMember: "nombre", 
-        valueMember: "id", width: 200, height: 20, theme: theme, placeHolder: "Elija Tipo de Tasa:", disabled: false });
+        $("#cmbTipoTasa").jqxDropDownList({ selectedIndex: -1, source: DATipoTasa, displayMember: "nombre", valueMember: "id", width: 200, height: 25, theme: theme, placeHolder: "Elija un tipo de tasa:" });
 
-        $('#tipoTasaVariable').jqxInput({width: 200, height: 25, theme: theme, disabled: false});
+
+
+
+//        $('#tipoTasaVariable').jqxInput({width: 200, height: 25, theme: theme, disabled: false});
+        
+        var srcTipoTasaVariable =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'id'},
+                    { name: 'nombre' }
+                ],
+                id: 'id',
+                url: '/tipoTasaVariable/getTiposTasaVariable',
+                async: false
+            };
+        var DATipoTasaVariable = new $.jqx.dataAdapter(srcTipoTasaVariable);
+        $("#cmbTipoTasaVariable").jqxDropDownList({ selectedIndex: -1, source: DATipoTasaVariable, displayMember: "nombre", valueMember: "id", width: 200, height: 25, theme: theme, placeHolder: "Elija un tipo de tasa variable:" });
+
+        
+        
 
         $("#cer").jqxCheckBox({ width: 200, height: 20, theme: theme });
 
@@ -260,7 +294,23 @@
 
         $('#proximoAmortizacion').jqxDateTimeInput({width: 200, height: 25, theme: theme, disabled: false});
 
-        $('#legislacion').jqxInput({width: 200, height: 25, theme: theme, disabled: false});
+//        $('#legislacion').jqxInput({width: 200, height: 25, theme: theme, disabled: false});
+        var srcLegislacion =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'id'},
+                    { name: 'nombre' }
+                ],
+                id: 'id',
+                url: '/legislacion/getTiposLegislacion',
+                async: false
+            };
+        var DALegislacion = new $.jqx.dataAdapter(srcLegislacion);
+        $("#cmbLegislacion").jqxDropDownList({ selectedIndex: -1, source: DALegislacion, displayMember: "nombre", valueMember: "id", width: 200, height: 25, theme: theme, placeHolder: "Elija un tipo de Legislacion:" });
+
+
+
 
         $('#denominacionMinima').jqxNumberInput({width: 200, height: 25, theme: theme, disabled: false});
 
@@ -284,6 +334,26 @@
                     });
 
                 }, 'json');
+        });
+        
+        
+        $('#cmbHoja').on('change', function () {
+            
+            if($("#cmbHoja").val() == ''){
+                
+                datos = {
+                    archivo: $("#libro").val()
+                };
+                $.post('/util/adjuntarExcel', datos, function(data){
+                    $.each(data.resultado, function (index, value) {
+                        $("#cmbHoja").jqxComboBox('addItem', value);
+                    });
+
+                }, 'json');
+                
+            }
+            
+               
         });
         
         
@@ -391,7 +461,25 @@
                     , 'json');
                     jQuery.ajaxSetup({async:true});
                     return resultado;
-            }}
+            }},
+            
+            { input: '#cmbTipoTasa', message: 'Debe Seleccionar el tipo de tasa!', action: 'keyup, blur',  rule: function(){
+                            return ($("#cmbTipoTasa").jqxDropDownList('getSelectedIndex') != -1);
+                    }},
+                
+            { input: '#cmbTipoTasaVariable', message: 'Debe Seleccionar el tipo de tasa variable!', action: 'keyup, blur',  rule: function(){
+                            return ($("#cmbTipoTasaVariable").jqxDropDownList('getSelectedIndex') != -1);
+                    }},
+                
+            { input: '#cmbLegislacion', message: 'Debe Seleccionar la legislación!', action: 'keyup, blur',  rule: function(){
+                            return ($("#cmbLegislacion").jqxDropDownList('getSelectedIndex') != -1);
+                    }}
+        
+        
+        
+        
+        
+        
             ], 
             theme: theme
         });
@@ -411,10 +499,10 @@
                     tipobono_id: $("#cmbTipoBono").jqxDropDownList('getSelectedItem').value,
                     codigocaja: $("#codigoCaja").val(),
                     codigoisin: $("#codigoIsin").val(),
-                    monedacobro: $("#cmbMonedaCobro").val(),                 
-                    monedabono: $("#cmbMonedaBono").val(),
-                    tipotasa: $("#cmbTipoTasa").val(),
-                    tipotasavariable: $("#tipoTasaVariable").val(),
+                    monedacobro_id: $("#cmbMonedaCobro").val(),                 
+                    monedabono_id: $("#cmbMonedaBono").val(),
+                    tipotasa_id: $("#cmbTipoTasa").val(),
+                    tipotasavariable_id: $("#cmbTipoTasaVariable").val(),
                     cer: $("#cer").val(),
                     cupon: $("#cupon").val(),
                     cantidadcuponanual: $("#cantidadCuponAnual").val(),                    
@@ -424,7 +512,7 @@
                     oustanding: $("#oustanding").val(),
                     proximointeres: $("#proximoInteres").val(),
                     proximoamortizacion: $("#proximoAmortizacion").val(),
-                    legislacion: $("#legislacion").val(),
+                    legislacion_id: $("#cmbLegislacion").val(),
                     denominacionminima: $("#denominacionMinima").val(),
                     libro: $("#libro").val(),
                     hoja: $("#cmbHoja").val(),

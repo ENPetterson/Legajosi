@@ -52,19 +52,18 @@ $(document).ready(function () {
                     datatype: "json",
                     datafields: [
                         { name: 'id'},
-                        { name: 'especieByma' }
+                        { name: 'nombre' }
                     ],
                     id: 'id',
-                    url: '/estructuraBono/getEstructuraBonos',
+                    url: '/bono/getBonos',
                     async: false
                 };
         var DAEstructuraBono = new $.jqx.dataAdapter(srcEstructuraBono);
 
 
-        $("#cmbEspecieByma").jqxDropDownList({ selectedIndex: -1, source: DAEstructuraBono, displayMember: "especieByma", 
+        $("#cmbEspecieByma").jqxDropDownList({ selectedIndex: -1, source: DAEstructuraBono, displayMember: "nombre", 
         valueMember: "id", width: 150, height: 25, theme: theme, placeHolder: "Elija Especie Byma:", disabled: false });
 ////////////////////////////////////////////////////////////////////////////////   
-
 
 //Dropdown Fecha
 ////////////////////////////////////////////////////////////////////////////////        

@@ -117,18 +117,18 @@ class Setup extends CI_Controller {
 
         echo "Dado de alta el menu con el id {$menu_id} <br />";
         
-        $this->load->model('menu_model');
-        $this->menu_model->id = 0;
-        $this->menu_model->padre_id = $padre_id;
-        $this->menu_model->nombre = 'Datos';
-        $this->menu_model->accion = 'dato';
-        $menu_id = $this->menu_model->saveMenu();
-
-        $this->grupo_model->id = $grupo_id;
-        $this->grupo_model->menu_id = $menu_id;
-        $this->grupo_model->assocMenu();
-
-        echo "Dado de alta el menu con el id {$menu_id} <br />";
+//        $this->load->model('menu_model');
+//        $this->menu_model->id = 0;
+//        $this->menu_model->padre_id = $padre_id;
+//        $this->menu_model->nombre = 'Datos';
+//        $this->menu_model->accion = 'dato';
+//        $menu_id = $this->menu_model->saveMenu();
+//
+//        $this->grupo_model->id = $grupo_id;
+//        $this->grupo_model->menu_id = $menu_id;
+//        $this->grupo_model->assocMenu();
+//
+//        echo "Dado de alta el menu con el id {$menu_id} <br />";
         
         
         $this->load->model('menu_model');
@@ -404,26 +404,52 @@ class Setup extends CI_Controller {
         
         
         
-        $flujo = R::dispense('flujo');
-        $flujo->fechapagos = '3-Feb-02';
-        $flujo->amortizacion = 100.98;
-        $flujo->vr = 100.99;
-        $flujo->interes = 0.038750;
-        $flujo->fechaActualizacion = '30-10-2017';
-        R::store($flujo);
+        $this->load->model('Flujo_model');
+                
+        $this->Flujo_model->id = 1;
+        $this->Flujo_model->bono = 1;
+        
+//        $this->Flujo_model->fecha = '2018-06-19';
+        $this->Flujo_model->fechapagos = '3-Feb-02';
+        
+        $this->Flujo_model->vr = '2';
+        $this->Flujo_model->amortizacion = '2';
+        $this->Flujo_model->interes = '2';
+
+        $this->Flujo_model->VNActualizado = '2';
+        $this->Flujo_model->VRActualizado = '2';
+        $this->Flujo_model->cuponAmortizacion = '2';
+        $this->Flujo_model->cuponInteres = '2';
+        $this->Flujo_model->totalFlujo = '2';
+        
+        $this->Flujo_model->fechaActualizacion = '2018-05-02';
+        
+        $flujo = $this->Flujo_model->saveFlujo();
+        
+        echo "Dado de alta el Flujo con el id {$flujo['id']} <br>";        
+        
+//        $flujo = R::dispense('flujo');
+//        
+//        $flujo->fechapagos = '3-Feb-02';
+//        $flujo->vr = 100.99;
+//        $flujo->amortizacion = 100.98;
+
+//        $flujo->interes = 0.038750;
+//        $flujo->fechaActualizacion = '30-10-2017';
+//        R::store($flujo);
         
         
         
         $this->load->model('Moneda_model');
         
         $this->Moneda_model->id = 1;
-        $this->Moneda_model->nombre = 'Moneda1';
+        $this->Moneda_model->nombre = 'Peso 1';
         $moneda = $this->Moneda_model->saveMoneda();
         
         echo "Dada de alta la Moneda con el id {$moneda['id']} <br>";
         
         $this->Moneda_model->id = 2;
-        $this->Moneda_model->nombre = 'Moneda2';
+        $this->Moneda_model->nombre = 'Dolar 2';
         $moneda = $this->Moneda_model->saveMoneda();
         
         echo "Dada de alta la Moneda con el id {$moneda['id']} <br>";
@@ -443,7 +469,63 @@ class Setup extends CI_Controller {
         
         echo "Dado de alta el Emisor con el id {$emisor['id']} <br>";
 
+////////////////////////////////////////////////////////////////////////////////       
+//////////////////////////////////////////////////////////////////////////////// 
+////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////        
+        
+        $this->load->model('TipoTasa_model');
+        
+        $this->TipoTasa_model->id = 1;
+        $this->TipoTasa_model->nombre = 'TipoTasa1';
+        $tipoTasa = $this->TipoTasa_model->saveTipoTasa();
+        
+        echo "Dado de alta el Tipo Tasa con el id {$tipoTasa['id']} <br>";
+        
+        $this->TipoTasa_model->id = 2;
+        $this->TipoTasa_model->nombre = 'TipoTasa2';
+        $tipoTasa = $this->TipoTasa_model->saveTipoTasa();
+        
+        echo "Dado de alta el Tipo Tasa con el id {$tipoTasa['id']} <br>";
+        
+        //
+        
+        $this->load->model('TipoTasaVariable_model');
+        
+        $this->TipoTasaVariable_model->id = 1;
+        $this->TipoTasaVariable_model->nombre = 'TipoTasaVariable1';
+        $tipoTasaVariable = $this->TipoTasaVariable_model->saveTipoTasaVariable();
+        
+        echo "Dado de alta el Tipo Tasa Variable con el id {$tipoTasaVariable['id']} <br>";
+                
+        $this->TipoTasaVariable_model->id = 2;
+        $this->TipoTasaVariable_model->nombre = 'TipoTasaVariable2';
+        $tipoTasaVariable = $this->TipoTasaVariable_model->saveTipoTasaVariable();
+        
+        echo "Dado de alta el Tipo Tasa Variable con el id {$tipoTasaVariable['id']} <br>";
+        
+        //
+        
+        $this->load->model('Legislacion_model');
+        
+        $this->Legislacion_model->id = 1;
+        $this->Legislacion_model->nombre = 'Legislacion 1';
+        $legislacion = $this->Legislacion_model->saveLegislacion();
+        
+        echo "Dado de alta el Tipo de Legislacion con el id {$legislacion['id']} <br>";
+        
+        $this->Legislacion_model->id = 2;
+        $this->Legislacion_model->nombre = 'Legislacion 2';
+        $legislacion = $this->Legislacion_model->saveLegislacion();
+        
+        echo "Dado de alta el Tipo de Legislacion con el id {$legislacion['id']} <br>";
+        
+        
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
         
         $this->load->model('TipoBono_model');
         
@@ -465,25 +547,7 @@ class Setup extends CI_Controller {
         
         
         
-        $this->load->model('Dato_model');
-                
-        $this->Dato_model->id = 1;
-        $this->Dato_model->bono = 'AA19';
-        $this->Dato_model->fecha = '2018-06-19';
-        
-        $this->Dato_model->vr = '2';
-        $this->Dato_model->amortizacion = '2';
 
-        $this->Dato_model->VNActualizado = '2';
-        $this->Dato_model->VRActualizado = '2';
-        $this->Dato_model->cuponAmortizacion = '2';
-        $this->Dato_model->cuponInteres = '2';
-        $this->Dato_model->totalFlujo = '2';
-        $this->Dato_model->fechaActualizacion = '2018-05-02';
-        
-        $dato = $this->Dato_model->saveDato();
-        
-        echo "Dado de alta el Dato con el id {$dato['id']} <br>";
 
         
 ////////////////////////////////////////////////////////////////////////////////
@@ -493,7 +557,7 @@ class Setup extends CI_Controller {
         
         $this->EstructuraBono_model->id = 1;
         
-        $this->EstructuraBono_model->especieByma = 'Lala';
+        $this->EstructuraBono_model->especieByma = 1;
         $this->EstructuraBono_model->tipoInstrumentoImpuesto = 'Lala';
         $this->EstructuraBono_model->tipoAjuste = 'Lala';
         $this->EstructuraBono_model->tipoInstrumento = 'Lala';
@@ -542,7 +606,7 @@ class Setup extends CI_Controller {
         $this->EstructuraBono_model->diasFinalCupon = 'Lala';
         $this->EstructuraBono_model->capitalizacionInteres = 'Lala';
         $this->EstructuraBono_model->precioPesos = 2725.91;    
-        $this->EstructuraBono_model->fechaActualizacion = '30-10-2017';
+        $this->EstructuraBono_model->fechaActualizacion = '2018-09-03';
         
         $estructura = $this->EstructuraBono_model->saveEstructuraBono();
         
@@ -557,14 +621,19 @@ class Setup extends CI_Controller {
         
         $this->Bono_model->id = 1;
         $this->Bono_model->nombre = 'AA19';
-        $this->Bono_model->emisor_id = '1';
-        $this->Bono_model->tipobono_id = '1';
+        
+        $this->Bono_model->emisor_id = 1;
+        $this->Bono_model->tipobono_id = 1;
+        
         $this->Bono_model->codigocaja = 'codigocaja1';
         $this->Bono_model->codigoisin = 'codigoisin1';
-        $this->Bono_model->monedacobro = 'monedacobro1';
-        $this->Bono_model->monedabono = 'monedabono1';
-        $this->Bono_model->tipotasa = 'tipotasa1';
-        $this->Bono_model->tipotasavariable  = 'tipotasavariable1';
+        
+        $this->Bono_model->monedacobro_id = 1;
+        $this->Bono_model->monedabono_id = 1;
+        
+        $this->Bono_model->tipotasa_id = 1;
+        $this->Bono_model->tipotasavariable_id  = 2;
+ 
         $this->Bono_model->cer = 1;
         $this->Bono_model->cupon = 1.2525;
         $this->Bono_model->cantidadcuponanual = 1;
@@ -573,8 +642,10 @@ class Setup extends CI_Controller {
         $this->Bono_model->ultimoprecio = 107.46;
         $this->Bono_model->oustanding = 1750;
         $this->Bono_model->proximointeres = '30-10-2017';  
-        $this->Bono_model->proximoamortizacion = '30-10-2017';       
-        $this->Bono_model->legislacion = 'legislacion1';        
+        $this->Bono_model->proximoamortizacion = '30-10-2017';  
+        
+        $this->Bono_model->legislacion_id = 2;        
+        
         $this->Bono_model->denominacionminima = 100000;        
         $this->Bono_model->libro = 'C:\BONOS.xlsx'; 
         $this->Bono_model->hoja = 'Hoja1'; 
@@ -595,16 +666,38 @@ class Setup extends CI_Controller {
         //agregado
         
         $sql = "create or replace view v_bono as 
-                SELECT b.id, b.nombre, e.id as emisor_id, e.nombre as emisor_nombre, 
-                t.id as tipobono_id, t.nombre as tipobono_nombre, b.codigocaja, 
-                b.codigoisin, b.monedacobro, b.monedabono, b.tipotasa, b.tipotasavariable, 
-                b.cer, b.cupon, b.cantidadcuponanual, b.vencimiento, b.capitalresidual, 
-                b.ultimoprecio, b.oustanding, b.proximointeres, b.proximoamortizacion, 
-                b.legislacion, b.denominacionminima, b.actualizacionAutomatica
+                SELECT b.id, 
+                b.nombre, 
+                e.id as emisor_id, 
+                e.nombre as emisor_nombre, 
+                t.id as tipobono_id, 
+                t.nombre as tipobono_nombre, 
+                b.codigocaja, 
+                b.codigoisin, 
+                (SELECT m.nombre FROM moneda m WHERE m.id = b.monedacobro_id) as monedacobro, 
+                (SELECT m.nombre FROM moneda m WHERE m.id = b.monedabono_id) as monedabono, 
+                s.nombre as tipotasa, 
+                v.nombre as tipotasavariable, 
+                b.cer, 
+                b.cupon, 
+                b.cantidadcuponanual, 
+                b.vencimiento,
+                b.capitalresidual, 
+                b.ultimoprecio, 
+                b.oustanding, 
+                b.proximointeres, 
+                b.proximoamortizacion, 
+                l.nombre as legislacion, 
+                b.denominacionminima, 
+                b.actualizacionAutomatica
                 FROM bono b
                 LEFT JOIN emisor e ON b.emisor_id = e.id
-                LEFT JOIN tipobono t ON b.tipobono_id = t.id;";
-        
+                LEFT JOIN tipobono t ON b.tipobono_id = t.id
+                LEFT JOIN tipotasa s ON b.tipotasa_id = s.id
+                LEFT JOIN tipotasavariable v ON b.tipotasavariable_id = v.id
+                LEFT JOIN legislacion l ON b.legislacion_id = l.id
+                ;";
+
         R::exec($sql);
         
         echo "Creada la vista v_bono <br />";

@@ -25,13 +25,7 @@
                     <td style="padding-top: 10px"><input type="button" id="importarFlujosProvincialesButton" value="Importar Flujo de Planilla Provinciales"></td>
                 </tr>
                 
-                <tr>
-                    <td style="padding-right:10px; padding-right:20px"></td>
-                    <td style="padding-top: 10px"><input type="button" id="importarDatosBonosButton" value="Importar Datos de Planilla Bonos"></td>
-                    
-                    <td style="padding-right:10px; padding-right:20px"></td>
-                    <td style="padding-top: 10px"><input type="button" id="importarDatosProvincialesButton" value="Importar Datos de Planilla Provinciales"></td>
-                </tr>
+
                 
                 <tr>
                     <td style="padding-right:10px; padding-right:20px"></td>
@@ -71,10 +65,6 @@
         
         $('#importarFlujosProvincialesButton').jqxButton({ theme: theme, width: '350px' });
         
-        $('#importarDatosBonosButton').jqxButton({ theme: theme, width: '350px' });
-        
-        $('#importarDatosProvincialesButton').jqxButton({ theme: theme, width: '350px' });
-
         $('#importarEstructurasBonosButton').jqxButton({ theme: theme, width: '350px' });
 
 
@@ -83,21 +73,19 @@
 
 
         $("#importarFlujosBonosButton").click(function(){
-                    $.redirect('/flujo/getImportarFlujosAllBonos');
+            
+                    $.redirect('/flujo/getImportarFlujosAllBonos', {'planilla': 'bonos'});
+//                    $.redirect('/flujo/getImportarFlujosAllBonos');
                 });
 
 
         $("#importarFlujosProvincialesButton").click(function(){
-                    $.redirect('/flujo/getImportarFlujosAllProvinciales');
+                    $.redirect('/flujo/getImportarFlujosAllBonos', {'planilla': 'provinciales'});
+//                    $.redirect('/flujo/getImportarFlujosAllProvinciales');
                 });    
 
-        $("#importarDatosBonosButton").click(function(){
-                    $.redirect('/flujo/getImportarDatosAllBonos');
-                });       
+ 
 
-        $("#importarDatosProvincialesButton").click(function(){
-                    $.redirect('/flujo/getImportarDatosAllProvinciales');
-                });         
 
         $("#importarEstructurasBonosButton").click(function(){
                     $.redirect('/flujo/getImportarEstructurasBonos');

@@ -42,7 +42,7 @@ $(document).ready(function () {
 
 
 
-        $("#ventanaResumen").jqxWindow({showCollapseButton: false, maxWidth: 2000, height: 550, width: 1500, theme: theme,
+        $("#ventanaResumen").jqxWindow({showCollapseButton: false, maxWidth: 2000, height: 1000, width: 1500, theme: theme,
         resizable: false, keyboardCloseKey: -1});
 
 ////Dropdown Bono
@@ -105,9 +105,18 @@ $(document).ready(function () {
                 { name: 'id'},
                 { name: 'bono'},
                 { name: 'fechapagos'},
-                { name: 'amortizacion', type: 'number'},
+                
                 { name: 'vr', type: 'number'},
-                { name: 'interes', type: 'number'}
+                { name: 'amortizacion', type: 'number'},
+                { name: 'interes', type: 'number'},
+
+                { name: 'VNActualizado', type: 'number'},
+                { name: 'VRActualizado', type: 'number'},
+                { name: 'cuponAmortizacion', type: 'number'},
+                { name: 'cuponInteres', type: 'number'},
+                { name: 'totalFlujo', type: 'number'}
+                
+                
             ],
             cache: false,
             url: '/flujo/grillaFlujo',
@@ -142,9 +151,17 @@ $(document).ready(function () {
                         { text: 'Id', datafield: 'id', width: 80, cellsalign: 'right', cellsformat: 'd', aggregates: ['count']  },
                         { text: 'Bono', datafield: 'bono', width: 150 },
                         { text: 'fechapagos', datafield: 'fechapagos', width: 150},
-                        { text: 'amortizacion', datafield: 'amortizacion', width: 150, cellsformat: 'd'},
+                        
                         { text: 'vr', datafield: 'vr', width: 150, cellsformat: 'd'},
-                        { text: 'interes', datafield: 'interes', width: 150, cellsformat: 'd'}
+                        { text: 'amortizacion', datafield: 'amortizacion', width: 150, cellsformat: 'd'},
+                        { text: 'interes', datafield: 'interes', width: 150, cellsformat: 'd'},
+                        
+                        { text: 'VNActualizado', datafield: 'VNActualizado', width: 150, cellsformat: 'd'},
+                        { text: 'VRActualizado', datafield: 'VRActualizado', width: 150, cellsformat: 'd'},
+                        { text: 'cuponAmortizacion', datafield: 'cuponAmortizacion', width: 150, cellsformat: 'd'},
+                        { text: 'cuponInteres', datafield: 'cuponInteres', width: 150, cellsformat: 'd'},
+                        { text: 'totalFlujo', datafield: 'totalFlujo', width: 200, cellsformat: 'd'}
+                        
                 ]
         });
         $("#grilla").on("bindingcomplete", function (event){
@@ -157,16 +174,16 @@ $(document).ready(function () {
 //Inst
         $('#cmbBono').on('change', function (event){
             
-//            console.log(event.args.item.label);
+            console.log(event.args.item);
 //            console.log($("#cmbFecha").jqxDropDownList());
             
             srcFecha.data = {
-                bono: event.args.item.label
+                bono: event.args.item.value
             };     
             DAFecha.dataBind();
 
             source.data = {
-                bono: event.args.item.label,
+                bono: event.args.item.value
 //                fecha: $("#cmbFecha").jqxDropDownList('getSelectedItem').value
             };      
             dataadapter.dataBind();
