@@ -508,6 +508,12 @@ class Flujo_model extends CI_Model{
                                 break;
                             }
                         }
+                    } else {
+                        
+                        echo "<pre>";
+                        print_r("Títulos incorrectos.");
+                        echo "<pre>";
+                        
                     }
                 }else{//If in array sheet
                     echo "<pre>";
