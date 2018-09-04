@@ -773,23 +773,7 @@ class Flujo_model extends CI_Model{
                     
                     if($aprobado == 1){ 
                     ////////////////////////////////////////////////////////////
-                    //Borrar
-                    //$this->fechaActualizacion = $fechaActualizacion;
-                    //    $this->bono = $sheetname;
-                    //    $bonoBorrado = $this->Flujo_model->borrarDatosBonos();
-                    //
-                    //     if($bonoBorrado == true){
-                    //         echo "<pre>";
-                    //         print_r("Se borró la info del bono " . $sheetname . " con fecha del día de hoy.");
-                    //     }else{
-                    //         echo "<pre>";
-                    //         print_r("No se borraron datos del bono: " . $sheetname . ". No se encontraron datos con fecha del día de hoy.");
-                    //}
-                    ////////////////////////////////////////////////////////////
-                 
-                        
-                        
-                        
+
                         $highestRow = $sheet->getHighestRow();
                         
                         for ($row = 3; $row <= $highestRow; $row++){
@@ -815,7 +799,6 @@ class Flujo_model extends CI_Model{
                         
                         for ($row = 3; $row <= $newHighestRow; $row++){
                             
-                            print_r("What passed?"); 
 
                             $especie = $sheet->getCellByColumnAndRow(0,$row)->getFormattedValue();
                             
@@ -845,11 +828,6 @@ class Flujo_model extends CI_Model{
                                 //
                                 if(!(in_array($especieByma, $bonoYaBorrado, true))){
 
-                                    
-                                    echo "<pre>"; 
-                                    print_r("bonoYaBorrado: ");
-                                    print_r($bonoYaBorrado);
-                                    echo "<pre>"; 
                                     
                                     echo "<pre>"; 
                                     print_r("El bono no se repite en el excel: ");
