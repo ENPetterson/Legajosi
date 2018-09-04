@@ -811,8 +811,11 @@ class Flujo_model extends CI_Model{
                         R::freeze(true);
                         R::begin();
                         
+                        $bonoYaBorrado = array();
                         
                         for ($row = 3; $row <= $newHighestRow; $row++){
+                            
+                            print_r("What passed?"); 
 
                             $especie = $sheet->getCellByColumnAndRow(0,$row)->getFormattedValue();
                             
@@ -838,26 +841,49 @@ class Flujo_model extends CI_Model{
                                 
                                 echo "<pre>";
                                 print_r("Es un bono existente.");
-                                //// Borrar ////////////////////////////////////                                
-                                //Si tiene ya datos cargados ese día, esa misma especie.
-                                $this->fechaActualizacion = $fechaActualizacion;
-                                $this->bono = $especieByma;
-                                $bonoBorrado = $this->Flujo_model->borrarDatosEstructuraBonos();
 
-                                
-                                print_r("El id es: ");
-                                print_r($especieByma);
-                                echo "<pre>";    
+                                //
+                                if(!(in_array($especieByma, $bonoYaBorrado, true))){
 
-                                if($bonoBorrado == true){
-                                    echo "<pre>";
-                                    print_r("Se borró la info del bono " . $especie . " con fecha del día de hoy.");
+                                    
+                                    echo "<pre>"; 
+                                    print_r("bonoYaBorrado: ");
+                                    print_r($bonoYaBorrado);
+                                    echo "<pre>"; 
+                                    
+                                    echo "<pre>"; 
+                                    print_r("El bono no se repite en el excel: ");
+                                    print_r($especieByma);
+                                    echo "<pre>";  
+                                    
+                                    //// Borrar ////////////////////////////////////                                
+                                    //Si tiene ya datos cargados ese día, esa misma especie.
+                                    $this->fechaActualizacion = $fechaActualizacion;
+                                    $this->bono = $especieByma;
+                                    $bonoBorrado = $this->Flujo_model->borrarDatosEstructuraBonos();
+
+                                    //Los bonos ya borrados van en un array
+                                    array_push($bonoYaBorrado, $especieByma); 
+                                    
+                                    if($bonoBorrado == true){
+                                        echo "<pre>";
+                                        print_r("Se borró la info del bono " . $especie . " con fecha del día de hoy.");
+                                        
+                                        
+                                        
+                                    }else{
+                                        echo "<pre>";
+                                        print_r("No se borró info del bono: " . $especie . ". No se encontraron datos con fecha del día de hoy para esa especie.");
+                                    }
+                                    ////////////////////////////////////////////////
+                                    ////////////////////////////////////////////////
                                 }else{
+                                    echo "<pre>"; 
+                                    print_r("El bono: " . $especieByma . " se repite en el excel. No se borrarán los datos de este bono. Verificar.");
                                     echo "<pre>";
-                                    print_r("No se borró info del bono: " . $especie . ". No se encontraron datos con fecha del día de hoy para esa especie.");
+                                    
                                 }
-                                ////////////////////////////////////////////////
-                                ////////////////////////////////////////////////
+                                
 
                                 
                             }else{
@@ -1022,7 +1048,7 @@ class Flujo_model extends CI_Model{
 
                             //Revisar este caso de duration
                             $duration = $sheet->getCellByColumnAndRow(32,$row)->getOldCalculatedValue();
-                            if(($duration == '') or ($duration == '#REF!') or ($duration == '#N/A')){
+                            if(($duration == '') or ($duration == '#REF!') or ($duration == '#N/A') or ($Duration == '#DIV/0!')){
                                 $duration = null;                                
                             }
                             
@@ -1441,7 +1467,7 @@ class Flujo_model extends CI_Model{
                         
                         
                     } else {
-                        
+                        print_r("Títulos incorrectos");
                         $error = 'Títulos inválidos.';
                         $resultado = array('resultado'=>'Error', 'mensaje'=>$error);
                         return $resultado;
