@@ -238,7 +238,7 @@ class Flujo_model extends CI_Model{
     public function borrarDatosEstructuraBonos(){
 
         
-        $sql = "SELECT especieByma_id FROM estructurabono WHERE especieByma_id = ? AND fechaActualizacion = ?";
+        $sql = "SELECT bono_id FROM estructurabono WHERE bono_id = ? AND fechaActualizacion = ?";
         $bono = R::getCol($sql, array($this->bono, $this->fechaActualizacion));           
         
         
@@ -249,7 +249,7 @@ class Flujo_model extends CI_Model{
             echo "</pre>";
             $bono = implode(",", $bono);
             
-            $sql = "DELETE FROM estructurabono WHERE especieByma_id IN ({$bono})";
+            $sql = "DELETE FROM estructurabono WHERE bono_id IN ({$bono})";
             $result = R::exec($sql); 
             
             return true;
@@ -668,7 +668,7 @@ class Flujo_model extends CI_Model{
 //        if($estructuraBonos)  {
 //            foreach ($estructuraBonos as $estructuraBono){
 //                echo "<pre>";
-//                print_r($estructuraBono['especieByma'] . ', ');
+//                print_r($estructuraBono['bono'] . ', ');
 //            }
 //        }
 //        echo "</pre>";
@@ -808,7 +808,7 @@ class Flujo_model extends CI_Model{
                             
                             //Muestro el nombre de la especie
                             echo "<pre>";
-                            print_r("EspecieByma: ");
+                            print_r("bono: ");
                             print_r($especie);
                             echo "<pre>"; 
                             
@@ -820,28 +820,28 @@ class Flujo_model extends CI_Model{
                             //Si tiene un ID porque existe en la tabla:
                             if($id['id'] > 0){
                                 
-                                $especieByma = $id['id'];
+                                $bono = $id['id'];
                                 
                                 echo "<pre>";
                                 print_r("Es un bono existente.");
 
                                 //
-                                if(!(in_array($especieByma, $bonoYaBorrado, true))){
+                                if(!(in_array($bono, $bonoYaBorrado, true))){
 
                                     
                                     echo "<pre>"; 
                                     print_r("El bono no se repite en el excel: ");
-                                    print_r($especieByma);
+                                    print_r($bono);
                                     echo "<pre>";  
                                     
                                     //// Borrar ////////////////////////////////////                                
                                     //Si tiene ya datos cargados ese día, esa misma especie.
                                     $this->fechaActualizacion = $fechaActualizacion;
-                                    $this->bono = $especieByma;
+                                    $this->bono = $bono;
                                     $bonoBorrado = $this->Flujo_model->borrarDatosEstructuraBonos();
 
                                     //Los bonos ya borrados van en un array
-                                    array_push($bonoYaBorrado, $especieByma); 
+                                    array_push($bonoYaBorrado, $bono); 
                                     
                                     if($bonoBorrado == true){
                                         echo "<pre>";
@@ -857,7 +857,7 @@ class Flujo_model extends CI_Model{
                                     ////////////////////////////////////////////////
                                 }else{
                                     echo "<pre>"; 
-                                    print_r("El bono: " . $especieByma . " se repite en el excel. No se borrarán los datos de este bono. Verificar.");
+                                    print_r("El bono: " . $bono . " se repite en el excel. No se borrarán los datos de este bono. Verificar.");
                                     echo "<pre>";
                                     
                                 }
@@ -880,7 +880,7 @@ class Flujo_model extends CI_Model{
                                 $this->load->model('Bono_model');
                                 $this->Bono_model->bono = $especie;
                                 $id = $this->Bono_model->getBonoId();
-                                $especieByma = $id['id'];
+                                $bono = $id['id'];
                             }
                             
                             
@@ -1368,7 +1368,7 @@ class Flujo_model extends CI_Model{
                             
                              
                             
-                            $estructuraBonos->especieByma_id = $especieByma;
+                            $estructuraBonos->bono_id = $bono;
                             $estructuraBonos->tipoInstrumentoImpuesto = $tipoInstrumentoImpuesto;
                             $estructuraBonos->tipoAjuste = $tipoAjuste;
                             $estructuraBonos->tipoInstrumento = $tipoInstrumento;

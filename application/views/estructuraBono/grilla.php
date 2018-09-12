@@ -6,7 +6,7 @@
         <table boder="0" cellpadding="2" cellspacing="2">
             <tr>
                 
-                <td style = "padding-bottom: 10px"><div  id="cmbEspecieByma"></div></td>
+                <td style = "padding-bottom: 10px"><div  id="cmbBono"></div></td>
                 <br>
                 <td style = "padding-bottom: 10px"><div id="cmbFecha" ></div></td>
                 <br>
@@ -36,7 +36,7 @@ $(document).ready(function () {
         
 //        var Bono_id = 0;
 //        var cierre_id = 0;
-        var especieByma = '';
+        var bono = '';
         var fecha = '';
 
         var url = '';
@@ -61,7 +61,7 @@ $(document).ready(function () {
         var DAEstructuraBono = new $.jqx.dataAdapter(srcEstructuraBono);
 
 
-        $("#cmbEspecieByma").jqxDropDownList({ selectedIndex: -1, source: DAEstructuraBono, displayMember: "nombre", 
+        $("#cmbBono").jqxDropDownList({ selectedIndex: -1, source: DAEstructuraBono, displayMember: "nombre", 
         valueMember: "id", width: 150, height: 25, theme: theme, placeHolder: "Elija Especie Byma:", disabled: false });
 ////////////////////////////////////////////////////////////////////////////////   
 
@@ -75,7 +75,7 @@ $(document).ready(function () {
                         { name: 'fechaActualizacion' }
                     ],
 //                    data: {
-//                        especieByma: especieByma
+//                        bono: bono
 //                    },
                     id: 'id',
                     url: '/estructuraBono/getFechaActualizacion',
@@ -102,7 +102,7 @@ $(document).ready(function () {
                 datatype: "json",
                 datafields: [
                 { name: 'id'},
-                { name: 'especieByma'},
+                { name: 'bono'},
                 
                 { name: 'tipoInstrumentoImpuesto'},
                 { name: 'tipoAjuste'},
@@ -167,7 +167,7 @@ $(document).ready(function () {
             url: url,
             
             data: {
-                //especieByma: especieByma
+                //bono: bono
                 fechaActualizacion: fecha
             },
             type: 'post'
@@ -194,7 +194,7 @@ $(document).ready(function () {
                 height: 400,
                 columns: [
                         { text: 'Id', datafield: 'id', width: 80, cellsalign: 'right', cellsformat: 'd', aggregates: ['count'], hidden: true  },
-                        { text: 'Especie Byma', datafield: 'especieByma', width: 110 },
+                        { text: 'Especie Byma', datafield: 'bono', width: 110 },
                         { text: 'tipoInstrumentoImpuesto', datafield: 'tipoInstrumentoImpuesto', width: 140 },
                         { text: 'tipoAjuste', datafield: 'tipoAjuste', width: 115 },
                         { text: 'tipoInstrumento', datafield: 'tipoInstrumento', width: 120 },
@@ -265,7 +265,7 @@ $(document).ready(function () {
 ////////////////////////////////////////////////////////////////////////////////
 //Inst
 
-        $('#cmbEspecieByma').on('change', function (event){            
+        $('#cmbBono').on('change', function (event){            
 //            console.log(event.args.item.label);
             
 //            srcFecha.data = {
@@ -280,7 +280,7 @@ $(document).ready(function () {
             console.log(url);
 
             source.data = {
-                especieByma: event.args.item.label
+                bono: event.args.item.label
 //                fecha: $("#cmbFecha").jqxDropDownList('getSelectedItem').value
             };      
             dataadapter.dataBind();
@@ -310,7 +310,7 @@ $(document).ready(function () {
                 
                 dataadapter.dataBind();
 //            }
-            $("#cmbEspecieByma").jqxDropDownList({ selectedIndex: -1});
+            $("#cmbBono").jqxDropDownList({ selectedIndex: -1});
         });
         
         

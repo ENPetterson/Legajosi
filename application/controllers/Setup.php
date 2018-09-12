@@ -402,6 +402,53 @@ class Setup extends CI_Controller {
         
         R::store($feriados);
         
+////////////////////////////////////////////////////////////////////////////////
+        
+        
+        $this->load->model('Bono_model');
+        
+        $this->Bono_model->id = 1;
+        $this->Bono_model->nombre = 'AA19';
+        
+        $this->Bono_model->emisor_id = 1;
+        $this->Bono_model->tipobono_id = 1;
+        
+        $this->Bono_model->codigocaja = 'codigocaja1';
+        $this->Bono_model->codigoisin = 'codigoisin1';
+        
+        $this->Bono_model->monedacobro_id = 1;
+        $this->Bono_model->monedabono_id = 1;
+        
+        $this->Bono_model->tipotasa_id = 1;
+        $this->Bono_model->tipotasavariable_id  = 2;
+ 
+        $this->Bono_model->cer = 'true';
+        $this->Bono_model->cupon = 1.2525;
+        $this->Bono_model->cantidadcuponanual = 1;
+        $this->Bono_model->vencimiento = '30-10-2017';
+        $this->Bono_model->capitalresidual = 100;
+        $this->Bono_model->ultimoprecio = 107.46;
+        $this->Bono_model->oustanding = 1750;
+        $this->Bono_model->proximointeres = '30-10-2017';  
+        $this->Bono_model->proximoamortizacion = '30-10-2017';  
+        
+        $this->Bono_model->legislacion_id = 2;        
+        
+        $this->Bono_model->denominacionminima = 100000;        
+        $this->Bono_model->libro = 'C:\BONOS.xlsx'; 
+        $this->Bono_model->hoja = 'Hoja1'; 
+        $this->Bono_model->actualizacionAutomatica = 'true';
+        $this->Bono_model->fechaActualizacion = '30-10-2017';
+        
+        
+        
+        
+        
+        $bono = $this->Bono_model->saveBono();
+        
+        echo "Dado de alta el Bono con el id {$bono['id']} <br>";
+
+////////////////////////////////////////////////////////////////////////////////
         
         
         $this->load->model('Flujo_model');
@@ -546,7 +593,6 @@ class Setup extends CI_Controller {
 
         
         
-        
 
 
         
@@ -557,7 +603,7 @@ class Setup extends CI_Controller {
         
         $this->EstructuraBono_model->id = 1;
         
-        $this->EstructuraBono_model->especieByma = 1;
+        $this->EstructuraBono_model->bono = 1;
         $this->EstructuraBono_model->tipoInstrumentoImpuesto = 'Lala';
         $this->EstructuraBono_model->tipoAjuste = 'Lala';
         $this->EstructuraBono_model->tipoInstrumento = 'Lala';
@@ -614,53 +660,7 @@ class Setup extends CI_Controller {
         
         
         
-////////////////////////////////////////////////////////////////////////////////
-        
-        
-        $this->load->model('Bono_model');
-        
-        $this->Bono_model->id = 1;
-        $this->Bono_model->nombre = 'AA19';
-        
-        $this->Bono_model->emisor_id = 1;
-        $this->Bono_model->tipobono_id = 1;
-        
-        $this->Bono_model->codigocaja = 'codigocaja1';
-        $this->Bono_model->codigoisin = 'codigoisin1';
-        
-        $this->Bono_model->monedacobro_id = 1;
-        $this->Bono_model->monedabono_id = 1;
-        
-        $this->Bono_model->tipotasa_id = 1;
-        $this->Bono_model->tipotasavariable_id  = 2;
- 
-        $this->Bono_model->cer = 1;
-        $this->Bono_model->cupon = 1.2525;
-        $this->Bono_model->cantidadcuponanual = 1;
-        $this->Bono_model->vencimiento = '30-10-2017';
-        $this->Bono_model->capitalresidual = 100;
-        $this->Bono_model->ultimoprecio = 107.46;
-        $this->Bono_model->oustanding = 1750;
-        $this->Bono_model->proximointeres = '30-10-2017';  
-        $this->Bono_model->proximoamortizacion = '30-10-2017';  
-        
-        $this->Bono_model->legislacion_id = 2;        
-        
-        $this->Bono_model->denominacionminima = 100000;        
-        $this->Bono_model->libro = 'C:\BONOS.xlsx'; 
-        $this->Bono_model->hoja = 'Hoja1'; 
-        $this->Bono_model->actualizacionAutomatica = 'true';
-        $this->Bono_model->fechaActualizacion = '30-10-2017';
-        
-        
-        
-        
-        
-        $bono = $this->Bono_model->saveBono();
-        
-        echo "Dado de alta el Bono con el id {$bono['id']} <br>";
 
-////////////////////////////////////////////////////////////////////////////////
     
 
         //agregado

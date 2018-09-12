@@ -19,9 +19,9 @@ class EstructuraBono_model extends CI_Model{
         
         $estructuraBono = R::load('estructurabono', $this->id);
         
-        $especieByma = R::load('bono', $this->especieByma);
+        $bono = R::load('bono', $this->bono);
         
-        $estructuraBono->especieByma = $especieByma;
+        $estructuraBono->bono = $bono;
         $estructuraBono->tipoInstrumentoImpuesto = $this->tipoInstrumentoImpuesto;
         $estructuraBono->tipoAjuste = $this->tipoAjuste;
         $estructuraBono->tipoInstrumento = $this->tipoInstrumento;
@@ -84,12 +84,12 @@ class EstructuraBono_model extends CI_Model{
     }
     
     public function getEstructuraBonos(){
-        $estructuraBonos = R::getAll('select * from estructurabono order by especieByma_id');
+        $estructuraBonos = R::getAll('select * from estructurabono order by bono_id');
         return $estructuraBonos;
     }
     
     public function getFechaActualizacion(){
-//        $fechaActualizacion = R::getAll('SELECT DISTINCT fechaActualizacion from estructurabono where especieByma = ? ', array($this->especieByma));   
+//        $fechaActualizacion = R::getAll('SELECT DISTINCT fechaActualizacion from estructurabono where bono = ? ', array($this->bono));   
         $fechaActualizacion = R::getAll('SELECT DISTINCT fechaActualizacion from estructurabono');        
 
         return $fechaActualizacion;
@@ -101,7 +101,7 @@ class EstructuraBono_model extends CI_Model{
         
         $sql = "SELECT 
                 e.id,
-                b.nombre as especieByma,
+                b.nombre as bono,
                 e.tipoInstrumentoImpuesto,
                 e.tipoAjuste,
                 e.tipoInstrumento,
@@ -153,11 +153,11 @@ class EstructuraBono_model extends CI_Model{
 
                 FROM estructurabono e
                 INNER JOIN bono b
-                ON e.especieByma_id = b.id 
+                ON e.bono_id = b.id 
                 WHERE b.nombre = ?
                 ORDER BY id"; 
         
-        $resultado = R::getAll($sql, array($this->especieByma));
+        $resultado = R::getAll($sql, array($this->bono));
         
         return $resultado;
     }
@@ -168,7 +168,7 @@ class EstructuraBono_model extends CI_Model{
         
         $sql = "SELECT 
                 e.id,
-                b.nombre as especieByma,
+                b.nombre as bono,
                 e.tipoInstrumentoImpuesto,
                 e.tipoAjuste,
                 e.tipoInstrumento,
@@ -220,7 +220,7 @@ class EstructuraBono_model extends CI_Model{
 
                 FROM estructurabono e
                 INNER JOIN bono b
-                ON e.especieByma_id = b.id 
+                ON e.bono_id = b.id 
                 WHERE e.fechaActualizacion = ?
                 ORDER BY id"; 
         

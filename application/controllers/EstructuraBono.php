@@ -35,7 +35,7 @@ class EstructuraBono extends MY_AuthController{
         $this->load->model('EstructuraBono_model');
         $this->EstructuraBono_model->id = $this->input->post('id');
         
-        $this->EstructuraBono_model->especieByma = $this->input->post('especieByma');
+        $this->EstructuraBono_model->bono = $this->input->post('bono');
         $this->EstructuraBono_model->tipoInstrumentoImpuesto = $this->input->post('tipoInstrumentoImpuesto');
         $this->EstructuraBono_model->tipoAjuste = $this->input->post('tipoAjuste');
         $this->EstructuraBono_model->tipoInstrumento = $this->input->post('tipoInstrumento');
@@ -115,11 +115,11 @@ class EstructuraBono extends MY_AuthController{
     
     public function grillaEstructuraBono(){
       
-        $especieByma = $this->input->post('especieByma');
+        $bono = $this->input->post('bono');
 //        $fecha = $this->input->post('fecha');
         
         $this->load->model('EstructuraBono_model');
-        $this->EstructuraBono_model->especieByma = $especieByma;
+        $this->EstructuraBono_model->bono = $bono;
 //        $this->EstructuraBono_model->fecha = $fecha;
         $resultado = $this->EstructuraBono_model->grillaEstructuraBono();
         
