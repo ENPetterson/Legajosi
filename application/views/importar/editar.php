@@ -1,5 +1,6 @@
 
 
+
 <input type="hidden" id="id" value="<?php echo $id;?>" >
 <div id="ventanaBono" >
     <div id="titulo">
@@ -32,7 +33,7 @@
                     <td style="padding-top: 10px"><input type="button" id="importarEstructurasBonosButton" value="Importar Planilla Estructura de Bonos"></td>
                     
                     <td style="padding-right:10px; padding-right:20px"></td>
-                    <td style="padding-top: 10px"></td>
+                    <td style="padding-top: 10px"><input type="button" id="importarAllButton" value="Importar Todo"></td>
                 </tr>
                 
             </table>
@@ -67,30 +68,103 @@
         
         $('#importarEstructurasBonosButton').jqxButton({ theme: theme, width: '350px' });
 
+        $('#importarAllButton').jqxButton({ theme: theme, width: '350px' });
 
-
+//        $('#verLogButton').jqxButton({ theme: theme, width: '350px' });
 
 
 
         $("#importarFlujosBonosButton").click(function(){
-            
-                    $.redirect('/flujo/getImportarFlujosAllBonos', {'planilla': 'bonos'});
+            $.redirect('/flujo/getImportarFlujosAllBonos', {'planilla': 'bonos'});
 //                    $.redirect('/flujo/getImportarFlujosAllBonos');
-                });
+        });
 
 
         $("#importarFlujosProvincialesButton").click(function(){
-                    $.redirect('/flujo/getImportarFlujosAllBonos', {'planilla': 'provinciales'});
+            $.redirect('/flujo/getImportarFlujosAllBonos', {'planilla': 'provinciales'});
 //                    $.redirect('/flujo/getImportarFlujosAllProvinciales');
-                });    
+        });    
 
  
 
 
         $("#importarEstructurasBonosButton").click(function(){
-                    $.redirect('/flujo/getImportarEstructurasBonos');
-                });
+            $.redirect('/flujo/getImportarEstructurasBonos');
+        });
 
+        $("#verLogButton").click(function(){
+             
+            $('#ventanaBono').ajaxloader();
+            $.post('/flujo/getDescargarLog', function(data){
+                $('#ventanaBono').ajaxloader('hide');
+                    console.log(data);
+                    console.log('Se descargó el log');
+            }
+            , 'json');
+        });
+        
+        $("#importarAllButton").click(function(){
+             
+            $('#ventanaBono').ajaxloader();
+            $.post('/flujo/getImportarAll', function(data){
+                $('#ventanaBono').ajaxloader('hide');
+                    
+                    
+                    
+                    console.log(data);
+                    
+                    
+                    new Messi(data['resultadoFlujosBonos']['mensaje'] 
+                            + "<br/>"+data['resultadoFlujosProvinciales']['mensaje'] 
+                            + "<br/>"+data['resultadoEstructuras']['mensaje'] 
+                            + "<br/>"+data['resultadoMercado']['mensaje'] 
+                            + "<br/>"+data['resultadoLatam']['mensaje'] 
+                            + "<br/>"+data['resultadoTreasuries']['mensaje'], 
+                    {title: 'Ok', buttons: [{id: 0, label: 'Cerrar', val: 'X'}, {id: 1, label: 'Ver Log', val: 'L'}], 
+                    callback: function(val) {
+                        //alert('Your selection: ' + val);
+                        //
+                        
+//                        datos = {
+//                            logName: data['logName']
+//                        };
+                        
+                        var logName = data['logName'];
+//                        alert('Your selection: ' + logName);
+                        
+//                        {'planilla': 'bonos'}
+                        
+//                        $('#ventanaBono').ajaxloader();
+                        
+                        $.redirect('/flujo/getDescargarLog', {'logName': logName});
+
+                        
+                        
+//                        $.redirect('/flujo/getDescargarLog', function(data){
+//                            $('#ventanaBono').ajaxloader('hide');
+//                                console.log(data);
+//                                console.log('Se descargó el log');
+//                            }
+//                        , 'json');
+                        //
+                    },
+                    modal:true});
+                    
+                    
+//                    if (data.id > 0){
+//                        $.redirect('/bono');
+//                    } else {
+//                        new Messi('Hubo un error guardando el bono', {title: 'Error', 
+//                            buttons: [{id: 0, label: 'Cerrar', val: 'X'}], modal:true});
+//                        $('#ventanaBono').ajaxloader('hide');
+//                    }
+    
+    
+            }
+            , 'json');
+             
+//            $.redirect('/flujo/getimportarAll');
+        });
         
 //        $('#aceptarButton').bind('click', function () {
 //            $('#form').jqxValidator('validate');

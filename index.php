@@ -54,9 +54,11 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 
+ 
 set_time_limit(300);
 
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'pilot');
+	
 
 /*
  *---------------------------------------------------------------
@@ -73,6 +75,7 @@ switch (ENVIRONMENT)
 		ini_set('display_errors', 1);
 	break;
     
+	    case 'pilot':
         case 'javierdev':
         case 'desamica':
         case 'desajavier':

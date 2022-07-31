@@ -1,0 +1,1010 @@
+Fri, 16 Nov 18 15:04:28 -0200
+5beef89c484a4
+Importando Datos de Mercado
+Se encontraron y borraron datos del día de hoy.
+Se importaron 7 filas.
+Importando LATAM
+Se encontraron y borraron datos del día de hoy.
+Se importaron 22 filas.
+Importando US Treasuries
+Se encontraron y borraron datos del día de hoy.
+Se importaron 6 filas.
+Importando Estructura de bonos.
+Importando bono: AN18
+AN18 es un bono existente. No se dará de alta.
+AN18 no se repite en el excel.
+Se encontró y borró info del bono AN18 con fecha del día de hoy.
+Importando bono: AA19
+AA19 es un bono existente. No se dará de alta.
+AA19 no se repite en el excel.
+Se encontró y borró info del bono AA19 con fecha del día de hoy.
+Importando bono: AO20
+AO20 es un bono existente. No se dará de alta.
+AO20 no se repite en el excel.
+Se encontró y borró info del bono AO20 con fecha del día de hoy.
+Importando bono: AA21
+AA21 es un bono existente. No se dará de alta.
+AA21 no se repite en el excel.
+Se encontró y borró info del bono AA21 con fecha del día de hoy.
+Importando bono: AY24
+AY24 es un bono existente. No se dará de alta.
+AY24 no se repite en el excel.
+Se encontró y borró info del bono AY24 con fecha del día de hoy.
+Importando bono: A2E2
+A2E2 es un bono existente. No se dará de alta.
+A2E2 no se repite en el excel.
+Se encontró y borró info del bono A2E2 con fecha del día de hoy.
+Importando bono: A2E3
+A2E3 es un bono existente. No se dará de alta.
+A2E3 no se repite en el excel.
+Se encontró y borró info del bono A2E3 con fecha del día de hoy.
+Importando bono: AA25
+AA25 es un bono existente. No se dará de alta.
+AA25 no se repite en el excel.
+Se encontró y borró info del bono AA25 con fecha del día de hoy.
+Importando bono: AA26
+AA26 es un bono existente. No se dará de alta.
+AA26 no se repite en el excel.
+Se encontró y borró info del bono AA26 con fecha del día de hoy.
+Importando bono: A2E7
+A2E7 es un bono existente. No se dará de alta.
+A2E7 no se repite en el excel.
+Se encontró y borró info del bono A2E7 con fecha del día de hoy.
+Importando bono: A2E8
+A2E8 es un bono existente. No se dará de alta.
+A2E8 no se repite en el excel.
+Se encontró y borró info del bono A2E8 con fecha del día de hoy.
+Importando bono: AL28
+AL28 es un bono existente. No se dará de alta.
+AL28 no se repite en el excel.
+Se encontró y borró info del bono AL28 con fecha del día de hoy.
+Importando bono: DICA
+DICA es un bono existente. No se dará de alta.
+DICA no se repite en el excel.
+Se encontró y borró info del bono DICA con fecha del día de hoy.
+Importando bono: DICY
+DICY es un bono existente. No se dará de alta.
+DICY no se repite en el excel.
+Se encontró y borró info del bono DICY con fecha del día de hoy.
+Importando bono: AA37
+AA37 es un bono existente. No se dará de alta.
+AA37 no se repite en el excel.
+Se encontró y borró info del bono AA37 con fecha del día de hoy.
+Importando bono: AL36
+AL36 es un bono existente. No se dará de alta.
+AL36 no se repite en el excel.
+Se encontró y borró info del bono AL36 con fecha del día de hoy.
+Importando bono: PARA
+PARA es un bono existente. No se dará de alta.
+PARA no se repite en el excel.
+Se encontró y borró info del bono PARA con fecha del día de hoy.
+Importando bono: PARY
+PARY es un bono existente. No se dará de alta.
+PARY no se repite en el excel.
+Se encontró y borró info del bono PARY con fecha del día de hoy.
+Importando bono: AA46
+AA46 es un bono existente. No se dará de alta.
+AA46 no se repite en el excel.
+Se encontró y borró info del bono AA46 con fecha del día de hoy.
+Importando bono: AE48
+AE48 es un bono existente. No se dará de alta.
+AE48 no se repite en el excel.
+Se encontró y borró info del bono AE48 con fecha del día de hoy.
+Importando bono: AC17
+AC17 es un bono existente. No se dará de alta.
+AC17 no se repite en el excel.
+Se encontró y borró info del bono AC17 con fecha del día de hoy.
+Importando bono: TVPP
+TVPP es un bono existente. No se dará de alta.
+TVPP no se repite en el excel.
+Se encontró y borró info del bono TVPP con fecha del día de hoy.
+Importando bono: TVPA
+TVPA es un bono existente. No se dará de alta.
+TVPA no se repite en el excel.
+Se encontró y borró info del bono TVPA con fecha del día de hoy.
+Importando bono: TVPY
+TVPY es un bono existente. No se dará de alta.
+TVPY no se repite en el excel.
+Se encontró y borró info del bono TVPY con fecha del día de hoy.
+Importando bono: TVPE
+TVPE es un bono existente. No se dará de alta.
+TVPE no se repite en el excel.
+Se encontró y borró info del bono TVPE con fecha del día de hoy.
+Importando bono: AE22
+AE22 es un bono existente. No se dará de alta.
+AE22 no se repite en el excel.
+Se encontró y borró info del bono AE22 con fecha del día de hoy.
+Importando bono: AE23
+AE23 es un bono existente. No se dará de alta.
+AE23 no se repite en el excel.
+Se encontró y borró info del bono AE23 con fecha del día de hoy.
+Importando bono: DICE
+DICE es un bono existente. No se dará de alta.
+DICE no se repite en el excel.
+Se encontró y borró info del bono DICE con fecha del día de hoy.
+Importando bono: AE27
+AE27 es un bono existente. No se dará de alta.
+AE27 no se repite en el excel.
+Se encontró y borró info del bono AE27 con fecha del día de hoy.
+Importando bono: AE28
+AE28 es un bono existente. No se dará de alta.
+AE28 no se repite en el excel.
+Se encontró y borró info del bono AE28 con fecha del día de hoy.
+Importando bono: PARE
+PARE es un bono existente. No se dará de alta.
+PARE no se repite en el excel.
+Se encontró y borró info del bono PARE con fecha del día de hoy.
+Importando bono: AN47
+AN47 es un bono existente. No se dará de alta.
+AN47 no se repite en el excel.
+Se encontró y borró info del bono AN47 con fecha del día de hoy.
+Importando bono: AMX8
+AMX8 es un bono existente. No se dará de alta.
+AMX8 no se repite en el excel.
+Se encontró y borró info del bono AMX8 con fecha del día de hoy.
+Importando bono: AMX9
+AMX9 es un bono existente. No se dará de alta.
+AMX9 no se repite en el excel.
+Se encontró y borró info del bono AMX9 con fecha del día de hoy.
+Importando bono: AM20
+AM20 es un bono existente. No se dará de alta.
+AM20 no se repite en el excel.
+Se encontró y borró info del bono AM20 con fecha del día de hoy.
+Importando bono: PR15
+PR15 es un bono existente. No se dará de alta.
+PR15 no se repite en el excel.
+Se encontró y borró info del bono PR15 con fecha del día de hoy.
+Importando bono: AA22
+AA22 es un bono existente. No se dará de alta.
+AA22 no se repite en el excel.
+Se encontró y borró info del bono AA22 con fecha del día de hoy.
+Importando bono: NF18
+NF18 es un bono existente. No se dará de alta.
+NF18 no se repite en el excel.
+Se encontró y borró info del bono NF18 con fecha del día de hoy.
+Importando bono: TC20
+TC20 es un bono existente. No se dará de alta.
+TC20 no se repite en el excel.
+Se encontró y borró info del bono TC20 con fecha del día de hoy.
+Importando bono: PR13
+PR13 es un bono existente. No se dará de alta.
+PR13 no se repite en el excel.
+Se encontró y borró info del bono PR13 con fecha del día de hoy.
+Importando bono: TC21
+TC21 es un bono existente. No se dará de alta.
+TC21 no se repite en el excel.
+Se encontró y borró info del bono TC21 con fecha del día de hoy.
+Importando bono: TC23
+TC23 es un bono existente. No se dará de alta.
+TC23 no se repite en el excel.
+Se encontró y borró info del bono TC23 con fecha del día de hoy.
+Importando bono: TC25P
+TC25P es un bono existente. No se dará de alta.
+TC25P no se repite en el excel.
+Se encontró y borró info del bono TC25P con fecha del día de hoy.
+Importando bono: DICP
+DICP es un bono existente. No se dará de alta.
+DICP no se repite en el excel.
+Se encontró y borró info del bono DICP con fecha del día de hoy.
+Importando bono: PARP
+PARP es un bono existente. No se dará de alta.
+PARP no se repite en el excel.
+Se encontró y borró info del bono PARP con fecha del día de hoy.
+Importando bono: CUAP
+CUAP es un bono existente. No se dará de alta.
+CUAP no se repite en el excel.
+Se encontró y borró info del bono CUAP con fecha del día de hoy.
+Importando bono: TS18
+TS18 es un bono existente. No se dará de alta.
+TS18 no se repite en el excel.
+Se encontró y borró info del bono TS18 con fecha del día de hoy.
+Importando bono: TO21
+TO21 es un bono existente. No se dará de alta.
+TO21 no se repite en el excel.
+Se encontró y borró info del bono TO21 con fecha del día de hoy.
+Importando bono: TO23
+TO23 es un bono existente. No se dará de alta.
+TO23 no se repite en el excel.
+Se encontró y borró info del bono TO23 con fecha del día de hoy.
+Importando bono: TO26
+TO26 es un bono existente. No se dará de alta.
+TO26 no se repite en el excel.
+Se encontró y borró info del bono TO26 con fecha del día de hoy.
+Importando bono: TN20
+TN20 es un bono existente. No se dará de alta.
+TN20 no se repite en el excel.
+Se encontró y borró info del bono TN20 con fecha del día de hoy.
+Importando bono: AF19
+AF19 es un bono existente. No se dará de alta.
+AF19 no se repite en el excel.
+Se encontró y borró info del bono AF19 con fecha del día de hoy.
+Importando bono: A2M2
+A2M2 es un bono existente. No se dará de alta.
+A2M2 no se repite en el excel.
+Se encontró y borró info del bono A2M2 con fecha del día de hoy.
+Importando bono: A2J9
+A2J9 es un bono existente. No se dará de alta.
+A2J9 no se repite en el excel.
+Se encontró y borró info del bono A2J9 con fecha del día de hoy.
+Importando bono: AF20
+AF20 es un bono existente. No se dará de alta.
+AF20 no se repite en el excel.
+Se encontró y borró info del bono AF20 con fecha del día de hoy.
+Importando bono: TJ20
+TJ20 es un bono existente. No se dará de alta.
+TJ20 no se repite en el excel.
+Se encontró y borró info del bono TJ20 con fecha del día de hoy.
+Importando bono: PBD19
+PBD19 es un bono existente. No se dará de alta.
+PBD19 no se repite en el excel.
+Se encontró y borró info del bono PBD19 con fecha del día de hoy.
+Importando bono: RN20 
+RN20  es un bono existente. No se dará de alta.
+RN20  no se repite en el excel.
+Se encontró y borró info del bono RN20  con fecha del día de hoy.
+Importando bono: PMJ21
+PMJ21 es un bono existente. No se dará de alta.
+PMJ21 no se repite en el excel.
+Se encontró y borró info del bono PMJ21 con fecha del día de hoy.
+Importando bono: BDC22
+BDC22 es un bono existente. No se dará de alta.
+BDC22 no se repite en el excel.
+Se encontró y borró info del bono BDC22 con fecha del día de hoy.
+Importando bono: SA21 
+SA21  es un bono existente. No se dará de alta.
+SA21  no se repite en el excel.
+Se encontró y borró info del bono SA21  con fecha del día de hoy.
+Importando bono: PBY22
+PBY22 es un bono existente. No se dará de alta.
+PBY22 no se repite en el excel.
+Se encontró y borró info del bono PBY22 con fecha del día de hoy.
+Importando bono: BDC24
+BDC24 es un bono existente. No se dará de alta.
+BDC24 no se repite en el excel.
+Se encontró y borró info del bono BDC24 con fecha del día de hoy.
+Importando bono: PBA25
+PBA25 es un bono existente. No se dará de alta.
+PBA25 no se repite en el excel.
+Se encontró y borró info del bono PBA25 con fecha del día de hoy.
+Importando bono: BDC28
+BDC28 es un bono existente. No se dará de alta.
+BDC28 no se repite en el excel.
+Se encontró y borró info del bono BDC28 con fecha del día de hoy.
+Importando bono: NDG21
+NDG21 es un bono existente. No se dará de alta.
+NDG21 no se repite en el excel.
+Se encontró y borró info del bono NDG21 con fecha del día de hoy.
+Importando bono: PUO19
+PUO19 es un bono existente. No se dará de alta.
+PUO19 no se repite en el excel.
+Se encontró y borró info del bono PUO19 con fecha del día de hoy.
+Importando bono: BDC19
+BDC19 es un bono existente. No se dará de alta.
+BDC19 no se repite en el excel.
+Se encontró y borró info del bono BDC19 con fecha del día de hoy.
+Importando bono: BD2C9
+BD2C9 es un bono existente. No se dará de alta.
+BD2C9 no se repite en el excel.
+Se encontró y borró info del bono BD2C9 con fecha del día de hoy.
+Importando bono: BDC20
+BDC20 es un bono existente. No se dará de alta.
+BDC20 no se repite en el excel.
+Se encontró y borró info del bono BDC20 con fecha del día de hoy.
+Importando bono: PUM21
+PUM21 es un bono existente. No se dará de alta.
+PUM21 no se repite en el excel.
+Se encontró y borró info del bono PUM21 con fecha del día de hoy.
+Importando bono: PMO18
+PMO18 es un bono existente. No se dará de alta.
+PMO18 no se repite en el excel.
+Se encontró y borró info del bono PMO18 con fecha del día de hoy.
+Importando bono: PMD18
+PMD18 es un bono existente. No se dará de alta.
+PMD18 no se repite en el excel.
+Se encontró y borró info del bono PMD18 con fecha del día de hoy.
+Importando bono: BP18
+BP18 es un bono existente. No se dará de alta.
+BP18 no se repite en el excel.
+Se encontró y borró info del bono BP18 con fecha del día de hoy.
+Importando bono: BPMD 
+BPMD  es un bono existente. No se dará de alta.
+BPMD  no se repite en el excel.
+Se encontró y borró info del bono BPMD  con fecha del día de hoy.
+Importando bono: PBJ19
+PBJ19 es un bono existente. No se dará de alta.
+PBJ19 no se repite en el excel.
+Se encontró y borró info del bono PBJ19 con fecha del día de hoy.
+Importando bono: BP21
+BP21 es un bono existente. No se dará de alta.
+BP21 no se repite en el excel.
+Se encontró y borró info del bono BP21 con fecha del día de hoy.
+Importando bono: PBJ21
+PBJ21 es un bono existente. No se dará de alta.
+PBJ21 no se repite en el excel.
+Se encontró y borró info del bono PBJ21 con fecha del día de hoy.
+Importando bono: CO21D
+CO21D es un bono existente. No se dará de alta.
+CO21D no se repite en el excel.
+Se encontró y borró info del bono CO21D con fecha del día de hoy.
+Importando bono: PBF23
+PBF23 es un bono existente. No se dará de alta.
+PBF23 no se repite en el excel.
+Se encontró y borró info del bono PBF23 con fecha del día de hoy.
+Importando bono: PBM24
+PBM24 es un bono existente. No se dará de alta.
+PBM24 no se repite en el excel.
+Se encontró y borró info del bono PBM24 con fecha del día de hoy.
+Importando bono: CO26
+CO26 es un bono existente. No se dará de alta.
+CO26 no se repite en el excel.
+Se encontró y borró info del bono CO26 con fecha del día de hoy.
+Importando bono: PMY24
+PMY24 es un bono existente. No se dará de alta.
+PMY24 no se repite en el excel.
+Se encontró y borró info del bono PMY24 con fecha del día de hoy.
+Importando bono: SA24D
+SA24D es un bono existente. No se dará de alta.
+SA24D no se repite en el excel.
+Se encontró y borró info del bono SA24D con fecha del día de hoy.
+Importando bono: RIF25
+RIF25 es un bono existente. No se dará de alta.
+RIF25 no se repite en el excel.
+Se encontró y borró info del bono RIF25 con fecha del día de hoy.
+Importando bono: PUL26
+PUL26 es un bono existente. No se dará de alta.
+PUL26 no se repite en el excel.
+Se encontró y borró info del bono PUL26 con fecha del día de hoy.
+Importando bono: ERF25
+ERF25 es un bono existente. No se dará de alta.
+ERF25 no se repite en el excel.
+Se encontró y borró info del bono ERF25 con fecha del día de hoy.
+Importando bono: NDT11
+NDT11 es un bono existente. No se dará de alta.
+NDT11 no se repite en el excel.
+Se encontró y borró info del bono NDT11 con fecha del día de hoy.
+Importando bono: RND25
+RND25 es un bono existente. No se dará de alta.
+RND25 no se repite en el excel.
+Se encontró y borró info del bono RND25 con fecha del día de hoy.
+Importando bono: BP28
+BP28 es un bono existente. No se dará de alta.
+BP28 no se repite en el excel.
+Se encontró y borró info del bono BP28 con fecha del día de hoy.
+Importando bono: PBJ27
+PBJ27 es un bono existente. No se dará de alta.
+PBJ27 no se repite en el excel.
+Se encontró y borró info del bono PBJ27 con fecha del día de hoy.
+Importando bono: CO27D
+CO27D es un bono existente. No se dará de alta.
+CO27D no se repite en el excel.
+Se encontró y borró info del bono CO27D con fecha del día de hoy.
+Importando bono: BPLD
+BPLD es un bono existente. No se dará de alta.
+BPLD no se repite en el excel.
+Se encontró y borró info del bono BPLD con fecha del día de hoy.
+Importando bono: I19A7
+I19A7 es un bono existente. No se dará de alta.
+I19A7 no se repite en el excel.
+Se encontró y borró info del bono I19A7 con fecha del día de hoy.
+Importando bono: I17Y7
+I17Y7 es un bono existente. No se dará de alta.
+I17Y7 no se repite en el excel.
+Se encontró y borró info del bono I17Y7 con fecha del día de hoy.
+Importando bono: I21J7 
+I21J7  es un bono existente. No se dará de alta.
+I21J7  no se repite en el excel.
+Se encontró y borró info del bono I21J7  con fecha del día de hoy.
+Importando bono: I19L7
+I19L7 es un bono existente. No se dará de alta.
+I19L7 no se repite en el excel.
+Se encontró y borró info del bono I19L7 con fecha del día de hoy.
+Importando bono: I16G7
+I16G7 es un bono existente. No se dará de alta.
+I16G7 no se repite en el excel.
+Se encontró y borró info del bono I16G7 con fecha del día de hoy.
+Importando bono: I20S7
+I20S7 es un bono existente. No se dará de alta.
+I20S7 no se repite en el excel.
+Se encontró y borró info del bono I20S7 con fecha del día de hoy.
+Importando bono: I18O7
+I18O7 es un bono existente. No se dará de alta.
+I18O7 no se repite en el excel.
+Se encontró y borró info del bono I18O7 con fecha del día de hoy.
+Importando bono: I15N7
+I15N7 es un bono existente. No se dará de alta.
+I15N7 no se repite en el excel.
+Se encontró y borró info del bono I15N7 con fecha del día de hoy.
+Importando bono: I20D7
+I20D7 es un bono existente. No se dará de alta.
+I20D7 no se repite en el excel.
+Se encontró y borró info del bono I20D7 con fecha del día de hoy.
+Importando bono: I17E8
+I17E8 es un bono existente. No se dará de alta.
+I17E8 no se repite en el excel.
+Se encontró y borró info del bono I17E8 con fecha del día de hoy.
+Importando bono: I21F8
+I21F8 es un bono existente. No se dará de alta.
+I21F8 no se repite en el excel.
+Se encontró y borró info del bono I21F8 con fecha del día de hoy.
+Importando bono: I21M8
+I21M8 es un bono existente. No se dará de alta.
+I21M8 no se repite en el excel.
+Se encontró y borró info del bono I21M8 con fecha del día de hoy.
+Importando bono: I18A8
+I18A8 es un bono existente. No se dará de alta.
+I18A8 no se repite en el excel.
+Se encontró y borró info del bono I18A8 con fecha del día de hoy.
+Importando bono: I16Y8
+I16Y8 es un bono existente. No se dará de alta.
+I16Y8 no se repite en el excel.
+Se encontró y borró info del bono I16Y8 con fecha del día de hoy.
+Importando bono: I21J8
+I21J8 es un bono existente. No se dará de alta.
+I21J8 no se repite en el excel.
+Se encontró y borró info del bono I21J8 con fecha del día de hoy.
+Importando bono: I18L8
+I18L8 es un bono existente. No se dará de alta.
+I18L8 no se repite en el excel.
+Se encontró y borró info del bono I18L8 con fecha del día de hoy.
+Importando bono: I15G8
+I15G8 es un bono existente. No se dará de alta.
+I15G8 no se repite en el excel.
+Se encontró y borró info del bono I15G8 con fecha del día de hoy.
+Importando bono: I19S8
+I19S8 es un bono existente. No se dará de alta.
+I19S8 no se repite en el excel.
+Se encontró y borró info del bono I19S8 con fecha del día de hoy.
+Importando bono: I17O8
+I17O8 es un bono existente. No se dará de alta.
+I17O8 no se repite en el excel.
+Se encontró y borró info del bono I17O8 con fecha del día de hoy.
+Importando bono: I21N8
+I21N8 es un bono existente. No se dará de alta.
+I21N8 no se repite en el excel.
+Se encontró y borró info del bono I21N8 con fecha del día de hoy.
+Importando bono: I19D8
+I19D8 es un bono existente. No se dará de alta.
+I19D8 no se repite en el excel.
+Se encontró y borró info del bono I19D8 con fecha del día de hoy.
+Importando bono: LTPO8
+LTPO8 es un bono existente. No se dará de alta.
+LTPO8 no se repite en el excel.
+Se encontró y borró info del bono LTPO8 con fecha del día de hoy.
+Importando bono: LTPN8
+LTPN8 es un bono existente. No se dará de alta.
+LTPN8 no se repite en el excel.
+Se encontró y borró info del bono LTPN8 con fecha del día de hoy.
+Importando bono: LTPD8
+LTPD8 es un bono existente. No se dará de alta.
+LTPD8 no se repite en el excel.
+Se encontró y borró info del bono LTPD8 con fecha del día de hoy.
+Importando bono: LTPE9
+LTPE9 es un bono existente. No se dará de alta.
+LTPE9 no se repite en el excel.
+Se encontró y borró info del bono LTPE9 con fecha del día de hoy.
+Importando bono: LTPF9
+LTPF9 es un bono existente. No se dará de alta.
+LTPF9 no se repite en el excel.
+Se encontró y borró info del bono LTPF9 con fecha del día de hoy.
+Importando bono: LTPM9
+LTPM9 es un bono existente. No se dará de alta.
+LTPM9 no se repite en el excel.
+Se encontró y borró info del bono LTPM9 con fecha del día de hoy.
+Importando bono: LTPA9
+LTPA9 es un bono existente. No se dará de alta.
+LTPA9 no se repite en el excel.
+Se encontró y borró info del bono LTPA9 con fecha del día de hoy.
+Importando bono: LTPY9
+LTPY9 es un bono existente. No se dará de alta.
+LTPY9 no se repite en el excel.
+Se encontró y borró info del bono LTPY9 con fecha del día de hoy.
+Importando bono: LTPS9
+LTPS9 es un bono existente. No se dará de alta.
+LTPS9 no se repite en el excel.
+Se encontró y borró info del bono LTPS9 con fecha del día de hoy.
+Importando bono: LTPO9
+LTPO9 es un bono existente. No se dará de alta.
+LTPO9 no se repite en el excel.
+Se encontró y borró info del bono LTPO9 con fecha del día de hoy.
+Importando bono: LTPA0
+LTPA0 es un bono existente. No se dará de alta.
+LTPA0 no se repite en el excel.
+Se encontró y borró info del bono LTPA0 con fecha del día de hoy.
+Importando bono: L4DA8
+L4DA8 es un bono existente. No se dará de alta.
+L4DA8 no se repite en el excel.
+Se encontró y borró info del bono L4DA8 con fecha del día de hoy.
+Importando bono: L3DA8
+L3DA8 es un bono existente. No se dará de alta.
+L3DA8 no se repite en el excel.
+Se encontró y borró info del bono L3DA8 con fecha del día de hoy.
+Importando bono: L2DA8
+L2DA8 es un bono existente. No se dará de alta.
+L2DA8 no se repite en el excel.
+Se encontró y borró info del bono L2DA8 con fecha del día de hoy.
+Importando bono: L2DY8
+L2DY8 es un bono existente. No se dará de alta.
+L2DY8 no se repite en el excel.
+Se encontró y borró info del bono L2DY8 con fecha del día de hoy.
+Importando bono: LTDY8
+LTDY8 es un bono existente. No se dará de alta.
+LTDY8 no se repite en el excel.
+Se encontró y borró info del bono LTDY8 con fecha del día de hoy.
+Importando bono: L3DJ8
+L3DJ8 es un bono existente. No se dará de alta.
+L3DJ8 no se repite en el excel.
+Se encontró y borró info del bono L3DJ8 con fecha del día de hoy.
+Importando bono: LTDJ8
+LTDJ8 es un bono existente. No se dará de alta.
+LTDJ8 no se repite en el excel.
+Se encontró y borró info del bono LTDJ8 con fecha del día de hoy.
+Importando bono: L2DJ8
+L2DJ8 es un bono existente. No se dará de alta.
+L2DJ8 no se repite en el excel.
+Se encontró y borró info del bono L2DJ8 con fecha del día de hoy.
+Importando bono: LTDL8
+LTDL8 es un bono existente. No se dará de alta.
+LTDL8 no se repite en el excel.
+Se encontró y borró info del bono LTDL8 con fecha del día de hoy.
+Importando bono: L2DL8
+L2DL8 es un bono existente. No se dará de alta.
+L2DL8 no se repite en el excel.
+Se encontró y borró info del bono L2DL8 con fecha del día de hoy.
+Importando bono: LTDG8
+LTDG8 es un bono existente. No se dará de alta.
+LTDG8 no se repite en el excel.
+Se encontró y borró info del bono LTDG8 con fecha del día de hoy.
+Importando bono: L2DG8
+L2DG8 es un bono existente. No se dará de alta.
+L2DG8 no se repite en el excel.
+Se encontró y borró info del bono L2DG8 con fecha del día de hoy.
+Importando bono: LTDS8
+LTDS8 es un bono existente. No se dará de alta.
+LTDS8 no se repite en el excel.
+Se encontró y borró info del bono LTDS8 con fecha del día de hoy.
+Importando bono: L2DS8
+L2DS8 es un bono existente. No se dará de alta.
+L2DS8 no se repite en el excel.
+Se encontró y borró info del bono L2DS8 con fecha del día de hoy.
+Importando bono: LTDO8
+LTDO8 es un bono existente. No se dará de alta.
+LTDO8 no se repite en el excel.
+Se encontró y borró info del bono LTDO8 con fecha del día de hoy.
+Importando bono: L2DO8
+L2DO8 es un bono existente. No se dará de alta.
+L2DO8 no se repite en el excel.
+Se encontró y borró info del bono L2DO8 con fecha del día de hoy.
+Importando bono: L2DN8
+L2DN8 es un bono existente. No se dará de alta.
+L2DN8 no se repite en el excel.
+Se encontró y borró info del bono L2DN8 con fecha del día de hoy.
+Importando bono: LTDN8
+LTDN8 es un bono existente. No se dará de alta.
+LTDN8 no se repite en el excel.
+Se encontró y borró info del bono LTDN8 con fecha del día de hoy.
+Importando bono: LTDD8
+LTDD8 es un bono existente. No se dará de alta.
+LTDD8 no se repite en el excel.
+Se encontró y borró info del bono LTDD8 con fecha del día de hoy.
+Importando bono: LTDE9
+LTDE9 es un bono existente. No se dará de alta.
+LTDE9 no se repite en el excel.
+Se encontró y borró info del bono LTDE9 con fecha del día de hoy.
+Importando bono: L2DE9
+L2DE9 es un bono existente. No se dará de alta.
+L2DE9 no se repite en el excel.
+Se encontró y borró info del bono L2DE9 con fecha del día de hoy.
+Importando bono: LTDF9
+LTDF9 es un bono existente. No se dará de alta.
+LTDF9 no se repite en el excel.
+Se encontró y borró info del bono LTDF9 con fecha del día de hoy.
+Importando bono: L2DF9
+L2DF9 es un bono existente. No se dará de alta.
+L2DF9 no se repite en el excel.
+Se encontró y borró info del bono L2DF9 con fecha del día de hoy.
+Importando bono: LTDM9
+LTDM9 es un bono existente. No se dará de alta.
+LTDM9 no se repite en el excel.
+Se encontró y borró info del bono LTDM9 con fecha del día de hoy.
+Importando bono: L2DM9
+L2DM9 es un bono existente. No se dará de alta.
+L2DM9 no se repite en el excel.
+Se encontró y borró info del bono L2DM9 con fecha del día de hoy.
+Importando bono: LTDA9
+LTDA9 es un bono existente. No se dará de alta.
+LTDA9 no se repite en el excel.
+Se encontró y borró info del bono LTDA9 con fecha del día de hoy.
+Importando bono: L2A9D
+L2A9D es un bono existente. No se dará de alta.
+L2A9D no se repite en el excel.
+Se encontró y borró info del bono L2A9D con fecha del día de hoy.
+Importando bono: LTDY9
+LTDY9 es un bono existente. No se dará de alta.
+LTDY9 no se repite en el excel.
+Se encontró y borró info del bono LTDY9 con fecha del día de hoy.
+Importando bono: LTDL9
+LTDL9 es un bono existente. No se dará de alta.
+LTDL9 no se repite en el excel.
+Se encontró y borró info del bono LTDL9 con fecha del día de hoy.
+Importando bono: LTDF9
+LTDF9 es un bono existente. No se dará de alta.
+Importación de Estructura de bonos. El bono: LTDF9 se repite en el excel. No se borrarán los datos de este bono. Verificar por qué aparece dos veces.
+
+155 Bonos importados. 
+Importando flujos de planilla bonos.
+Bono A2E2 existe en el excel.
+Los títulos son correctos
+El sheetname es: A2E2
+El id es: 7
+Se borró la info del bono A2E2 con fecha del día de hoy.
+Bono A2E3 existe en el excel.
+Los títulos son correctos
+El sheetname es: A2E3
+El id es: 8
+Se borró la info del bono A2E3 con fecha del día de hoy.
+Bono A2E7 existe en el excel.
+Los títulos son correctos
+El sheetname es: A2E7
+El id es: 11
+Se borró la info del bono A2E7 con fecha del día de hoy.
+Bono A2E8 existe en el excel.
+Los títulos son correctos
+El sheetname es: A2E8
+El id es: 12
+Se borró la info del bono A2E8 con fecha del día de hoy.
+Bono AA21 existe en el excel.
+Los títulos son correctos
+El sheetname es: AA21
+El id es: 5
+Se borró la info del bono AA21 con fecha del día de hoy.
+Bono AA22 existe en el excel.
+Los títulos son correctos
+El sheetname es: AA22
+El id es: 33
+Se borró la info del bono AA22 con fecha del día de hoy.
+Bono AA25 existe en el excel.
+Los títulos son correctos
+El sheetname es: AA25
+El id es: 9
+Se borró la info del bono AA25 con fecha del día de hoy.
+Bono AA26 existe en el excel.
+Los títulos son correctos
+El sheetname es: AA26
+El id es: 10
+Se borró la info del bono AA26 con fecha del día de hoy.
+Bono AA37 existe en el excel.
+Los títulos son correctos
+El sheetname es: AA37
+El id es: 16
+Se borró la info del bono AA37 con fecha del día de hoy.
+Bono AA46 existe en el excel.
+Los títulos son correctos
+El sheetname es: AA46
+El id es: 20
+Se borró la info del bono AA46 con fecha del día de hoy.
+Bono AC17 existe en el excel.
+Los títulos son correctos
+El sheetname es: AC17
+El id es: 22
+Se borró la info del bono AC17 con fecha del día de hoy.
+Bono AE22 existe en el excel.
+Los títulos son correctos
+El sheetname es: AE22
+El id es: 23
+Se borró la info del bono AE22 con fecha del día de hoy.
+Bono AE23 existe en el excel.
+Los títulos son correctos
+El sheetname es: AE23
+El id es: 24
+Se borró la info del bono AE23 con fecha del día de hoy.
+Bono AE27 existe en el excel.
+Los títulos son correctos
+El sheetname es: AE27
+El id es: 26
+Se borró la info del bono AE27 con fecha del día de hoy.
+Bono AE28 existe en el excel.
+Los títulos son correctos
+El sheetname es: AE28
+El id es: 27
+Se borró la info del bono AE28 con fecha del día de hoy.
+Bono AE48 existe en el excel.
+Los títulos son correctos
+El sheetname es: AE48
+El id es: 21
+Se borró la info del bono AE48 con fecha del día de hoy.
+Bono AL28 existe en el excel.
+Los títulos son correctos
+El sheetname es: AL28
+El id es: 13
+Se borró la info del bono AL28 con fecha del día de hoy.
+Bono AL36 existe en el excel.
+Los títulos son correctos
+El sheetname es: AL36
+El id es: 17
+Se borró la info del bono AL36 con fecha del día de hoy.
+Bono AM20 existe en el excel.
+Los títulos son correctos
+El sheetname es: AM20
+El id es: 31
+Se borró la info del bono AM20 con fecha del día de hoy.
+Bono AMX9 existe en el excel.
+Los títulos son correctos
+El sheetname es: AMX9
+El id es: 30
+Se borró la info del bono AMX9 con fecha del día de hoy.
+Bono AN47 existe en el excel.
+Los títulos son correctos
+El sheetname es: AN47
+El id es: 29
+Se borró la info del bono AN47 con fecha del día de hoy.
+Bono AO20 existe en el excel.
+Los títulos son correctos
+El sheetname es: AO20
+El id es: 4
+Se borró la info del bono AO20 con fecha del día de hoy.
+Bono AY24 existe en el excel.
+Los títulos son correctos
+El sheetname es: AY24
+El id es: 6
+Se borró la info del bono AY24 con fecha del día de hoy.
+Bono CUAP existe en el excel.
+Bono DICA existe en el excel.
+Los títulos son correctos
+El sheetname es: DICA
+El id es: 14
+Se borró la info del bono DICA con fecha del día de hoy.
+Bono DICY existe en el excel.
+Los títulos son correctos
+El sheetname es: DICY
+El id es: 15
+Se borró la info del bono DICY con fecha del día de hoy.
+Bono PARA existe en el excel.
+Los títulos son correctos
+El sheetname es: PARA
+El id es: 18
+Se borró la info del bono PARA con fecha del día de hoy.
+Bono PARE existe en el excel.
+Bono PARY existe en el excel.
+Los títulos son correctos
+El sheetname es: PARY
+El id es: 19
+Se borró la info del bono PARY con fecha del día de hoy.
+Bono PR13 existe en el excel.
+Los títulos son correctos
+El sheetname es: PR13
+El id es: 35
+Se borró la info del bono PR13 con fecha del día de hoy.
+Bono PR15 existe en el excel.
+Los títulos son correctos
+El sheetname es: PR15
+El id es: 32
+Se borró la info del bono PR15 con fecha del día de hoy.
+Bono TC20 existe en el excel.
+Los títulos son correctos
+El sheetname es: TC20
+El id es: 34
+Se borró la info del bono TC20 con fecha del día de hoy.
+Bono TC21 existe en el excel.
+Los títulos son correctos
+El sheetname es: TC21
+El id es: 36
+Se borró la info del bono TC21 con fecha del día de hoy.
+Bono TC23 existe en el excel.
+Los títulos son correctos
+El sheetname es: TC23
+El id es: 37
+Se borró la info del bono TC23 con fecha del día de hoy.
+Bono TJ20 existe en el excel.
+Los títulos son correctos
+El sheetname es: TJ20
+El id es: 47
+Se borró la info del bono TJ20 con fecha del día de hoy.
+Bono TO21 existe en el excel.
+Los títulos son correctos
+El sheetname es: TO21
+El id es: 42
+Se borró la info del bono TO21 con fecha del día de hoy.
+Bono TO23 existe en el excel.
+Los títulos son correctos
+El sheetname es: TO23
+El id es: 43
+Se borró la info del bono TO23 con fecha del día de hoy.
+Bono TO26 existe en el excel.
+Los títulos son correctos
+El sheetname es: TO26
+El id es: 44
+Se borró la info del bono TO26 con fecha del día de hoy.
+Bono TS18 existe en el excel.
+Los títulos son correctos
+El sheetname es: TS18
+El id es: 41
+Se borró la info del bono TS18 con fecha del día de hoy.
+Importación de Flujos Bonos.No existe el bono A2M2 en el excel.No existe el bono AF19 en el excel.No existe el bono DICE en el excel.No existe el bono DICP en el excel.No existe el bono PARP en el excel.Bonos importados: 37
+Importando flujos de planilla provinciales.
+Bono BD2C9 existe en el excel.
+Los títulos son correctos
+El sheetname es: BD2C9
+El id es: 58
+Se borró la info del bono BD2C9 con fecha del día de hoy.
+Bono BDC19 existe en el excel.
+Los títulos son correctos
+El sheetname es: BDC19
+El id es: 57
+Se borró la info del bono BDC19 con fecha del día de hoy.
+Bono BDC20 existe en el excel.
+Los títulos son correctos
+El sheetname es: BDC20
+El id es: 59
+Se borró la info del bono BDC20 con fecha del día de hoy.
+Bono BDC22 existe en el excel.
+Los títulos son correctos
+El sheetname es: BDC22
+El id es: 50
+Se borró la info del bono BDC22 con fecha del día de hoy.
+Bono BDC24 existe en el excel.
+Los títulos son correctos
+El sheetname es: BDC24
+El id es: 52
+Se borró la info del bono BDC24 con fecha del día de hoy.
+Bono BDC28 existe en el excel.
+Los títulos son correctos
+El sheetname es: BDC28
+El id es: 54
+Se borró la info del bono BDC28 con fecha del día de hoy.
+Bono BP18 existe en el excel.
+Los títulos son correctos
+El sheetname es: BP18
+El id es: 63
+Se borró la info del bono BP18 con fecha del día de hoy.
+Bono BP21 existe en el excel.
+Los títulos son correctos
+El sheetname es: BP21
+El id es: 66
+Se borró la info del bono BP21 con fecha del día de hoy.
+Bono BP28 existe en el excel.
+Los títulos son correctos
+El sheetname es: BP28
+El id es: 79
+Se borró la info del bono BP28 con fecha del día de hoy.
+Bono BPLD existe en el excel.
+Los títulos son correctos
+El sheetname es: BPLD
+El id es: 82
+Se borró la info del bono BPLD con fecha del día de hoy.
+Bono BPMD existe en el excel.
+Los títulos son correctos
+El sheetname es: BPMD
+El id es: 64
+Se borró la info del bono BPMD con fecha del día de hoy.
+Bono CO21D existe en el excel.
+Los títulos son correctos
+El sheetname es: CO21D
+El id es: 68
+Se borró la info del bono CO21D con fecha del día de hoy.
+Bono CO26 existe en el excel.
+Los títulos son correctos
+El sheetname es: CO26
+El id es: 71
+Se borró la info del bono CO26 con fecha del día de hoy.
+Bono CO27D existe en el excel.
+Los títulos son correctos
+El sheetname es: CO27D
+El id es: 81
+Se borró la info del bono CO27D con fecha del día de hoy.
+Bono ERF25 existe en el excel.
+Los títulos son correctos
+El sheetname es: ERF25
+El id es: 76
+Se borró la info del bono ERF25 con fecha del día de hoy.
+Bono NDG21 existe en el excel.
+Los títulos son correctos
+El sheetname es: NDG21
+El id es: 55
+Se borró la info del bono NDG21 con fecha del día de hoy.
+Bono NDT11 existe en el excel.
+Los títulos son correctos
+El sheetname es: NDT11
+El id es: 77
+Se borró la info del bono NDT11 con fecha del día de hoy.
+Bono PBA25 existe en el excel.
+Los títulos son correctos
+El sheetname es: PBA25
+El id es: 53
+Se borró la info del bono PBA25 con fecha del día de hoy.
+Bono PBD19 existe en el excel.
+Los títulos son correctos
+El sheetname es: PBD19
+El id es: 48
+Se borró la info del bono PBD19 con fecha del día de hoy.
+Bono PBF23 existe en el excel.
+Los títulos son correctos
+El sheetname es: PBF23
+El id es: 69
+Se borró la info del bono PBF23 con fecha del día de hoy.
+Bono PBJ19 existe en el excel.
+Los títulos son correctos
+El sheetname es: PBJ19
+El id es: 65
+Se borró la info del bono PBJ19 con fecha del día de hoy.
+Bono PBJ21 existe en el excel.
+Los títulos son correctos
+El sheetname es: PBJ21
+El id es: 67
+Se borró la info del bono PBJ21 con fecha del día de hoy.
+Bono PBJ27 existe en el excel.
+Los títulos son correctos
+El sheetname es: PBJ27
+El id es: 80
+Se borró la info del bono PBJ27 con fecha del día de hoy.
+Bono PBM24 existe en el excel.
+Los títulos son correctos
+El sheetname es: PBM24
+El id es: 70
+Se borró la info del bono PBM24 con fecha del día de hoy.
+Bono PBY22 existe en el excel.
+Los títulos son correctos
+El sheetname es: PBY22
+El id es: 51
+Se borró la info del bono PBY22 con fecha del día de hoy.
+Bono PMD18 existe en el excel.
+Los títulos son correctos
+El sheetname es: PMD18
+El id es: 62
+Se borró la info del bono PMD18 con fecha del día de hoy.
+Bono PMJ21 existe en el excel.
+Los títulos son correctos
+El sheetname es: PMJ21
+El id es: 49
+Se borró la info del bono PMJ21 con fecha del día de hoy.
+Bono PMO18 existe en el excel.
+Los títulos son correctos
+El sheetname es: PMO18
+El id es: 61
+Se borró la info del bono PMO18 con fecha del día de hoy.
+Bono PMY24 existe en el excel.
+Los títulos son correctos
+El sheetname es: PMY24
+El id es: 72
+Se borró la info del bono PMY24 con fecha del día de hoy.
+Bono PUL26 existe en el excel.
+Los títulos son correctos
+El sheetname es: PUL26
+El id es: 75
+Se borró la info del bono PUL26 con fecha del día de hoy.
+Bono PUM21 existe en el excel.
+Los títulos son correctos
+El sheetname es: PUM21
+El id es: 60
+Se borró la info del bono PUM21 con fecha del día de hoy.
+Bono PUO19 existe en el excel.
+Los títulos son correctos
+El sheetname es: PUO19
+El id es: 56
+Se borró la info del bono PUO19 con fecha del día de hoy.
+Bono RIF25 existe en el excel.
+Los títulos son correctos
+El sheetname es: RIF25
+El id es: 74
+Se borró la info del bono RIF25 con fecha del día de hoy.
+Bono RN20 existe en el excel.
+Los títulos son correctos
+El sheetname es: RN20
+El id es: 83
+Se borró la info del bono RN20 con fecha del día de hoy.
+Bono RND25 existe en el excel.
+Los títulos son correctos
+El sheetname es: RND25
+El id es: 78
+Se borró la info del bono RND25 con fecha del día de hoy.
+Bono SA21 existe en el excel.
+Los títulos son correctos
+El sheetname es: SA21
+El id es: 84
+Se borró la info del bono SA21 con fecha del día de hoy.
+Bono SA24D existe en el excel.
+Los títulos son correctos
+El sheetname es: SA24D
+El id es: 73
+Se borró la info del bono SA24D con fecha del día de hoy.
+Importación de Flujos Provinciales.Bonos importados: 37
+

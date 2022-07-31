@@ -70,6 +70,17 @@ class EstructuraBono_model extends CI_Model{
         $estructuraBono->diasFinalCupon = $this->diasFinalCupon;
         $estructuraBono->capitalizacionInteres = $this->capitalizacionInteres;
         $estructuraBono->precioPesos = $this->precioPesos;
+        
+        $estructuraBono->especiesRelacionadas = $this->especiesRelacionadas;  
+        $estructuraBono->curva = $this->curva;  
+        $estructuraBono->variableCurva = $this->variableCurva;  
+        $estructuraBono->tnaUltimaLicitacion = $this->tnaUltimaLicitacion;  
+        $estructuraBono->diasVencimiento = $this->diasVencimiento;  
+        $estructuraBono->variableLicitacionPb = $this->variableLicitacionPb; 
+        $estructuraBono->cuponPbiD = $this->cuponPbiD; 
+        $estructuraBono->cuponPbiW = $this->cuponPbiW; 
+        
+        
         $estructuraBono->fechaActualizacion = $this->fechaActualizacion;
 
         $this->id = R::store($estructuraBono);
@@ -149,6 +160,16 @@ class EstructuraBono_model extends CI_Model{
                 e.diasInicioCupon,
                 e.diasFinalCupon,
                 e.capitalizacionInteres,
+
+                e.especiesRelacionadas,
+                e.curva,
+                e.variableCurva,
+                e.tnaUltimaLicitacion,
+                e.diasVencimiento,
+                e.variableLicitacionPb,
+                e.cuponPbiD,
+                e.cuponPbiW,
+
                 e.precioPesos
 
                 FROM estructurabono e
@@ -216,6 +237,16 @@ class EstructuraBono_model extends CI_Model{
                 e.diasInicioCupon,
                 e.diasFinalCupon,
                 e.capitalizacionInteres,
+                
+                e.especiesRelacionadas,
+                e.curva,
+                e.variableCurva,
+                e.tnaUltimaLicitacion,
+                e.diasVencimiento,
+                e.variableLicitacionPb,
+                e.cuponPbiD,
+                e.cuponPbiW,
+
                 e.precioPesos
 
                 FROM estructurabono e

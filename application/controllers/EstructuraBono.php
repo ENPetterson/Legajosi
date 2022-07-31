@@ -84,6 +84,19 @@ class EstructuraBono extends MY_AuthController{
         $this->EstructuraBono_model->diasFinalCupon = $this->input->post('diasFinalCupon');
         $this->EstructuraBono_model->capitalizacionInteres = $this->input->post('capitalizacionInteres');
         $this->EstructuraBono_model->precioPesos = $this->input->post('precioPesos');  
+        
+        
+        $this->EstructuraBono_model->especiesRelacionadas = $this->input->post('especiesRelacionadas');  
+        $this->EstructuraBono_model->curva = $this->input->post('curva');  
+        $this->EstructuraBono_model->variableCurva = $this->input->post('variableCurva');  
+        $this->EstructuraBono_model->tnaUltimaLicitacion = $this->input->post('tnaUltimaLicitacion');  
+        $this->EstructuraBono_model->diasVencimiento = $this->input->post('diasVencimiento');  
+        $this->EstructuraBono_model->variableLicitacionPb = $this->input->post('variableLicitacionPb'); 
+        $this->EstructuraBono_model->cuponPbiD = $this->input->post('cuponPbiD'); 
+        $this->EstructuraBono_model->cuponPbiW = $this->input->post('cuponPbiW'); 
+        
+        
+        
         $this->EstructuraBono_model->fechaActualizacion = $this->input->post('fechaActualizacion');
         
         $id = $this->EstructuraBono_model->saveEstructuraBono();

@@ -49,8 +49,8 @@ class Moneda extends MY_AuthController{
     
     function getMonedas(){
         $this->load->model('Moneda_model');
-        $monedas = $this->Moneda_model->getMonedas();
-        echo json_encode($monedas);
+        $moneda = $this->Moneda_model->getMonedas();
+        echo json_encode($moneda);
     }
 
     function delMoneda(){

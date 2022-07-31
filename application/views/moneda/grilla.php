@@ -94,7 +94,7 @@
     });
 </script>
 <div id="ventanaGrilla">
-    <div>Monedas</div>
+    <div>Moneda</div>
     <div>
         <div id="grilla" style="margin-bottom: 0.9em"></div>
         <table boder="0" cellpadding="2" cellspacing="2">

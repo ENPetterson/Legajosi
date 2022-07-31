@@ -189,7 +189,7 @@ class Flujo_model extends CI_Model{
     
     public function validarBonos(){
         $sql = "SELECT actualizacionAutomatica FROM bono WHERE hoja = ?";
-        $bono = R::getRow($sql, array($this->bono));        
+        $bono = R::getRow($sql, array($this->hoja));        
 
         if($bono['actualizacionAutomatica'] == 'true' ){
             return true;
@@ -212,13 +212,14 @@ class Flujo_model extends CI_Model{
     
    public function borrarFlujosBonos(){
 
-        $sql = "SELECT id FROM flujo WHERE bono = ? AND fechaActualizacion = ?";
-        $bono = R::getCol($sql, array($this->bono, $this->fechaActualizacion));           
+        $sql = "SELECT id FROM flujo WHERE bono_id = ? AND fechaActualizacion = ?";
+        $bono = R::getCol($sql, array($this->bono_id, $this->fechaActualizacion));           
         
         if (!(empty($bono))){
             
-            echo "<pre>";
-            print_r("Se encontraron flujos con fecha del día de hoy del bono.");
+            //Log
+//            echo "<pre>";
+//            print_r("Se encontraron flujos con fecha del día de hoy del bono.");
             
             $bono = implode(",", $bono);
             
@@ -227,8 +228,9 @@ class Flujo_model extends CI_Model{
             
             return true;
         }else{
-            echo "<pre>";
-            print_r("No se encontraron flujos del día de la fecha del bono.");
+            //Log
+//            echo "<pre>";
+//            print_r("No se encontraron flujos del día de la fecha del bono.");
             
             return false;
         }
@@ -237,26 +239,117 @@ class Flujo_model extends CI_Model{
     
     public function borrarDatosEstructuraBonos(){
 
+//        echo "</pre>";
+//        print_r($this->bono);
+//        echo "</pre>";
+//        print_r($this->fechaActualizacion);
+//        echo "</pre>";
         
-        $sql = "SELECT bono_id FROM estructurabono WHERE bono_id = ? AND fechaActualizacion = ?";
+        $sql = "SELECT id FROM estructurabono WHERE bono_id = ? AND fechaActualizacion = ?";
         $bono = R::getCol($sql, array($this->bono, $this->fechaActualizacion));           
+        
+//        print_r($bono);
+//        echo "</pre>";
         
         
         if (!(empty($bono))){
             
-            echo "<pre>";
-            print_r("Se encontraron flujos con fecha del día de hoy del bono.");
-            echo "</pre>";
+//            echo "<pre>";
+//            print_r("Se encontraron flujos con fecha del día de hoy del bono.");
+//            echo "</pre>";
             $bono = implode(",", $bono);
             
-            $sql = "DELETE FROM estructurabono WHERE bono_id IN ({$bono})";
+            $sql = "DELETE FROM estructurabono WHERE id IN ({$bono})";
             $result = R::exec($sql); 
             
             return true;
         }else{
-            echo "<pre>";
-            print_r("No se encontraron flujos del día de la fecha del bono.");
-            echo "</pre>";
+//            echo "<pre>";
+//            print_r("No se encontraron flujos del día de la fecha del bono.");
+//            echo "</pre>";
+            return false;
+        }
+    }  
+    
+    
+    
+    
+    public function borrarDatosMercado(){
+
+        
+        $sql = "SELECT id FROM datosmercado WHERE fechaActualizacion = ?";
+        $datosMercado = R::getCol($sql, array($this->fechaActualizacion));           
+        
+        
+        if (!(empty($datosMercado))){
+            
+//            echo "<pre>";
+//            print_r("Se encontraron datos con fecha del día de hoy.");
+//            echo "</pre>";
+            $datosMercado = implode(",", $datosMercado);
+            
+            $sql = "DELETE FROM datosmercado WHERE id IN ({$datosMercado})";
+            $result = R::exec($sql); 
+            
+            return true;
+        }else{
+//            echo "<pre>";
+//            print_r("No se encontraron datos del día de la fecha.");
+//            echo "</pre>";
+            return false;
+        }
+    }  
+    
+    
+    public function borrarLatam(){
+
+        
+        $sql = "SELECT id FROM latam WHERE fechaActualizacion = ?";
+        $latam = R::getCol($sql, array($this->fechaActualizacion));           
+        
+        
+        if (!(empty($latam))){
+            
+//            echo "<pre>";
+//            print_r("Se encontraron datos con fecha del día de hoy.");
+//            echo "</pre>";
+            $latam = implode(",", $latam);
+            
+            $sql = "DELETE FROM latam WHERE id IN ({$latam})";
+            $result = R::exec($sql); 
+            
+            return true;
+        }else{
+//            echo "<pre>";
+//            print_r("No se encontraron datos del día de la fecha.");
+//            echo "</pre>";
+            return false;
+        }
+    }  
+    
+    
+    public function borrarTreasuries(){
+
+        
+        $sql = "SELECT id FROM treasuries WHERE fechaActualizacion = ?";
+        $treasuries = R::getCol($sql, array($this->fechaActualizacion));           
+        
+        
+        if (!(empty($treasuries))){
+            
+//            echo "<pre>";
+//            print_r("Se encontraron datos con fecha del día de hoy.");
+//            echo "</pre>";
+            $treasuries = implode(",", $treasuries);
+            
+            $sql = "DELETE FROM treasuries WHERE id IN ({$treasuries})";
+            $result = R::exec($sql); 
+            
+            return true;
+        }else{
+//            echo "<pre>";
+//            print_r("No se encontraron datos del día de la fecha.");
+//            echo "</pre>";
             return false;
         }
     }  
@@ -267,96 +360,83 @@ class Flujo_model extends CI_Model{
     
     
     
-    
-    
-    
-    
-    
     //Importar los bonos que vienen de la planilla Bonos.
     public function getImportarFlujosAllBonos(){
-        
-        $planilla = $this->planilla;
+
+        $planilla = $this->planilla;        
 
         //Taer los nombres de los bonos, sólo los que tengan asignado el libro excel Bonos 
         $this->load->model('Bono_model');
         
+        //Traigo todos los bonos que vengan de la planilla bonos o de la planilla provinciales según sea el caso.
         if($planilla == 'bonos'){
             $bonos = $this->Bono_model->getBonosBonos();
         }else{
             $bonos = $this->Bono_model->getBonosProvinciales();
         }
 
-        echo "<pre>";
-        print_r("Listado de bonos dados de alta, que existen en la tabla: ");
-        echo "</pre>";
-        if($bonos){
-            foreach ($bonos as $bono){
-                echo "<pre>";
-                print_r($bono['nombre'] . ', ');
-            }
-        }
-        echo "</pre>";
+        //Esto vá en el Log
+//        echo "<pre>";
+//        print_r("Listado de bonos dados de alta, que existen en la tabla: ");
+//        echo "</pre>";
+//        if($bonos){
+//            foreach ($bonos as $bono){
+//                echo "<pre>";
+//                print_r($bono['nombre'] . ', ');
+//            }
+//        }
+//        echo "</pre>";
+        
+        
+        
         //Conectar con el excel
         try {
             if($planilla == 'bonos'){
                 $file = 'BONOS.xlsm';
+                $mensajeResultado = "Importación de Flujos Bonos.";
+                $msgLog.="Importando flujos de planilla bonos." . chr(13).chr(10);                                
             }else{
-                $file = 'PROVINCIALES DIARIO.xls';
+                $file = 'PROVINCIALES DIARIO.xlsm';
+                $mensajeResultado = "Importación de Flujos Provinciales.";
+                $msgLog.="Importando flujos de planilla provinciales." . chr(13).chr(10);                
             }        
         
-        //Cambiar esto en Test:
-        $inputFileName = '/var/research/' . $file;
-        //Cambiar esto en local:
-        //$inputFileName = 'C:\';
-        
-        $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
-        $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
-        $worksheetList = $objReader->listWorksheetNames($inputFileName);
+            //Cambiar esto en Test:
+            $inputFileName = '/var/research/' . $file;
+            //Cambiar esto en local:
+            //$inputFileName = 'C:\';
+
+            $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+            $lala = PHPExcel_IOFactory::createReader($inputFileType); 
+            $worksheetList = $lala->listWorksheetNames($inputFileName);
         
         } catch(Exception $e) {
             die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
         }
         
         $fechaActualizacion = new DateTime('NOW');
-        $fechaActualizacion = $fechaActualizacion->format('Y-m-d');     
-
+        $fechaActualizacion = $fechaActualizacion->format('Y-m-d');             
+        
         foreach ($bonos as $bono){ //Para cada Bono
+            
             $sheetname = $bono['hoja'];
-            $this->bono = $sheetname;
+            $bonoNombre = $bono['nombre'];
+            
+            $this->hoja = $sheetname;
             $bonoValido = $this->Flujo_model->validarBonos();
             
             if ($bonoValido == 1){ // Si el bono tiene tildada la opción de actualizar automáticamente.
                 if(in_array($sheetname, $worksheetList)){ // Si el bono aparece en el listado de hojas del Excel
-                    echo "<pre>";
-                    print_r("---------------------------------------------------");
-                    echo "<pre>";
-                    print_r("Bono " . $sheetname . " existe en el excel.");
+
+                    //Log
+//                    print_r("Bono " . $sheetname . " existe en el excel.");
+                    $msgLog.="Bono " . $bonoNombre . " existe en el excel." . chr(13).chr(10);                
 
 
-                    
-                    //Esta parte la saqué de Datos /////////////////////////////
-//                    $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
-//                    PHPExcel_Calculation::getInstance($objPHPExcel)->cyclicFormulaCount = 1;                      
-//                    $objReader->setReadDataOnly(true);
-//                    $objReader->setLoadSheetsOnly($sheetname);  
-
-                    ////////////////////////////////////////////////////////////
-                    
-                    
                     $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
+//                    PHPExcel_Calculation::getInstance($objPHPExcel)->cyclicFormulaCount = 1;   
                     $objReader->setReadDataOnly(true);
                     $objReader->setLoadSheetsOnly($sheetname);
-                    $objPHPExcel = $objReader->load($inputFileName);
-                    $sheet = $objPHPExcel->getSheetByName($sheetname);
-                    
-//                    $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
-//                    PHPExcel_Calculation::getInstance($objPHPExcel)->cyclicFormulaCount = 1;                      
-//                    $objReader->setReadDataOnly(true);
-//                    $objReader->setLoadSheetsOnly($sheetname);  
-//                    $objPHPExcel = $objReader->load($inputFileName);
-//                    $sheet = $objPHPExcel->getSheetByName($sheetname);
-                    
-                    
                     $objPHPExcel = $objReader->load($inputFileName);
                     $sheet = $objPHPExcel->getSheetByName($sheetname);
                     
@@ -374,13 +454,7 @@ class Flujo_model extends CI_Model{
                             $nombreHojas[] = $nombreHoja;                                    
                         }
                     }
-                    
-//                    if ($nombreHojas[3].$nombreHojas[32] == 'fechasflow' && 
-//                        $nombreHojas[13].$nombreHojas[42] == 'vnactualizado' && 
-//                        $nombreHojas[14].$nombreHojas[43] == 'vractualizado' && 
-//                        $nombreHojas[26] == 'k' && 
-//                        $nombreHojas[27] == 'i' && 
-//                        $nombreHojas[28] == 'flujo')
+
                     if  (
                         $nombreHojas[42] == 'valor nominal actualizado' &&
                         $nombreHojas[43] == 'valor residual actualizado' && 
@@ -400,37 +474,48 @@ class Flujo_model extends CI_Model{
                     
                     
                     if($aprobado == 1){ 
-                        echo "<pre>";
-                        print_r("Los títulos son correctos");
+                        //Log
+                        $msgLog.="Los títulos son correctos" . chr(13).chr(10);                
+                        
 //////////////////////Borrar ///////////////////////////////////////////////////
-                    $this->fechaActualizacion = $fechaActualizacion;
-                    $this->bono = $sheetname;
-                    $bonoBorrado = $this->Flujo_model->borrarFlujosBonos();
+                  
+                        
+                    $bonosImportados++;    
                     
-                    
-                    echo "<pre>";
-                    print_r("El sheetname es: ");
-                    print_r($sheetname);
-                    echo "<pre>"; 
+                    //Log
+//                    echo "<pre>";
+//                    print_r("El sheetname es: ");
+//                    print_r($sheetname);
+                    $msgLog.="El sheetname es: " . $sheetname . chr(13).chr(10);                
+
+//                    print_r(" número: ". $bonosImportados);
+//                    echo "<pre>"; 
                     
                     
                     $this->load->model('Bono_model');
-                    $this->Bono_model->bono = $sheetname;
+                    $this->Bono_model->bono = $bonoNombre;
                     $id = $this->Bono_model->getBonoId();
                     $id = $id['id'];
                     
-                    echo "<pre>";
-                    print_r("El id es: ");
-                    print_r($id);
-                    echo "<pre>";    
+                    //Log
+//                    echo "<pre>";
+//                    print_r("El id es: ");
+//                    print_r($id);
+//                    echo "<pre>";  
+                    $msgLog.="El id es: " . $id . chr(13).chr(10);                
+
                     
+                    $this->fechaActualizacion = $fechaActualizacion;
+                    $this->bono_id = $id;
+                    $bonoBorrado = $this->Flujo_model->borrarFlujosBonos();
+                    
+                    //Log
                     if($bonoBorrado == true){
-                        echo "<pre>";
-                        print_r("Se borró la info del bono " . $sheetname . " con fecha del día de hoy.");
+                        $msgLog.="Se borró la info del bono " . $bonoNombre . " con fecha del día de hoy." . chr(13).chr(10);                
                     }else{
-                        echo "<pre>";
-                        print_r("No se borraron flujos del bono: " . $sheetname . ". No se encontraron flujos con fecha del día de hoy.");
+                        $msgLog.="No se borraron flujos del bono: " . $bonoNombre . ". No se encontraron flujos con fecha del día de hoy." . chr(13).chr(10);                
                     }
+                    
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         $highestRow = $sheet->getHighestRow();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -462,6 +547,8 @@ class Flujo_model extends CI_Model{
                             //Esta validación de fechas la agregué, verificar si está bien.
                             if($this->Flujo_model->validarfechas($fechapagos)){
                                 
+                                
+                                
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                 
                                 $vr = $sheet->getCellByColumnAndRow(6,$row)->getFormattedValue(); //$vr = (int)$vr;
@@ -474,9 +561,11 @@ class Flujo_model extends CI_Model{
                                 $cuponInteres = $sheet->getCellByColumnAndRow(27,$row)->getOldCalculatedValue();
                                 $totalFlujo = $sheet->getCellByColumnAndRow(28,$row)->getOldCalculatedValue();
                                 
-                                echo"<pre>";
-                                print_r($totalFlujo);
-                                echo"<pre>";
+                                //Log
+//                                echo"<pre>";
+//                                print_r('Bono: ' . $bonoNombre . 'Bono Hoja: ' . $sheetname . 'Flujo: ' . $totalFlujo). chr(13).chr(10);
+//                                $msgLog.="Total Flujo: " . $totalFlujo . chr(13).chr(10);                
+
                                 
                                 $totalFlujo = round($totalFlujo, 15); 
 
@@ -498,162 +587,63 @@ class Flujo_model extends CI_Model{
                                                                 
                                 R::store($flujo);
                                 
+                                
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                 
 //                                echo"<pre>";
 //                                print_r("Bono: " . $sheetname . ' Fecha de Pagos: ' . $flujo->fechapagos . ' VR: ' . $flujo->vr . ' Amortización: ' . $flujo->amortizacion . ' Interés: '. $flujo->interes . 'ValorN: ' . $valorN. ' ValorS: ' . $valorS . ' Cupon Amortización: '. $cuponAmortizacion . ' Cupon Interés: '. $cuponInteres . ' Total Flujo: '. $totalFlujo);
 //                                echo"</pre>";  
                             }else{
-                                print_r("Problema con las fechas");
+                                $mensajeError.= "Problema con las fechas";
+
                                 break;
                             }
                         }
+                        
+                        
+                        
                     } else {
                         
-                        echo "<pre>";
-                        print_r("Títulos incorrectos.");
-                        echo "<pre>";
+                        $mensajeError.= ("Títulos incorrectos en " . $sheetname);
                         
                     }
+                    
+                    
+                    
                 }else{//If in array sheet
-                    echo "<pre>";
-                    print_r("---------------------------------------------------");
-                    echo "<pre>";
-                    print_r("No existe el bono " . $sheetname . " en el excel.");
-                    echo "<pre>";
+//                    
+                    
+                    $mensajeResultado.= "No existe el bono " . $sheetname . " en el excel.";
+                    
+//                    $mensajeResultado.= "Bonos importados: " . $bonosImportados;
+                    
                 }
             }else{
-                echo "<pre>";
-                print_r("El bono " . $sheetname . " no tiene tildada la opción de actualización automática.");
-                echo "<pre>";
+                
+                $mensajeError.= "El bono " . $sheetname . " no tiene tildada la opción de actualización automática.";
+                
             }    
+            
+            
+//            unset($objReader);
+//            unset($objPHPExcel);
+//            unset($sheet);
+            
+            
         } 
+        
+        $mensajeResultado.= "Bonos importados: " . $bonosImportados;
+        $msgLog.= $mensajeResultado . chr(13).chr(10);                
+
+        
+        
+        $resultado = array('resultado'=>'Ok', 'mensaje'=>$mensajeResultado, 'log'=>$msgLog);
+        return $resultado;
+        
+        
     }
   
     
-    
-/*
-    //Importar los bonos que vienen de la planilla Provinciales.
-    public function getImportarFlujosAllProvinciales(){
-
-        //Taer los nombres de los bonos, 
-        $this->load->model('Bono_model');
-        $bonos = $this->Bono_model->getBonosProvinciales();
-        
-        
-        echo "<pre>";
-        print_r("Listado de bonos dados de alta, que existen en la tabla: ");
-        
-        foreach ($bonos as $bono){
-            print_r($bono['nombre'] . ', ');
-        }
-                
-        try {
-//        Cambiar esto en test
-        $file = 'PROVINCIALES DIARIO.xls';
-        $inputFileName = '/var/research/' . $file;
-
-//        Cambiar esto en local        
-//        $inputFileName = 'C:\BONOS.xlsm';
-        
-        $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
-        $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
-        $worksheetList = $objReader->listWorksheetNames($inputFileName);
-        
-        } catch(Exception $e) {
-            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
-        }
-        
-        $fechaActualizacion = new DateTime('NOW');
-        $fechaActualizacion = $fechaActualizacion->format('Y-m-d');     
-        
-        foreach ($bonos as $bono){
-            $sheetname = $bono['hoja'];
-            $this->bono = $sheetname;
-            $bonoValido = $this->Flujo_model->validarBonos();                      
-            if ($bonoValido == 1){ // Si el bono tiene tildada la opción de actualizar automáticamente.
-                if(in_array($sheetname, $worksheetList)){
-                    echo "<pre>";
-                    print_r("Bono " . $sheetname . " existe en el excel.");
-                    //Borrar
-                    $this->fechaActualizacion = $fechaActualizacion;
-                    $this->bono = $sheetname;
-                    $bonoBorrado = $this->Flujo_model->borrarFlujosBonos();
-                    if($bonoBorrado == true){
-                        echo "<pre>";
-                        print_r("Se borró la info del bono " . $sheetname . " con fecha del día de hoy.");
-                    }else{
-                        echo "<pre>";
-                        print_r("No se borraron flujos del bono: " . $sheetname . ". No se encontraron flujos con fecha del día de hoy.");
-                    }
-                    $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
-                    $objReader->setReadDataOnly(true);
-                    $objReader->setLoadSheetsOnly($sheetname);
-                    $objPHPExcel = $objReader->load($inputFileName);
-                    $sheet = $objPHPExcel->getSheetByName($sheetname);
-                    
-//                    print_r($sheet);
-//                    echo "<pre>";
-                   
-                    $highestRow = $sheet->getHighestRow();
-                    
-                    
-                    for ($row = 19; $row <= $highestRow; $row++){
-                        $fechapagos = $sheet->getCellByColumnAndRow(0,$row)->getFormattedValue();
-                        if($fechapagos == null){
-                            $newHighestRow = $row - 1;
-                            break;
-                        } 
-                    }
-                    for ($row = 19; $row <= $newHighestRow; $row++){        
-                        
-                       
-                            $fechapagos = $sheet->getCellByColumnAndRow(0,$row)->getFormattedValue();
-                            $fechapagos = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($fechapagos));                          
-                            
-                            $amortizacion = $sheet->getCellByColumnAndRow(5,$row)->getFormattedValue();
-                            $vr = $sheet->getCellByColumnAndRow(6,$row)->getFormattedValue();
-                            $interes = $sheet->getCellByColumnAndRow(7,$row)->getOldCalculatedValue();
-
-                            $amortizacion = (int)$amortizacion;
-                            $vr = (int)$vr;
-                            
-//                            $amortizacion = $amortizacion * 100;
-//                            $vr = $vr * 100;
-//                            $interes = str_replace('%', '', $interes);          
-
-                            $flujo = R::dispense('flujo');
-
-                            $flujo->bono = $sheetname;
-                            $flujo->fechapagos = $fechapagos;
-                            //Así
-//                            $flujo->amortizacion = (double)$amortizacion;
-//                            $flujo->vr = number_format($vr, 2, '.', '');
-//                            $flujo->interes = number_format($interes, 6, '.', '');
-                            //O Así
-                            $flujo->amortizacion = $amortizacion;
-                            $flujo->vr = $vr;
-                            $flujo->interes = $interes;
-                            
-                            $flujo->fechaActualizacion = $fechaActualizacion;
-                            R::store($flujo);
-                            echo"<pre>";
-                            print_r("Bono: " . $sheetname . ' Fecha de Pagos: ' . $flujo->fechapagos . ' Amortización: ' . $flujo->amortizacion. ' VR: ' . $flujo->vr . ' Interés: '. $flujo->interes);
-                            echo"</pre>";                            
-                    }
-                }else{
-                    echo "<pre>";
-                    print_r("No existe el bono " . $sheetname . " en el excel.");
-                    echo "<pre>";
-                }
-            }else{
-                echo "<pre>";
-                print_r("El bono " . $sheetname . " no tiene tildada la opción de actualización automática.");
-                echo "<pre>";
-            }       
-        }
-    }
-*/
     
     public function getImportarEstructurasBonos(){
 
@@ -676,8 +666,11 @@ class Flujo_model extends CI_Model{
         //Conectar con el excel
         try {
             //Cambiar esto en test
-            $file = 'Estructuras de Bonos.xlsx';
-            $inputFileName = '/var/research/' . $file;
+//            $file = 'Estructuras de Bonos.xlsx';
+            
+            $file = 'Estructuras de Bonos para WS.xlsx';
+            
+            $inputFileName = '/var/research/SOL/Web/' . $file;
             //Cambiar esto en local        
             //$inputFileName = 'C:\BONOS.xlsm';       
             $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
@@ -687,9 +680,15 @@ class Flujo_model extends CI_Model{
             die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
         }
 
+        $mensajeResultado = ("Importación de Estructura de bonos. ");
+
         $fechaActualizacion = new DateTime('NOW');
         $fechaActualizacion = $fechaActualizacion->format('Y-m-d');     
 
+        $msgLog.="Importando Estructura de bonos." . chr(13).chr(10);
+
+        
+        
             $sheetname = $worksheetList[0];
                                         
                     $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
@@ -703,7 +702,7 @@ class Flujo_model extends CI_Model{
 
                     $aprobado = 0;                    
                     for ($row = 2; $row < 3; $row++){
-                        for($column = 0; $column < 50; $column++){
+                        for($column = 0; $column < 58; $column++){
                             $nombreHoja = str_replace(
                                                     array('á','é','í','ó','ú'),
                                                     array('a','e','i','o','u'),
@@ -763,7 +762,19 @@ class Flujo_model extends CI_Model{
                             $nombreHojas[45] == 'dias habiles antes del inicio del cupon' &&
                             $nombreHojas[46] == 'dias habiles antes del final del cupon' &&
                             $nombreHojas[47] == 'capitalizacion de intereses' &&
-                            $nombreHojas[49] == 'precio en pesos ($)'
+                                
+                            $nombreHojas[49] == 'precio en pesos ($)' &&    
+                                
+                            $nombreHojas[50] == 'especies relacionadas' &&
+                            $nombreHojas[51] == 'curva a la que pertenece' &&
+                            $nombreHojas[52] == 'variable para curva' &&
+                            $nombreHojas[53] == 'tna ulitma licitacion para el plazo' &&
+                            $nombreHojas[54] == 'dias al vencimiento' &&
+                            $nombreHojas[55] == 'var. desde licitacion -pb-' &&
+                            $nombreHojas[56] == '1d-ch %' &&
+                            $nombreHojas[57] == '1w-ch %'
+ 
+                            
                             )    
                         {
                             $aprobado = 1;
@@ -785,9 +796,7 @@ class Flujo_model extends CI_Model{
                             }
                         }
                         
-                        echo "<pre>";
-                        print_r("Son " . $highestRow . " filas");
-                        echo "</pre>";
+                        
                         
                         $valido = true;
                         $error = '';
@@ -799,18 +808,19 @@ class Flujo_model extends CI_Model{
                         
                         for ($row = 3; $row <= $newHighestRow; $row++){
                             
+//                            echo "<pre>";
+//                            print_r("Son " . $newHighestRow . " filas");
+//                            echo "</pre>";
+                            
 
                             $especie = $sheet->getCellByColumnAndRow(0,$row)->getFormattedValue();
                             
-                            echo "<pre>"; 
-                            print_r("-----------------------------------------------------------------------");
-                            echo "<pre>";
-                            
+                            //Log
                             //Muestro el nombre de la especie
-                            echo "<pre>";
-                            print_r("bono: ");
-                            print_r($especie);
-                            echo "<pre>"; 
+                            //
+                            //
+                            $msgLog.="Importando bono: " . $especie . chr(13).chr(10);
+
                             
                             //Busco el id.
                             $this->load->model('Bono_model');
@@ -822,53 +832,56 @@ class Flujo_model extends CI_Model{
                                 
                                 $bono = $id['id'];
                                 
-                                echo "<pre>";
-                                print_r("Es un bono existente.");
+                                //Log
+//                                echo "<pre>";
+//                                print_r("");
+                                $msgLog.= $especie . " es un bono existente. No se dará de alta." . chr(13).chr(10);
 
                                 //
                                 if(!(in_array($bono, $bonoYaBorrado, true))){
 
                                     
-                                    echo "<pre>"; 
-                                    print_r("El bono no se repite en el excel: ");
-                                    print_r($bono);
-                                    echo "<pre>";  
+                                    //Log
+//                                    echo "<pre>"; 
+//                                    print_r("El bono no se repite en el excel: ");
+//                                    print_r($bono);
+//                                    echo "<pre>";  
+                                    
+                                    $msgLog.= $especie . " no se repite en el excel." . chr(13).chr(10);
+
                                     
                                     //// Borrar ////////////////////////////////////                                
                                     //Si tiene ya datos cargados ese día, esa misma especie.
                                     $this->fechaActualizacion = $fechaActualizacion;
                                     $this->bono = $bono;
+                                    
+
+                                    
                                     $bonoBorrado = $this->Flujo_model->borrarDatosEstructuraBonos();
 
                                     //Los bonos ya borrados van en un array
                                     array_push($bonoYaBorrado, $bono); 
                                     
-                                    if($bonoBorrado == true){
-                                        echo "<pre>";
-                                        print_r("Se borró la info del bono " . $especie . " con fecha del día de hoy.");
-                                        
-                                        
-                                        
-                                    }else{
-                                        echo "<pre>";
-                                        print_r("No se borró info del bono: " . $especie . ". No se encontraron datos con fecha del día de hoy para esa especie.");
-                                    }
-                                    ////////////////////////////////////////////////
-                                    ////////////////////////////////////////////////
-                                }else{
-                                    echo "<pre>"; 
-                                    print_r("El bono: " . $bono . " se repite en el excel. No se borrarán los datos de este bono. Verificar.");
-                                    echo "<pre>";
                                     
-                                }
-                                
+                                   
+                                    if($bonoBorrado == true){
+                                        $msgLog.= "Se encontró y borró info del bono " . $especie . " con fecha del día de hoy." . chr(13).chr(10);
+                                    }else{
+                                        $msgLog.="No se borró info del bono: " . $especie . ". No se encontraron datos con fecha del día de hoy para esa especie.";
+                                    }
+                                     
+                                    
+                                    ////////////////////////////////////////////////
+                                    ////////////////////////////////////////////////
+                                }else{                                                                        
+                                    $mensajeResultado.= "El bono: " . $especie . " se repite en el excel. No se borrarán los datos de este bono. Verificar por qué aparece dos veces.\n";
+                                    $msgLog.= $mensajeResultado . chr(13).chr(10);
 
-                                
+                                }                                
                             }else{
-                                
-                                echo "<pre>";
-                                print_r("Se dará de alta la especie: " . $especie . "En la tabla Bonos");
-                                
+                                $mensajeResultado.= "Se dará de alta la especie: " . $especie . " en la tabla Bonos, porque no existe un bono con ese nombre.";
+                                $msgLog.= $mensajeResultado . chr(13).chr(10);
+
                                 $alta = R::dispense('bono');
                                 $alta->nombre = $especie;
                                 
@@ -888,248 +901,289 @@ class Flujo_model extends CI_Model{
                             $tipoAjuste = $sheet->getCellByColumnAndRow(2,$row)->getFormattedValue();
                             $tipoInstrumento = $sheet->getCellByColumnAndRow(3,$row)->getFormattedValue();
                             $nombreConocido = $sheet->getCellByColumnAndRow(4,$row)->getOldCalculatedValue();
-
                             $tipoEmisor = $sheet->getCellByColumnAndRow(5,$row)->getFormattedValue();
                             $emisor = $sheet->getCellByColumnAndRow(6,$row)->getFormattedValue();
                             $monedacobro = $sheet->getCellByColumnAndRow(7,$row)->getFormattedValue();
                             $monedaEmision = $sheet->getCellByColumnAndRow(8,$row)->getFormattedValue();
-
                             $cerInicial = $sheet->getCellByColumnAndRow(9,$row)->getFormattedValue();
                             if(($cerInicial == '') or ($cerInicial == '#REF!') or ($cerInicial == '#N/A')){
                                 $cerInicial = null;
                             }
-                            
-                            
                             $diasPreviosCer = $sheet->getCellByColumnAndRow(10,$row)->getFormattedValue();
                             if(($diasPreviosCer == '') or ($diasPreviosCer == '#REF!') or ($diasPreviosCer == '#N/A')){
                                 $diasPreviosCer = null;
                             }
-                            
                             $especieCaja = $sheet->getCellByColumnAndRow(11,$row)->getOldCalculatedValue();
                             if(($especieCaja == '') or ($especieCaja == '#REF!') or ($especieCaja == '#N/A')){
 //                                $especieCaja = $sheet->getCellByColumnAndRow(11,$row)->getFormattedValue();
                                 $especieCaja = null;
                             }
-
                             $isin = $sheet->getCellByColumnAndRow(12,$row)->getOldCalculatedValue();
                             if(($isin == '') or ($isin == '#REF!') or ($isin == '#N/A')){
                                 $isin = null;
                             }
-
                             $nombre = $sheet->getCellByColumnAndRow(13,$row)->getOldCalculatedValue();
                             if(($nombre == '') or ($nombre == '#REF!') or ($nombre == '#N/A')){
                                 $nombre = null;
                             }
-
-                            $fechaEmision = $sheet->getCellByColumnAndRow(14,$row)->getFormattedValue();
-                            $fechaEmision = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($fechaEmision)); 
-                            if(($fechaEmision == '') or ($fechaEmision == '#REF!') or ($fechaEmision == '#N/A')){
+                            
+                            //Se cambió a getOldCalculatedValue porque getFormatted value dá eror 24/10/2014
+//                            $fechaEmision = $sheet->getCellByColumnAndRow(14,$row)->getOldCalculatedValue();
+//                            $fechaEmision = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($fechaEmision)); 
+//                            if(($fechaEmision == '') or ($fechaEmision == '#REF!') or ($fechaEmision == '#N/A')){
+//                                $fechaEmision = null;
+//                            }
+                            
+                            // Se cambia esto //////////////////////////////////
+                            
+                            $fechaEmision = $sheet->getCellByColumnAndRow(14,$row)->getOldCalculatedValue();
+                            
+                            if($fechaEmision == '') {
+                                $fechaEmision = $sheet->getCellByColumnAndRow(14,$row)->getValue();
+                            }
+                            if(($fechaEmision == '#REF!') or ($fechaEmision == '#N/A')){
                                 $fechaEmision = null;
                             }
+                            if ($fechaEmision != null){
+                                $fechaEmision = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($fechaEmision)); 
+                            }
+
+                            ////////////////////////////////////////////////////
                             
+                            // Se cambia esto //////////////////////////////////
                             $fechaVencimiento = $sheet->getCellByColumnAndRow(15,$row)->getOldCalculatedValue();
-                            $fechaVencimiento = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($fechaVencimiento)); 
-                            if(($fechaVencimiento == '') or ($fechaVencimiento == '#REF!') or ($fechaVencimiento == '#N/A')){
+                            
+                            if($fechaVencimiento == '') {
+                                $fechaVencimiento = $sheet->getCellByColumnAndRow(15,$row)->getValue();
+                            }
+                                                   
+                            if(($fechaVencimiento == '#REF!') or ($fechaVencimiento == '#N/A')){
                                 $fechaVencimiento = null;
                             }
                             
+                            if ($fechaVencimiento != null){
+                                $fechaVencimiento = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($fechaVencimiento)); 
+                            }
+                            
+                            ////////////////////////////////////////////////////
+
                             $oustanding = $sheet->getCellByColumnAndRow(16,$row)->getOldCalculatedValue();
                             if(($oustanding == '') or ($oustanding == '#REF!') or ($oustanding == '#N/A')){
                                 $oustanding = null;
                             }
-                            
-                            
                             $ley = $sheet->getCellByColumnAndRow(17,$row)->getFormattedValue();
                             if(($ley == '') or ($ley == '#REF!') or ($ley == '#N/A')){
                                 $ley = null;
                             }                            
-                            
                             $amortizacion = $sheet->getCellByColumnAndRow(18,$row)->getFormattedValue();
                             if(($amortizacion == '') or ($amortizacion == '#REF!') or ($amortizacion == '#N/A')){
                                 $amortizacion = null;
                             }
-                            
                             $tipoTasa = $sheet->getCellByColumnAndRow(19,$row)->getFormattedValue();
                             if(($tipoTasa == '') or ($tipoTasa == '#REF!') or ($tipoTasa == '#N/A')){
                                 $tipoTasa = null;
                             }
-                            
-                            
                             $tipoTasaVariable = $sheet->getCellByColumnAndRow(20,$row)->getFormattedValue();
                             if(($tipoTasaVariable == '') or ($tipoTasaVariable == '#REF!') or ($tipoTasaVariable == '#N/A')){
                                 $tipoTasaVariable = null;
                             }
-                            
-                            
-                            
                             $spread = $sheet->getCellByColumnAndRow(21,$row)->getFormattedValue();
                             if(($spread == '') or ($spread == '#REF!') or ($spread == '#N/A')){
                                 $spread = null;
                             }
-                            
-                            
                             $tasaMinima = $sheet->getCellByColumnAndRow(22,$row)->getFormattedValue();
                             if(($tasaMinima == '') or ($tasaMinima == '#REF!') or ($tasaMinima == '#N/A')){
                                 $tasaMinima = null;
                             }
-                            
                             $tasaMaxima = $sheet->getCellByColumnAndRow(23,$row)->getFormattedValue();
                             if(($tasaMaxima == '') or ($tasaMaxima == '#REF!') or ($tasaMaxima == '#N/A')){
                                 $tasaMaxima = null;
                             }
-                            
                             $cuponAnual = $sheet->getCellByColumnAndRow(24,$row)->getOldCalculatedValue();
                             if(($cuponAnual == '') or ($cuponAnual == '#REF!') or ($cuponAnual == '#N/A')){
                                 $cuponAnual = null;
                             }
-                            
                             $cantidadCuponesAnio = $sheet->getCellByColumnAndRow(25,$row)->getOldCalculatedValue();
                             if(($cantidadCuponesAnio == '') or ($cantidadCuponesAnio == '#REF!') or ($cantidadCuponesAnio == '#N/A')){
                                 $cantidadCuponesAnio = null;
                             }
-                            
-                            ///////
-                            
                             $frecuenciaCobro = $sheet->getCellByColumnAndRow(26,$row)->getFormattedValue();
+                            
                             if(($frecuenciaCobro == '') or ($frecuenciaCobro == '#REF!') or ($frecuenciaCobro == '#N/A')){
                                 $frecuenciaCobro = null;
                             }
+
+                            // Se cambia esto //////////////////////////////////
+                            $fechasCobroCupon = $sheet->getCellByColumnAndRow(27,$row)->getOldCalculatedValue();
                             
-                            $fechasCobroCupon = $sheet->getCellByColumnAndRow(27,$row)->getFormattedValue();
-                            if(($fechasCobroCupon == '') or ($fechasCobroCupon == '#REF!') or ($fechasCobroCupon == '#N/A')){
+                            if($fechasCobroCupon == '') {
+                                $fechasCobroCupon = $sheet->getCellByColumnAndRow(27,$row)->getValue();
+                            }
+                                                   
+                            if(($fechasCobroCupon == '#REF!') or ($fechasCobroCupon == '#N/A')){
                                 $fechasCobroCupon = null;
                             }
+                            
+                            if ($fechasCobroCupon != null){
+                                $fechasCobroCupon = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($fechasCobroCupon)); 
+                            }
+                            
+                            ////////////////////////////////////////////////////
                             
                             $formulaCalculoInteres = $sheet->getCellByColumnAndRow(28,$row)->getFormattedValue();
                             if(($formulaCalculoInteres == '') or ($formulaCalculoInteres == '#REF!') or ($formulaCalculoInteres == '#N/A')){
                                 $formulaCalculoInteres = null;
                             }
-                            
                             $diasPreviosRecord = $sheet->getCellByColumnAndRow(29,$row)->getFormattedValue();
                             if(($diasPreviosRecord == '') or ($diasPreviosRecord == '#REF!') or ($diasPreviosRecord == '#N/A')){
                                 $diasPreviosRecord = null;
                             }
                             
+                            /////
+//                            $proximoCobroInteres = $sheet->getCellByColumnAndRow(30,$row)->getOldCalculatedValue();
+//                            if(($proximoCobroInteres == '') or ($proximoCobroInteres == '#REF!') or ($proximoCobroInteres == '#N/A')){
+//                                $proximoCobroInteres = null;
+//                            }
+//                            $proximoCobroInteres = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($proximoCobroInteres)); 
+                            
+                            // Se cambió esto //////////////////////////////////
+                            
                             $proximoCobroInteres = $sheet->getCellByColumnAndRow(30,$row)->getOldCalculatedValue();
-                            if(($proximoCobroInteres == '') or ($proximoCobroInteres == '#REF!') or ($proximoCobroInteres == '#N/A')){
+                            
+                            if($proximoCobroInteres == '') {
+                                $proximoCobroInteres = $sheet->getCellByColumnAndRow(30,$row)->getValue();
+                            }
+                                                   
+                            if(($proximoCobroInteres == '#REF!') or ($fechaEmision == '#N/A')){
                                 $proximoCobroInteres = null;
                             }
-                            $proximoCobroInteres = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($proximoCobroInteres)); 
-
                             
+                            if ($proximoCobroInteres != null){
+                                $proximoCobroInteres = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($proximoCobroInteres)); 
+                            }
+                            ////////////////////////////////////////////////////
+                                                        
+                            // Se cambió esto //////////////////////////////////
+                            
+//                            $proximoCobroCapital = $sheet->getCellByColumnAndRow(31,$row)->getOldCalculatedValue();
+//                            if(($proximoCobroCapital == '') or ($proximoCobroCapital == '#REF!') or ($proximoCobroCapital == '#N/A')){
+//                                $proximoCobroCapital = null;
+//                            }
+//                            $proximoCobroCapital = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($proximoCobroCapital)); 
                             
                             $proximoCobroCapital = $sheet->getCellByColumnAndRow(31,$row)->getOldCalculatedValue();
-                            if(($proximoCobroCapital == '') or ($proximoCobroCapital == '#REF!') or ($proximoCobroCapital == '#N/A')){
+                            
+                            if($proximoCobroCapital == '') {
+                                $proximoCobroCapital = $sheet->getCellByColumnAndRow(31,$row)->getValue();
+                            }
+                                                   
+                            if(($proximoCobroCapital == '#REF!') or ($fechaEmision == '#N/A')){
                                 $proximoCobroCapital = null;
                             }
-                            $proximoCobroCapital = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($proximoCobroCapital)); 
+                            
+                            if ($proximoCobroCapital != null){
+                                $proximoCobroCapital = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($proximoCobroCapital)); 
+                            }
+                            
+                            ////////////////////////////////////////////////////
 
                             //Revisar este caso de duration
                             $duration = $sheet->getCellByColumnAndRow(32,$row)->getOldCalculatedValue();
-                            if(($duration == '') or ($duration == '#REF!') or ($duration == '#N/A') or ($Duration == '#DIV/0!')){
+                            if(($duration == '') or ($duration == '#REF!') or ($duration == '#N/A') or ($duration == '#DIV/0!')){
                                 $duration = null;                                
                             }
-                            
-                            
-                            
-                            
                             $precioMonedaOrigen = $sheet->getCellByColumnAndRow(33,$row)->getOldCalculatedValue();
                             if(($precioMonedaOrigen == '') or ($precioMonedaOrigen == '#REF!') or ($precioMonedaOrigen == '#N/A')){
                                 $precioMonedaOrigen = null;
                             }
-
                             $lastYtm = $sheet->getCellByColumnAndRow(34,$row)->getOldCalculatedValue();
-                            if(($lastYtm == '') or ($lastYtm == '#REF!') or ($lastYtm == '#N/A')  or ($lastYtm == '#VALUE!')  ){
+                            if(($lastYtm == '') or ($lastYtm == '#REF!') or ($lastYtm == '#N/A')  or ($lastYtm == '#VALUE!') or ($lastYtm == '#¡NUM!') or ($lastYtm == '#NUM!') ){
                                 $lastYtm = null;
                             }
-                            
-
                             $paridad = $sheet->getCellByColumnAndRow(35,$row)->getOldCalculatedValue();
                             if(($paridad == '') or ($paridad == '#REF!') or ($paridad == '#N/A')){
                                 $paridad = null;
                             }
-
                             $currentYield = $sheet->getCellByColumnAndRow(36,$row)->getOldCalculatedValue();
                             if(($currentYield == '') or ($currentYield == '#REF!') or ($currentYield == '#N/A')){
                                 $currentYield = null;
                             }
-
-                            
-                            
                             $interesesCorridos = $sheet->getCellByColumnAndRow(37,$row)->getOldCalculatedValue();
                             if(($interesesCorridos == '') or ($interesesCorridos == '#REF!') or ($interesesCorridos == '#N/A')){
                                 $interesesCorridos = null;
                             }
-
-
                             $valorResidual = $sheet->getCellByColumnAndRow(38,$row)->getOldCalculatedValue();
                             if(($valorResidual == '') or ($valorResidual == '#REF!') or ($valorResidual == '#N/A')){
                                 $valorResidual = null;
                             }
-
                             $valorTecnico = $sheet->getCellByColumnAndRow(39,$row)->getOldCalculatedValue();
                             if(($valorTecnico == '') or ($valorTecnico == '#REF!') or ($valorTecnico == '#N/A')){
                                 $valorTecnico = null;
                             }
-
-                            
                             //Revisar
                             $mDuration = $sheet->getCellByColumnAndRow(40,$row)->getOldCalculatedValue();
-                            if(($mDuration == '') or ($mDuration == '#REF!') or ($mDuration == '#N/A') or ($mDuration == '#DIV/0!')){
+                            if(($mDuration == '') or ($mDuration == '#REF!') or ($mDuration == '#N/A') or ($mDuration == '#DIV/0!') or ($mDuration == '#¡DIV/0!')){
                                 $mDuration = null;
                             }
-                                                        
                             //Revisar
                             $convexity = $sheet->getCellByColumnAndRow(41,$row)->getOldCalculatedValue();
-                            if(($convexity == '') or ($convexity == '#REF!') or ($convexity == '#N/A') or ($convexity == '#VALUE!')){
+                            if(($convexity == '') or ($convexity == '#REF!') or ($convexity == '#N/A') or ($convexity == '#VALUE!') or ($convexity == '#¡NUM!') or ($convexity == '#NUM!') ){
                                 $convexity = null;
                             }
-
-//
                             $denominacionMinima = $sheet->getCellByColumnAndRow(42,$row)->getOldCalculatedValue();
                             if(($denominacionMinima == '') or ($denominacionMinima == '#REF!') or ($denominacionMinima == '#N/A')){
                                 $denominacionMinima = null;
                             }
-                            
-                            
-
                             $spreadSinTasa = $sheet->getCellByColumnAndRow(43,$row)->getOldCalculatedValue();
                             if(($spreadSinTasa == '') or ($spreadSinTasa == '#REF!') or ($spreadSinTasa == '#N/A')){
                                 $spreadSinTasa = null;
                             }
-
-                            
-                            
                             $ultimaTna = $sheet->getCellByColumnAndRow(44,$row)->getOldCalculatedValue();
                             if(($ultimaTna == '') or ($ultimaTna == '#REF!') or ($ultimaTna == '#N/A')){
                                 $ultimaTna = null;
                             }
-
                             $diasInicioCupon = $sheet->getCellByColumnAndRow(45,$row)->getCalculatedValue();
                             if(($diasInicioCupon == '') or ($diasInicioCupon == '#REF!') or ($diasInicioCupon == '#N/A')){
                                 $diasInicioCupon = null;
                             }
-                            
-                            
                             $diasFinalCupon = $sheet->getCellByColumnAndRow(46,$row)->getCalculatedValue();
                             if(($diasFinalCupon == '') or ($diasFinalCupon == '#REF!') or ($diasFinalCupon == '#N/A')){
                                 $diasFinalCupon = null;
                             }
-
                             $capitalizacionInteres = $sheet->getCellByColumnAndRow(47,$row)->getCalculatedValue();
                             if(($capitalizacionInteres == '') or ($capitalizacionInteres == '#REF!') or ($capitalizacionInteres == '#N/A')){
                                 $capitalizacionInteres = null;
                             }
-
                             $precioPesos = $sheet->getCellByColumnAndRow(49,$row)->getOldCalculatedValue();
                             if(($precioPesos == '') or ($precioPesos == '#REF!') or ($precioPesos == '#N/A')){
                                 $precioPesos = null;
                             }
-                            
+                            $especiesRelacionadas = $sheet->getCellByColumnAndRow(50,$row)->getFormattedValue();
+                            $curva = $sheet->getCellByColumnAndRow(51,$row)->getFormattedValue();
+                            $variableCurva = $sheet->getCellByColumnAndRow(52,$row)->getFormattedValue();
+                            $tnaUltimaLicitacion = $sheet->getCellByColumnAndRow(53,$row)->getFormattedValue();
+                            if(($tnaUltimaLicitacion == '') or ($tnaUltimaLicitacion == '#REF!') or ($tnaUltimaLicitacion == '#N/A')){
+                                $tnaUltimaLicitacion = null;
+                            }
+                            $diasVencimiento = $sheet->getCellByColumnAndRow(54,$row)->getFormattedValue();
+                            if(($diasVencimiento == '') or ($diasVencimiento == '#REF!') or ($diasVencimiento == '#N/A')){
+                                $diasVencimiento = null;
+                            }
+                            $variableLicitacionPb = $sheet->getCellByColumnAndRow(55,$row)->getFormattedValue();
+                            if(($variableLicitacionPb == '') or ($variableLicitacionPb == '#REF!') or ($variableLicitacionPb == '#N/A')){
+                                $variableLicitacionPb = null;
+                            }
+                            $cuponPbiD = $sheet->getCellByColumnAndRow(56,$row)->getOldCalculatedValue();
+                            if(($cuponPbiD == '') or ($cuponPbiD == '#REF!') or ($cuponPbiD == '#N/A')){
+                                $cuponPbiD = null;
+                            }
+                            $cuponPbiW = $sheet->getCellByColumnAndRow(57,$row)->getOldCalculatedValue();
+                            if(($cuponPbiW == '') or ($cuponPbiW == '#REF!') or ($cuponPbiW == '#N/A')){
+                                $cuponPbiW = null;
+                            }
 
                             $estructuraBonos = R::dispense('estructurabono');
                             
-                                                        
                             if(!is_numeric($cerInicial) && !is_null($cerInicial)){
                                 $error.="CER inicial inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1139,7 +1193,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna CER inicial, fila {$row} <br>";
                                 $valido = false;
                             }
-                                                        
                             if(!is_numeric($diasPreviosCer) && !is_null($diasPreviosCer)){
                                 $error.="Días previos al pago del cupón para tomar el CER inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1149,7 +1202,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Días previos al pago del cupón para tomar el CER, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($especieCaja) && !is_null($especieCaja)){
                                 $error.="Especie Caja inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1159,7 +1211,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Especie Caja, fila {$row} <br>";
                                 $valido = false;
                             }
-
                             if(!is_numeric($oustanding) && !is_null($oustanding)){
                                 $error.="Oustanding inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1169,7 +1220,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Oustanding, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($spread) && !is_null($spread)){
                                 $error.="Spread inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1179,7 +1229,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Spread, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($tasaMinima) && !is_null($tasaMinima)){
                                 $error.="Tasa mínima inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1189,7 +1238,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Tasa mínima, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($tasaMaxima) && !is_null($tasaMaxima)){
                                 $error.="Tasa máxima inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1199,7 +1247,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Tasa máxima, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($cuponAnual) && !is_null($cuponAnual)){
                                 $error.="Cupón anual inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1209,7 +1256,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Cupón anual, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($cantidadCuponesAnio) && !is_null($cantidadCuponesAnio)){
                                 $error.="Cantidad de cupones por año inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1219,8 +1265,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Cantidad de cupones por año, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
-                            
                             if(!is_numeric($duration) && !is_null($duration)){
                                 $error.="Duration inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1230,9 +1274,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Duration, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
-                            
-                            
                             if(!is_numeric($precioMonedaOrigen) && !is_null($precioMonedaOrigen)){
                                 $error.="Precio en moneda de origen inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1242,7 +1283,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Precio en moneda de origen, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($lastYtm) && !is_null($lastYtm)){
                                 $error.="Last YTM inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1252,7 +1292,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Last YTM, fila {$row} <br>";
                                 $valido = false;
                             }
-
                             if(!is_numeric($paridad) && !is_null($paridad)){
                                 $error.="Paridad  inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1262,7 +1301,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Paridad, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($currentYield) && !is_null($currentYield)){
                                 $error.="Current Yield inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1272,7 +1310,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Current Yield, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($interesesCorridos) && !is_null($interesesCorridos)){
                                 $error.="Intereses corridos inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1282,7 +1319,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Intereses corridos, fila {$row} <br>";
                                 $valido = false;
                             }
-
                             if(!is_numeric($valorResidual) && !is_null($valorResidual)){
                                 $error.="Valor Residual inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1292,7 +1328,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Valor Residual, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($valorTecnico) && !is_null($valorTecnico)){
                                 $error.="Valor Técnico inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1302,7 +1337,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Valor Técnico, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($mDuration) && !is_null($mDuration)){
                                 $error.="M. Duration inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1312,7 +1346,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna M. Duration, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($convexity) && !is_null($convexity)){
                                 $error.="Convexity  inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1322,7 +1355,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Convexity, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($denominacionMinima) && !is_null($denominacionMinima)){
                                 $error.="Denominación Mínima en VN inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1332,7 +1364,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Denominación Mínima en VN, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($spreadSinTasa) && !is_null($spreadSinTasa)){
                                 $error.="Spread s/tasa variable actual inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1342,7 +1373,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Spread s/tasa variable actual, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
                             if(!is_numeric($ultimaTna) && !is_null($ultimaTna)){
                                 $error.="Última TNA inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1352,7 +1382,6 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Última TNA, fila {$row} <br>";
                                 $valido = false;
                             }
-
                             if(!is_numeric($precioPesos) && !is_null($precioPesos)){
                                 $error.="Precio en Pesos inv&aacutelido en {$row} <br>";
                                 $valido = false;
@@ -1362,12 +1391,52 @@ class Flujo_model extends CI_Model{
                                 $error.="Error en excel, imposible dividir por cero, columna Precio en Pesos, fila {$row} <br>";
                                 $valido = false;
                             }
-                            
-                            
-                            
-                            
-                             
-                            
+                            if(!is_numeric($tnaUltimaLicitacion) && !is_null($tnaUltimaLicitacion)){
+                                $error.="tna Ultima Licitacion inválido en {$row} <br>";
+                                $valido = false;
+                            }
+                            if($tnaUltimaLicitacion == '#DIV/0!'){
+                                $tnaUltimaLicitacion = null;
+                                $error.="Error en excel, imposible dividir por cero, columna Tna Ultima Licitacion, fila {$row} <br>";
+                                $valido = false;
+                            }
+                            if(!is_numeric($diasVencimiento) && !is_null($diasVencimiento)){
+                                $error.="Dias Vencimiento inválido en {$row} <br>";
+                                $valido = false;
+                            }
+                            if($diasVencimiento == '#DIV/0!'){
+                                $diasVencimiento = null;
+                                $error.="Error en excel, imposible dividir por cero, columna Dias Vencimiento, fila {$row} <br>";
+                                $valido = false;
+                            } 
+                            if(!is_numeric($variableLicitacionPb) && !is_null($variableLicitacionPb)){
+                                $error.="Variable Licitacion Pb inválido en {$row} <br>";
+                                $valido = false;
+                            }
+                            if($variableLicitacionPb == '#DIV/0!'){
+                                $variableLicitacionPb = null;
+                                $error.="Error en excel, imposible dividir por cero, columna Variable Licitacion Pb, fila {$row} <br>";
+                                $valido = false;
+                            } 
+                            if(!is_numeric($cuponPbiD) && !is_null($cuponPbiD)){
+                                $error.="Cupon Pbi D inválido en {$row} <br>";
+                                $valido = false;
+                            }
+                            if($cuponPbiD == '#DIV/0!'){
+                                $cuponPbiD = null;
+                                $error.="Error en excel, imposible dividir por cero, columna Cupon Pbi D, fila {$row} <br>";
+                                $valido = false;
+                            } 
+                            if(!is_numeric($cuponPbiW) && !is_null($cuponPbiW)){
+                                $error.="Cupon Pbi W inválido en {$row} <br>";
+                                $valido = false;
+                            }
+                            if($cuponPbiW == '#DIV/0!'){
+                                $variableLicitacionPb = null;
+                                $error.="Error en excel, imposible dividir por cero, columna Cupon Pbi W, fila {$row} <br>";
+                                $valido = false;
+                            } 
+
                             $estructuraBonos->bono_id = $bono;
                             $estructuraBonos->tipoInstrumentoImpuesto = $tipoInstrumentoImpuesto;
                             $estructuraBonos->tipoAjuste = $tipoAjuste;
@@ -1417,25 +1486,39 @@ class Flujo_model extends CI_Model{
                             $estructuraBonos->diasFinalCupon = $diasFinalCupon;
                             $estructuraBonos->capitalizacionInteres = $capitalizacionInteres;
                             $estructuraBonos->precioPesos = $precioPesos;
+                            $estructuraBonos->especiesRelacionadas = $especiesRelacionadas;
+                            $estructuraBonos->curva = $curva;
+                            $estructuraBonos->variableCurva = $variableCurva;
+                            $estructuraBonos->tnaUltimaLicitacion = $tnaUltimaLicitacion;
+                            $estructuraBonos->diasVencimiento = $diasVencimiento;
+                            $estructuraBonos->variableLicitacionPb = $variableLicitacionPb;
+                            $estructuraBonos->cuponPbiD = $cuponPbiD;
+                            $estructuraBonos->cuponPbiW = $cuponPbiW;
                             $estructuraBonos->fechaActualizacion = $fechaActualizacion;
                             
-                            
-                       
+                            $bonosImportados++; 
 
                             R::store($estructuraBonos);
                             
-                            echo "<pre>";
-                            print_r('Se importaron los datos de la Especie: ' . $especie);
-                            echo "<pre>";
+                            //Log
+//                            echo "<pre>";
+//                            print_r('Se importaron los datos de la Especie: ' . $especie);
+//                            echo "<pre>";
+                            
+                            
                             
                         }
                         
                         if ($valido){
+                            
+                            $mensajeResultado.= $bonosImportados . " Bonos importados. ";
+                            $msgLog.= $bonosImportados . " Bonos importados. " . chr(13).chr(10);
+                            
                             R::commit();
-                            $resultado = array('resultado'=>'OK');
+                            $resultado = array('resultado'=>'Ok', 'mensaje'=>$mensajeResultado, 'log'=>$msgLog);
                         } else {
                             R::rollback();
-                            $resultado = array('resultado'=>'Error', 'mensaje'=>$error);
+                            $resultado = array('resultado'=>'Error', 'mensaje'=>$error, 'log'=>$msgLog . $error );
                         }
 
                         R::freeze(false); 
@@ -1445,12 +1528,13 @@ class Flujo_model extends CI_Model{
                         
                         
                     } else {
-                        print_r("Títulos incorrectos");
+
                         $error = 'Títulos inválidos.';
-                        $resultado = array('resultado'=>'Error', 'mensaje'=>$error);
+                        $resultado = array('resultado'=>'Error', 'mensaje'=>$error, 'log'=>$msgLog . $error);
                         return $resultado;
                     }      
         
+                    $mensajeResultado.= $bonosImportados;
 
     }        
     
@@ -1458,7 +1542,579 @@ class Flujo_model extends CI_Model{
     
     
 
-    
+////////////////////////////////////////////////////////////////////////////////    
+
+    public function getImportarDatosMercado(){
+
+        //Conectar con el excel
+        try {
+            //Test
+            $file = 'Estructuras de Bonos para WS.xlsx';
+            $inputFileName = '/var/research/SOL/Web/' . $file;
+            //local        
+            //$inputFileName = 'C:\BONOS.xlsm';       
+            $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+            $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
+            $worksheetList = $objReader->listWorksheetNames($inputFileName);
+        } catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
+
+        $fechaActualizacion = new DateTime('NOW');
+        $fechaActualizacion = $fechaActualizacion->format('Y-m-d');     
+
+        $sheetname = 'Datos de Mercado';
+        
+        $msgLog.="Importando " . $sheetname . chr(13).chr(10);
+                                        
+        $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
+
+        PHPExcel_Calculation::getInstance($objPHPExcel)->cyclicFormulaCount = 1;  
+
+        $objReader->setReadDataOnly(true);
+        $objReader->setLoadSheetsOnly($sheetname);  
+        $objPHPExcel = $objReader->load($inputFileName);
+        $sheet = $objPHPExcel->getSheetByName($sheetname);
+
+        $aprobado = 0;                    
+        for ($row = 1; $row < 2; $row++){
+           for($column = 0; $column < 3; $column++){
+                $nombreHoja = str_replace(
+                                        array('á','é','í','ó','ú'),
+                                        array('a','e','i','o','u'),
+                                        $sheet->getCellByColumnAndRow($column,$row)->getValue()
+                                    );
+                $nombreHoja = strtolower($nombreHoja);                    
+                $nombreHojas[] = $nombreHoja;       
+            }
+        }
+
+        if  ($nombreHojas[0] == 'inputs'){
+            $aprobado = 1;
+        }
+                    
+        unset($nombreHojas);
+                    
+        if($aprobado == 1){ 
+        ////////////////////////////////////////////////////////////            
+            $mensajeResultado = ("Datos de Mercado importados. ");
+            
+            $highestRow = $sheet->getHighestRow();
+
+//            for ($row = 1; $row <= $highestRow; $row++){
+//                $campo = $sheet->getCellByColumnAndRow(1,$row)->getOldCalculatedValue();
+//
+//                if($campo == null){
+//                    $newHighestRow = $row - 1;
+//                    break;
+//                }
+//            }
+
+            $mensajeResultado.= ($highestRow-1) . " datos.\n";
+            
+            $valido = true;
+            $error = '';
+
+            R::freeze(true);
+            R::begin();
+
+            $bonoYaBorrado = array();
+
+//            print_r('newHighestRow');
+//            print_r($newHighestRow);
+
+            
+            //Meter por acá la parte en la que borra toda la info del día de la fecha.                            
+
+            //// Borrar ////////////////////////////////////                                
+            //Si tiene ya datos cargados ese día, esa misma especie.
+            $this->fechaActualizacion = $fechaActualizacion;
+            $datosBorrados = $this->Flujo_model->borrarDatosMercado();
+
+
+            
+            if($datosBorrados){
+                $msgLog.="Se encontraron y borraron datos del día de hoy." . chr(13).chr(10);
+            }else{
+                $msgLog.="No se borraron datos del día de hoy." . chr(13).chr(10);
+            }
+
+            
+            for ($row = 2; $row <= $highestRow; $row++){
+
+
+
+                
+//              $test = $sheet->getCellByColumnAndRow(0,$row)->getOldCalculatedValue();
+                $nombre = $sheet->getCellByColumnAndRow(0,$row)->getCalculatedValue();
+//              $test = $sheet->getCellByColumnAndRow(0,$row)->getOldCalculatedValue();
+//              $test = $sheet->getCellByColumnAndRow(0,$row)->getOldCalculatedValue();
+
+//                echo "<pre>";
+//                $msgLog.= $nombre . chr(13).chr(10);
+//                echo "<pre>";
+
+                $input = $sheet->getCellByColumnAndRow(2,$row)->getOldCalculatedValue();
+
+//                echo "<pre>";
+//                $msgLog.= $input . chr(13).chr(10);
+//                echo "<pre>";
+
+//                            if(($nombre == '') or ($nombre == '#REF!') or ($nombre == '#N/A')){
+//                                $nombre = null;
+//                            }
+
+//                $this->load->model('DatosMercado_model');
+                
+                $datosMercado = R::dispense('datosmercado');
+                                   
+                $datosMercado->nombre = $nombre;
+                $datosMercado->input = $input;
+                $datosMercado->fechaActualizacion = $fechaActualizacion;
+
+                R::store($datosMercado);
+
+            }
+
+            
+//            $fechaNombre = new DateTime('NOW');
+//            $fechaNombre = $fechaNombre->format('Ymd');  
+//            $log_name = "test".$fechaNombre.".txt";
+//            $page_name = "Calculadora";
+//            $app_id = uniqid();//give each process a unique ID for differentiation
+
+            /*
+            ////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////
+            //Log
+//            $log = new Log('test','calculadora');
+//            $log->log_msg('fizzy soda : 45 bubbles remaining per cubic centimeter');
+            
+//            if(file_exists('/var/www/calculadora/generador/'.$log_name)){                 
+//                $log_name = 'a_default_log.txt'; 
+//            }
+              
+            $log = fopen('/var/www/calculadora/generador/'.$log_name,'a');
+            $log_line = join(array( date(DATE_RFC822), chr(13).chr(10), $page_name, chr(13).chr(10), $app_id, chr(13).chr(10), $msgLog ) );
+            fwrite($log, $log_line."\n");
+//            $this->log_msg("Closing log");
+//            fclose($this->log);
+            ////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////
+            */
+            
+            
+            
+            if ($valido){
+
+                $msgLog.= "Se importaron " . ($highestRow-1). " filas." . chr(13).chr(10);
+                
+                R::commit();
+                $resultado = array('resultado'=>'Ok', 'mensaje'=>$mensajeResultado, 'log'=>$msgLog);
+                
+            } else {
+                R::rollback();
+                $resultado = array('resultado'=>'Error', 'mensaje'=>$error);
+            }
+
+            R::freeze(false); 
+
+            return $resultado;
+
+
+        } else {
+//            print_r("Títulos incorrectos en Datos Mercado");
+            $error = 'Títulos inválidos.';
+            $resultado = array('resultado'=>'Error', 'mensaje'=>$error);
+            return $resultado;
+        } 
+
+    }
+////////////////////////////////////////////////////////////////////////////////
+        
+        
+////////////////////////////////////////////////////////////////////////////////    
+
+    public function getImportarLatam(){
+
+        //Conectar con el excel
+        try {
+            //Test
+            $file = 'Estructuras de Bonos para WS.xlsx';
+            $inputFileName = '/var/research/SOL/Web/' . $file;
+            //local        
+            //$inputFileName = 'C:\BONOS.xlsm';       
+            $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+            $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
+            $worksheetList = $objReader->listWorksheetNames($inputFileName);
+        } catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
+
+        $fechaActualizacion = new DateTime('NOW');
+        $fechaActualizacion = $fechaActualizacion->format('Y-m-d');     
+
+        $sheetname = 'LATAM';
+        $msgLog.="Importando " . $sheetname . chr(13).chr(10);
+
+                                        
+        $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
+
+        PHPExcel_Calculation::getInstance($objPHPExcel)->cyclicFormulaCount = 1;  
+
+        $objReader->setReadDataOnly(true);
+        $objReader->setLoadSheetsOnly($sheetname);  
+        $objPHPExcel = $objReader->load($inputFileName);
+        $sheet = $objPHPExcel->getSheetByName($sheetname);
+
+        $aprobado = 0;                    
+        for ($row = 1; $row < 2; $row++){
+           for($column = 0; $column < 15; $column++){
+                $nombreHoja = str_replace(
+                                        array('á','é','í','ó','ú'),
+                                        array('a','e','i','o','u'),
+                                        $sheet->getCellByColumnAndRow($column,$row)->getCalculatedValue()
+                                    );
+                $nombreHoja = strtolower($nombreHoja);                    
+                $nombreHojas[] = $nombreHoja;       
+            }
+        }
+        
+        if  (
+                $nombreHojas[0] == 'instr. (usd)' &&
+                $nombreHojas[1] == 'coupon' &&
+                $nombreHojas[2] == 'price' &&
+                $nombreHojas[3] == 'cur. yield' &&
+                $nombreHojas[4] == 'ask ytm' &&
+                $nombreHojas[5] == 'dur.' &&
+                $nombreHojas[6] == '1d ch (bp)' 
+                )    
+            {
+                $aprobado = 1;
+        }
+                    
+        unset($nombreHojas);
+                    
+        if($aprobado == 1){ 
+        ////////////////////////////////////////////////////////////
+
+                        
+            
+            $mensajeResultado = ("Datos Latam Importados. ");
+
+            $highestRow = $sheet->getHighestRow();
+
+            $mensajeResultado.= $highestRow . " datos.\n";
+
+
+            $valido = true;
+            $error = '';
+
+            R::freeze(true);
+            R::begin();
+
+//            $bonoYaBorrado = array();
+
+            //// Borrar ////////////////////////////////////                                
+            //Si tiene ya datos cargados ese día, esa misma especie.
+            $this->fechaActualizacion = $fechaActualizacion;
+            $datosBorrados = $this->Flujo_model->borrarLatam();
+            
+            if($datosBorrados){
+                $msgLog.= "Se encontraron y borraron datos del día de hoy." . chr(13).chr(10);
+            }else{
+                $msgLog.="No se borraron datos del día de hoy." . chr(13).chr(10);
+            }
+
+            
+            for ($row = 3; $row <= $highestRow; $row++){
+
+                $instrumento = $sheet->getCellByColumnAndRow(0,$row)->getCalculatedValue();
+
+//                echo "<pre>";
+//                print_r($instrumento);
+//                echo "<pre>";
+
+                $coupon = $sheet->getCellByColumnAndRow(1,$row)->getOldCalculatedValue();
+
+//                echo "<pre>";
+//                print_r($coupon);
+//                echo "<pre>";
+                
+                $price = $sheet->getCellByColumnAndRow(2,$row)->getOldCalculatedValue();
+
+//                echo "<pre>";
+//                print_r($price);
+//                echo "<pre>";
+                
+                $yield = $sheet->getCellByColumnAndRow(3,$row)->getOldCalculatedValue();
+
+//                echo "<pre>";
+//                print_r($yield);
+//                echo "<pre>";
+                
+                $ytm = $sheet->getCellByColumnAndRow(4,$row)->getOldCalculatedValue();
+
+//                echo "<pre>";
+//                print_r($ytm);
+//                echo "<pre>";
+                
+                $duration = $sheet->getCellByColumnAndRow(5,$row)->getOldCalculatedValue();
+
+//                echo "<pre>";
+//                print_r($duration);
+//                echo "<pre>";
+//                
+                $bp = $sheet->getCellByColumnAndRow(6,$row)->getOldCalculatedValue();
+//
+//                echo "<pre>";
+//                print_r($bp);
+//                echo "<pre>";
+                
+                
+                $latam = R::dispense('latam');
+                                   
+                $latam->instrumento = $instrumento;
+                $latam->coupon = $coupon;
+                $latam->price = $price;
+                $latam->yield = $yield;
+                $latam->ytm = $ytm;
+                $latam->duration = $duration;
+                $latam->bp = $bp;
+                
+                $latam->fechaActualizacion = $fechaActualizacion;
+
+                R::store($latam);
+
+            }
+
+            if ($valido){
+
+                $msgLog.= "Se importaron " . ($highestRow-1). " filas." . chr(13).chr(10);
+
+                
+                R::commit();
+                $resultado = array('resultado'=>'Ok', 'mensaje'=>$mensajeResultado, 'log'=>$msgLog);
+                
+            } else {
+                R::rollback();
+                $resultado = array('resultado'=>'Error', 'mensaje'=>$error);
+            }
+
+            R::freeze(false); 
+
+            return $resultado;
+
+
+        } else {
+            $msgLog.= "Títulos incorrectos en latam" . chr(13).chr(10);
+            $error = 'Títulos inválidos.';
+            $resultado = array('resultado'=>'Error', 'mensaje'=>$error, 'log'=>$msgLog);
+            return $resultado;
+        }
+        
+    }
+        
+////////////////////////////////////////////////////////////////////////////////
+        
+////////////////////////////////////////////////////////////////////////////////    
+
+    public function getImportarTreasuries(){
+
+        //Conectar con el excel
+        try {
+            //Test
+            $file = 'Estructuras de Bonos para WS.xlsx';
+            $inputFileName = '/var/research/SOL/Web/' . $file;
+            //local        
+            //$inputFileName = 'C:\BONOS.xlsm';       
+            $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+            $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
+            $worksheetList = $objReader->listWorksheetNames($inputFileName);
+        } catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
+
+        $fechaActualizacion = new DateTime('NOW');
+        $fechaActualizacion = $fechaActualizacion->format('Y-m-d');     
+
+        $sheetname = 'US Treasuries';
+        $msgLog.="Importando " . $sheetname . chr(13).chr(10);
+
+                                        
+        $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+//        PHPExcel_Calculation::getInstance($objPHPExcel)->cyclicFormulaCount = 1;  
+        $objReader->setReadDataOnly(true);
+        $objReader->setLoadSheetsOnly($sheetname);  
+        $objPHPExcel = $objReader->load($inputFileName);
+        $sheet = $objPHPExcel->getSheetByName($sheetname);
+
+
+        
+        
+        $aprobado = 0;                    
+        for ($row = 1; $row < 3; $row++){
+           for($column = 0; $column < 8; $column++){
+                $nombreHoja = str_replace(
+                                        array('á','é','í','ó','ú'),
+                                        array('a','e','i','o','u'),
+                                        $sheet->getCellByColumnAndRow($column,$row)->getCalculatedValue()
+                                    );
+                $nombreHoja = strtolower($nombreHoja);                    
+                $nombreHojas[] = $nombreHoja;       
+            }
+        }
+        
+        if  (
+                $nombreHojas[0] == 'benchmark' &&
+                $nombreHojas[4] == 'para memo diario' &&
+                $nombreHojas[8] == 'us treas' &&
+                $nombreHojas[10] == 'ytm' &&
+                $nombreHojas[11] == '1d ch. (bp)' &&
+                $nombreHojas[12] == 'semana' &&
+                $nombreHojas[13] == 'mes' &&
+                $nombreHojas[14] == 'año'
+                )    
+            {
+                $aprobado = 1;
+        }
+                
+        
+        
+        
+        unset($nombreHojas);
+                    
+        if($aprobado == 1){ 
+
+            $mensajeResultado = ("Treasuries Importados. ");
+
+            $highestRow = $sheet->getHighestRow();
+            
+            $mensajeResultado.= $highestRow . " datos.\n";
+
+            $valido = true;
+            $error = '';
+
+            R::freeze(true);
+            R::begin();
+
+//            $bonoYaBorrado = array();
+
+            //// Borrar ////////////////////////////////////                                
+            //Si tiene ya datos cargados ese día, esa misma especie.
+            $this->fechaActualizacion = $fechaActualizacion;
+            $datosBorrados = $this->Flujo_model->borrarTreasuries();
+            
+            if($datosBorrados){
+                $msgLog.= "Se encontraron y borraron datos del día de hoy." . chr(13).chr(10);
+            }else{
+                $msgLog.="No se borraron datos del día de hoy." . chr(13).chr(10);
+            }
+
+            
+            for ($row = 3; $row <= $highestRow; $row++){
+
+                
+               
+                $usTreas = $sheet->getCellByColumnAndRow(0,$row)->getCalculatedValue();
+
+//                echo "usTreas";
+//                echo "<pre>";
+//                print_r($usTreas);
+//                echo "<pre>";
+
+                $ytm = $sheet->getCellByColumnAndRow(2,$row)->getOldCalculatedValue();
+
+//                echo "ytm";
+//                echo "<pre>";
+//                print_r($ytm);
+//                echo "<pre>";
+                
+                
+                $bp = $sheet->getCellByColumnAndRow(3,$row)->getOldCalculatedValue();
+//                
+//                echo "bp: ";
+//                print_r($bp);
+//                echo "<pre>";
+                
+                $semana = $sheet->getCellByColumnAndRow(4,$row)->getOldCalculatedValue();
+
+//                echo "semana: ";
+//                echo "<pre>";
+//                print_r($semana);
+//                echo "<pre>";
+                
+                $mes = $sheet->getCellByColumnAndRow(5,$row)->getOldCalculatedValue();
+
+//                echo "mes";
+//                echo "<pre>";
+//                print_r($mes);
+//                echo "<pre>";
+                
+                $anio = $sheet->getCellByColumnAndRow(6,$row)->getOldCalculatedValue();
+
+//                echo "anio";
+//                echo "<pre>";
+//                print_r($anio);
+//                echo "<pre>";
+                
+                
+                
+                
+                $treasuries = R::dispense('treasuries');
+                                   
+                $treasuries->usTreas = $usTreas;
+                $treasuries->ytm = $ytm;
+                $treasuries->bp = $bp;
+                $treasuries->semana = $semana;
+                $treasuries->mes = $mes;
+                $treasuries->anio = $anio;
+                
+                $treasuries->fechaActualizacion = $fechaActualizacion;
+
+                R::store($treasuries);
+
+            }
+
+            if ($valido){
+                
+                
+                $msgLog.= "Se importaron " . ($highestRow-1). " filas." . chr(13).chr(10);
+
+                R::commit();
+                $resultado = array('resultado'=>'Ok', 'mensaje'=>$mensajeResultado, 'log'=>$msgLog);
+                
+            } else {
+                R::rollback();
+                $resultado = array('resultado'=>'Error', 'mensaje'=>$error);
+            }
+
+            R::freeze(false); 
+
+            return $resultado;
+
+
+        } else {
+//            print_r("Títulos incorrectos en Treasuries");
+            $error = 'Títulos inválidos.';
+            $resultado = array('resultado'=>'Error', 'mensaje'=>$error);
+            return $resultado;
+        }
+        
+    }
+        
+////////////////////////////////////////////////////////////////////////////////
+             
+        
+        
+        
+        
+        
+        
+        
+        
     
 
     

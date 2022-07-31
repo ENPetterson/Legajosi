@@ -3,6 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Setup extends CI_Controller {
 
+    function setup2(){
+        $controlador = R::dispense('controlador');
+        $controlador->nombre = '*';
+        $grupos = R::findAll('grupo');
+        foreach($grupos as $grupo){
+                R::associate($grupo, $controlador);
+        }
+    }
+
     function index() {
 
         //Eliminando las tablas
@@ -144,7 +153,51 @@ class Setup extends CI_Controller {
 
         echo "Dado de alta el menu con el id {$menu_id} <br />";
         
+        ////////////////////////////////////////////////////////////////////////
+
+        $this->load->model('menu_model');
+        $this->menu_model->id = 0;
+        $this->menu_model->padre_id = $padre_id;
+        $this->menu_model->nombre = 'Datos de Mercado';
+        $this->menu_model->accion = 'datosMercado';
+        $menu_id = $this->menu_model->saveMenu();
+
+        $this->grupo_model->id = $grupo_id;
+        $this->grupo_model->menu_id = $menu_id;
+        $this->grupo_model->assocMenu();
+
+        echo "Dado de alta el menu con el id {$menu_id} <br />";
         
+        
+        $this->load->model('menu_model');
+        $this->menu_model->id = 0;
+        $this->menu_model->padre_id = $padre_id;
+        $this->menu_model->nombre = 'Latam';
+        $this->menu_model->accion = 'latam';
+        $menu_id = $this->menu_model->saveMenu();
+
+        $this->grupo_model->id = $grupo_id;
+        $this->grupo_model->menu_id = $menu_id;
+        $this->grupo_model->assocMenu();
+
+        echo "Dado de alta el menu con el id {$menu_id} <br />";
+        
+        
+        $this->load->model('menu_model');
+        $this->menu_model->id = 0;
+        $this->menu_model->padre_id = $padre_id;
+        $this->menu_model->nombre = 'US Treasuries';
+        $this->menu_model->accion = 'treasuries';
+        $menu_id = $this->menu_model->saveMenu();
+
+        $this->grupo_model->id = $grupo_id;
+        $this->grupo_model->menu_id = $menu_id;
+        $this->grupo_model->assocMenu();
+
+        echo "Dado de alta el menu con el id {$menu_id} <br />";
+
+
+
         
 ////////////////////////////////////////////////////////////////////////////////
         $padre_id = -1;
@@ -593,6 +646,96 @@ class Setup extends CI_Controller {
 
         
         
+        
+////////////////////////////////////////////////////////////////////////////////
+        
+        $this->load->model('Treasuries_model');
+        
+        $this->Treasuries_model->id = 1;
+        $this->Treasuries_model->usTreas = '3 meses';
+        $this->Treasuries_model->ytm = 22.22;
+        $this->Treasuries_model->bp = -6.829999999999981;
+        $this->Treasuries_model->semana = -6.829999999999981;
+        $this->Treasuries_model->mes = -17.07000000000001;
+        $this->Treasuries_model->anio = -92.07000000000001;
+        $this->Treasuries_model->fechaActualizacion = '2018-10-25';
+        $treasuries = $this->Treasuries_model->saveTreasuries();
+        
+        echo "Dado de alta Treasuries con el id {$treasuries['id']} <br>";
+        
+        $this->Treasuries_model->id = 2;
+        $this->Treasuries_model->usTreas = '2 años	';
+        $this->Treasuries_model->ytm = 22.22;
+        $this->Treasuries_model->bp = 100;
+        $this->Treasuries_model->semana = 2222;
+        $this->Treasuries_model->mes = 2222;
+        $this->Treasuries_model->anio = 2222;
+        $this->Treasuries_model->fechaActualizacion = '2018-10-25';
+        $treasuries = $this->Treasuries_model->saveTreasuries();
+        
+        echo "Dado de alta Treasuries con el id {$treasuries['id']} <br>";
+        
+        
+        //
+        
+        
+        $this->load->model('Latam_model');
+        
+        $this->Latam_model->id = 1;
+        $this->Latam_model->instrumento = 'BRASIL 17';
+        $this->Latam_model->coupon = 22.22;
+        $this->Latam_model->price = 100.63;
+        $this->Latam_model->yield = 22.22;
+        $this->Latam_model->ytm = 22.22;
+        $this->Latam_model->duration = 22.22;
+        $this->Latam_model->bp = -2222;
+        $this->Latam_model->fechaActualizacion = '2018-10-25';
+        $latam = $this->Latam_model->saveLatam();
+        
+        echo "Dado de alta Latam con el id {$latam['id']} <br>";
+        
+        $this->Latam_model->id = 2;
+        $this->Latam_model->instrumento = 'VENEZUELA 20';
+        $this->Latam_model->coupon = 22.22;
+        $this->Latam_model->price = 100.63;
+        $this->Latam_model->yield = 22.22;
+        $this->Latam_model->ytm = 22.22;
+        $this->Latam_model->duration = 22.22;
+        $this->Latam_model->bp = -2222;
+        $this->Latam_model->fechaActualizacion = '2018-10-25';
+        $latam = $this->Latam_model->saveLatam();
+        
+        echo "Dado de alta Latam con el id {$latam['id']} <br>";
+        
+        
+        //
+        
+        
+        $this->load->model('DatosMercado_model');
+        
+        $this->DatosMercado_model->id = 1;
+        $this->DatosMercado_model->nombre = 'Badlar private banks';
+        $this->DatosMercado_model->input = 22.22;
+        $this->DatosMercado_model->fechaActualizacion = '2018-10-25';
+        $datosMercado = $this->DatosMercado_model->saveDatosMercado();
+        
+        echo "Dado de alta Datos de Mercado con el id {$datosMercado['id']} <br>";
+        
+        $this->DatosMercado_model->id = 2;
+        $this->DatosMercado_model->nombre = 'Badlar private banks';
+        $this->DatosMercado_model->input = 22.22;
+        $this->DatosMercado_model->fechaActualizacion = '2018-10-25';
+        $datosMercado = $this->DatosMercado_model->saveDatosMercado();
+        
+        echo "Dado de alta Datos de Mercado con el id {$datosMercado['id']} <br>";
+        
+        
+        
+        
+        
+ 
+////////////////////////////////////////////////////////////////////////////////        
+        
 
 
         
@@ -604,35 +747,35 @@ class Setup extends CI_Controller {
         $this->EstructuraBono_model->id = 1;
         
         $this->EstructuraBono_model->bono = 1;
-        $this->EstructuraBono_model->tipoInstrumentoImpuesto = 'Lala';
-        $this->EstructuraBono_model->tipoAjuste = 'Lala';
-        $this->EstructuraBono_model->tipoInstrumento = 'Lala';
-        $this->EstructuraBono_model->nombreConocido = 'Lala';
-        $this->EstructuraBono_model->tipoEmisor = 'Lala';
-        $this->EstructuraBono_model->emisor = 'Lala';
-        $this->EstructuraBono_model->monedacobro = 'Lala';
-        $this->EstructuraBono_model->monedaEmision = 'Lala';
+        $this->EstructuraBono_model->tipoInstrumentoImpuesto = 'Test';
+        $this->EstructuraBono_model->tipoAjuste = 'Test';
+        $this->EstructuraBono_model->tipoInstrumento = 'Test';
+        $this->EstructuraBono_model->nombreConocido = 'Test';
+        $this->EstructuraBono_model->tipoEmisor = 'Test';
+        $this->EstructuraBono_model->emisor = 'Test';
+        $this->EstructuraBono_model->monedacobro = 'Test';
+        $this->EstructuraBono_model->monedaEmision = 'Test';
         $this->EstructuraBono_model->cerInicial = 6.1534;
         $this->EstructuraBono_model->diasPreviosCer = 100000;
         $this->EstructuraBono_model->especieCaja = 925800;
-        $this->EstructuraBono_model->isin = 'Lala';
-        $this->EstructuraBono_model->nombre = 'Lala';
+        $this->EstructuraBono_model->isin = 'Test';
+        $this->EstructuraBono_model->nombre = 'Test';
         $this->EstructuraBono_model->fechaEmision = '06/07/2016';
         $this->EstructuraBono_model->fechaVencimiento = '06/07/2016';
         $this->EstructuraBono_model->oustanding = 104.399;
-        $this->EstructuraBono_model->ley = 'Lala';
+        $this->EstructuraBono_model->ley = 'Test';
         $this->EstructuraBono_model->amortizacion = '120 cuotas mensuales, iguales y sucesivas, equivalentes las 119 primeras al 0,83% y una última equivalente al 1,23% del monto emitido y ajustado por aplicación del CER, más los intereses capitalizados hasta el 15/03/2014. La primera cuota vencerá el 15/04/2014.';
-        $this->EstructuraBono_model->tipoTasa = 'Lala';
-        $this->EstructuraBono_model->tipoTasaVariable = 'Lala';
+        $this->EstructuraBono_model->tipoTasa = 'Test';
+        $this->EstructuraBono_model->tipoTasaVariable = 'Test';
         $this->EstructuraBono_model->spread = 2.50;
         $this->EstructuraBono_model->tasaMinima = 17;
         $this->EstructuraBono_model->tasaMaxima = 10;
         $this->EstructuraBono_model->cuponAnual = 18.200;
         $this->EstructuraBono_model->cantidadCuponesAnio = 0.5;
-        $this->EstructuraBono_model->frecuenciaCobro = 'Lala';
+        $this->EstructuraBono_model->frecuenciaCobro = 'Test';
         $this->EstructuraBono_model->fechasCobroCupon = 'Período Tasa Anual 01.12.2005 hasta el 01.11.2009 1% 02.11.2009 hasta el 01.11.2013 2% 02.11.2013 hasta el 01.11.2017 3% 02.11.2017 hasta el 01.05.2020 4% Las fechas de pago de intereses serán el 1° de mayo y el 1° de noviembre de cada año, comenzando a partir del 01.05.06. ';
-        $this->EstructuraBono_model->formulaCalculoInteres = 'Lala';
-        $this->EstructuraBono_model->diasPreviosRecord = 'Lala';
+        $this->EstructuraBono_model->formulaCalculoInteres = 'Test';
+        $this->EstructuraBono_model->diasPreviosRecord = 'Test';
         $this->EstructuraBono_model->proximoCobroInteres = '29-11-18';
         $this->EstructuraBono_model->proximoCobroCapital = '29-11-18';
         $this->EstructuraBono_model->duration = 12.570007278459402;
@@ -648,10 +791,20 @@ class Setup extends CI_Controller {
         $this->EstructuraBono_model->denominacionMinima = 150000;
         $this->EstructuraBono_model->spreadSinTasa = 1.083;
         $this->EstructuraBono_model->ultimaTna = 43.7;
-        $this->EstructuraBono_model->diasInicioCupon = 'Lala';
-        $this->EstructuraBono_model->diasFinalCupon = 'Lala';
-        $this->EstructuraBono_model->capitalizacionInteres = 'Lala';
-        $this->EstructuraBono_model->precioPesos = 2725.91;    
+        $this->EstructuraBono_model->diasInicioCupon = 'Test';
+        $this->EstructuraBono_model->diasFinalCupon = 'Test';
+        $this->EstructuraBono_model->capitalizacionInteres = 'Test';
+        $this->EstructuraBono_model->precioPesos = 2725.91;  
+        
+        $this->EstructuraBono_model->especiesRelacionadas = 'AA21C;AA21D AA21C;AA21D';  
+        $this->EstructuraBono_model->curva = 'Dólar - Tasa Fija - Soberanos';  
+        $this->EstructuraBono_model->variableCurva = 'Last YTM';  
+        $this->EstructuraBono_model->tnaUltimaLicitacion = 42.23;  
+        $this->EstructuraBono_model->diasVencimiento = 2000;  
+        $this->EstructuraBono_model->variableLicitacionPb = -61900; 
+        $this->EstructuraBono_model->cuponPbiD = 22.29; 
+        $this->EstructuraBono_model->cuponPbiW = 22.29; 
+        
         $this->EstructuraBono_model->fechaActualizacion = '2018-09-03';
         
         $estructura = $this->EstructuraBono_model->saveEstructuraBono();

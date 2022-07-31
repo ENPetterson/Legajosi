@@ -151,15 +151,19 @@ $(document).ready(function () {
                 { name: 'diasInicioCupon'},
                 { name: 'diasFinalCupon'},
                 { name: 'capitalizacionInteres'},
+                
+                { name: 'especiesRelacionadas'},
+                { name: 'curva'},
+                { name: 'variableCurva'},
+                { name: 'tnaUltimaLicitacion'},
+                { name: 'diasVencimiento'},
+                { name: 'variableLicitacionPb'},
+                { name: 'cuponPbiD'},
+                { name: 'cuponPbiW'},
+                
+                
                 { name: 'precioPesos'}
-//                { name: 'fecha'},
-//                { name: 'vr', type: 'number'},
-//                { name: 'amortizacion', type: 'number'},
-//                { name: 'VNActualizado', type: 'number'},
-//                { name: 'VRActualizado', type: 'number'},
-//                { name: 'cuponAmortizacion', type: 'number'},
-//                { name: 'cuponInteres', type: 'number'},
-//                { name: 'totalFlujo', type: 'number'},
+
             ],
             cache: false,
 //            url: '/estructuraBono/grillaEstructuraBonoFecha',
@@ -242,6 +246,18 @@ $(document).ready(function () {
                         { text: 'diasInicioCupon', datafield: 'diasInicioCupon', width: 120 },
                         { text: 'diasFinalCupon', datafield: 'diasFinalCupon', width: 120 },
                         { text: 'capitalizacionInteres', datafield: 'capitalizacionInteres', width: 120 },
+                        
+                        
+                        { text: 'especiesRelacionadas', datafield: 'especiesRelacionadas', width: 120 },
+                        { text: 'curva', datafield: 'curva', width: 120 },
+                        { text: 'variableCurva', datafield: 'variableCurva', width: 120 },
+                        { text: 'tnaUltimaLicitacion', datafield: 'tnaUltimaLicitacion', width: 120 },
+                        { text: 'diasVencimiento', datafield: 'diasVencimiento', width: 120 },
+                        { text: 'variableLicitacionPb', datafield: 'variableLicitacionPb', width: 120 },
+                        { text: 'cuponPbiD', datafield: 'cuponPbiD', width: 120 },
+                        { text: 'cuponPbiW', datafield: 'cuponPbiW', width: 120 },
+                                               
+                        
                         { text: 'precioPesos', datafield: 'precioPesos', width: 120 },
                         
 //                        { text: 'fecha', datafield: 'fecha', width: 120},

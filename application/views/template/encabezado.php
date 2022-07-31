@@ -8,6 +8,7 @@
 <link href="/css/messi/messi.min.css" rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="/js/jqwidgets/styles/jqx.base.css" type="text/css" />
 <link rel="stylesheet" href="/js/jqwidgets/styles/jqx.darkblue.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo base_url()?>css/uploadifive.css" />
 <link rel="stylesheet" href="/css/ajaxloader/ajaxloader.css" type="text/css" />
 
 <!-- <link href="/css/gallery.css" rel='stylesheet' type='text/css' /> 
@@ -30,6 +31,8 @@
 <script src="/js/jqwidgets/globalization/globalize.culture.es-AR.js"></script>
 <script src="/js/bootstrap/bootstrap.js"></script>
 <script src="/js/ajaxloader/jquery.ajaxloader.1.5.1.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/upload/jquery.uploadifive.js"></script>
+
 <!--
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script src='/js/geocomplete/jquery.geocomplete.js'></script>

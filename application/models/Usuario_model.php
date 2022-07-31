@@ -57,11 +57,11 @@ class Usuario_model extends CI_Model{
     }    
     
     public function validarUsuario($nombreUsuario, $clave, $dominio){
-        $this->load->library('ldap');
-        $this->load->helper('cookie');
-        if( $this->ldap->validar($nombreUsuario,$clave,$dominio) == "ERROR"){
-            return array('resultado'=>'Usuario o Contraseña Invalida');
-        } else {
+        //$this->load->library('ldap');
+        //$this->load->helper('cookie');
+        //if( $this->ldap->validar($nombreUsuario,$clave,$dominio) == "ERROR"){
+        //    return array('resultado'=>'Usuario o Contraseña Invalida');
+        //} else {
             $usuario = R::findOne('usuario', 'nombreUsuario = ?', 
                     array($nombreUsuario));
             if (is_null($usuario)){
@@ -78,7 +78,7 @@ class Usuario_model extends CI_Model{
                 set_cookie($cookie);
                 return array('resultado'=>'OK');
             }
-        }
+        //}
     }
     
     public function getResponsables(){
